@@ -43,7 +43,7 @@ public class MyTestingClass {
                 continue
             }
 
-            var superCalssNode: ClassNode? = nil
+            var superClassNode: ClassNode? = nil
             if let firstInheritedType = classContext.firstInheritedType {
                 guard let superClassNodeIndex = allClassNodes.firstIndex(where: { classNode in
                     classNode.context.allPossibleIdentifiers.contains(firstInheritedType)
@@ -52,10 +52,10 @@ public class MyTestingClass {
                     continue
                 }
 
-                superCalssNode = allClassNodes[superClassNodeIndex]
+                superClassNode = allClassNodes[superClassNodeIndex]
             }
 
-            let classNode = ClassNode(parent: superCalssNode, context: classContext)
+            let classNode = ClassNode(parent: superClassNode, context: classContext)
             allClassNodes.append(classNode)
 
             var index = 0
@@ -73,7 +73,7 @@ public class MyTestingClass {
                 // Don't increment the index because one element has been removed
             }
 
-            if superCalssNode == nil {
+            if superClassNode == nil {
                 treeRoots.append(classNode)
             }
         }
@@ -106,11 +106,48 @@ class MyVisitor: SyntaxVisitor {
 
     override func visitPost(_ node: ClassDeclSyntax) {
         guard let parentContext = currentContext.parent else {
-            fatalError("currentContext.parent can't be nil right after visiting a class")
+            fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
         }
         currentContext = parentContext
     }
 
+    override func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
+//        print("variable declaration:")
+//        dump(node)
+//        print("------------")
+
+        var isStatic = false
+        if let modifiers = node.modifiers {
+            for modifier in modifiers {
+                if case .keyword(SwiftSyntax.Keyword.static) = modifier.name.tokenKind{
+                    isStatic = true
+                    break
+                }
+            }
+        }
+
+        let variableDeclContext = VariableDeclarationContext(parent: currentContext, isStatic: isStatic)
+        currentContext = variableDeclContext
+
+        return .visitChildren
+    }
+
+    override func visitPost(_ node: VariableDeclSyntax) {
+        guard let parentContext = currentContext.parent else {
+            fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
+        }
+        currentContext = parentContext
+    }
+
+    override func visit(_ node: IdentifierPatternSyntax) -> SyntaxVisitorContinueKind {
+        if let variableDeclContext = currentContext as? VariableDeclarationContext {
+            variableDeclContext.identifier = node.identifier.text
+            print("visiting variable declaration: '\(node.identifier.text)'")
+            print("\tisStatic: \(variableDeclContext.isStatic)")
+        }
+        // else...
+
+        return .skipChildren
+    }
+
 }
-
-

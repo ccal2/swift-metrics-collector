@@ -15,6 +15,20 @@ class Context: TreeNode {
         parent?.children.append(self)
     }
 
+    var variableDeclarations: [VariableDeclarationContext] {
+        var variables: [VariableDeclarationContext] = []
+
+        for child in children {
+            guard let variableDeclContext = child as? VariableDeclarationContext else {
+                continue
+            }
+
+            variables.append(variableDeclContext)
+        }
+
+        return variables
+    }
+
 }
 
 extension Context: Equatable {
