@@ -5,7 +5,7 @@
 //  Created by Carolina Lopes on 20/03/23.
 //
 
-class Context: TreeNode {
+class Context {
 
     private(set) weak var parent: Context?
     private(set) var children: [Context] = []
