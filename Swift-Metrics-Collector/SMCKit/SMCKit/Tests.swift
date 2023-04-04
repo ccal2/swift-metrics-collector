@@ -32,10 +32,10 @@ public class MyTestingClass {
         print("--------------")
     }
 
-    func createClassInheritanceTrees(from rootContext: Context) -> [ClassInheritanceNode] {
+    func createClassInheritanceTrees(from rootContext: Context) -> [ClassNode] {
         var contextsWaitingForSuperClass: [ClassContext] = []
-        var allClassNodes: [ClassInheritanceNode] = []
-        var treeRoots: [ClassInheritanceNode] = []
+        var allClassNodes: [ClassNode] = []
+        var treeRoots: [ClassNode] = []
 
         var iterator = ContextBreadthIterator(root: rootContext)
         while let currentContext = iterator.next() {
@@ -43,7 +43,7 @@ public class MyTestingClass {
                 continue
             }
 
-            var superCalssNode: ClassInheritanceNode? = nil
+            var superCalssNode: ClassNode? = nil
             if let firstInheritedType = classContext.firstInheritedType {
                 guard let superClassNodeIndex = allClassNodes.firstIndex(where: { classNode in
                     classNode.context.allPossibleIdentifiers.contains(firstInheritedType)
@@ -55,7 +55,7 @@ public class MyTestingClass {
                 superCalssNode = allClassNodes[superClassNodeIndex]
             }
 
-            let classNode = ClassInheritanceNode(parent: superCalssNode, context: classContext)
+            let classNode = ClassNode(parent: superCalssNode, context: classContext)
             allClassNodes.append(classNode)
 
             var index = 0
@@ -66,7 +66,7 @@ public class MyTestingClass {
                     continue
                 }
 
-                let subClassNode = ClassInheritanceNode(parent: classNode, context: contextsWaitingForSuperClass[index])
+                let subClassNode = ClassNode(parent: classNode, context: contextsWaitingForSuperClass[index])
                 allClassNodes.append(subClassNode)
 
                 contextsWaitingForSuperClass.remove(at: index)

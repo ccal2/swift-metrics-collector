@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6029DBBBA900DB6BFE /* TypeNode.swift */; };
 		77AB898C29C80F2F0087DA08 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB898B29C80F2F0087DA08 /* Tests.swift */; };
 		77AB898F29C80FAB0087DA08 /* SwiftParser in Frameworks */ = {isa = PBXBuildFile; productRef = 77AB898E29C80FAB0087DA08 /* SwiftParser */; };
 		77AB899129C80FAB0087DA08 /* SwiftSyntax in Frameworks */ = {isa = PBXBuildFile; productRef = 77AB899029C80FAB0087DA08 /* SwiftSyntax */; };
@@ -14,7 +15,6 @@
 		77AB899929C94AA30087DA08 /* TypeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB899829C94AA30087DA08 /* TypeContext.swift */; };
 		77AB899C29C94AFB0087DA08 /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB899B29C94AFB0087DA08 /* TreeNode.swift */; };
 		77AB89A129C94B330087DA08 /* Iterators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB89A029C94B330087DA08 /* Iterators.swift */; };
-		77AB89A329C94BF20087DA08 /* ClassInheritanceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB89A229C94BF20087DA08 /* ClassInheritanceNode.swift */; };
 		77AB89A529C94DB00087DA08 /* ContextIteratorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB89A429C94DB00087DA08 /* ContextIteratorsTests.swift */; };
 		77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 77E1043829C80DE8006BFB1A /* SMCKit.docc */; };
 		77E1043F29C80DE8006BFB1A /* SMCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E1043429C80DE8006BFB1A /* SMCKit.framework */; };
@@ -32,12 +32,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7706EE6029DBBBA900DB6BFE /* TypeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeNode.swift; sourceTree = "<group>"; };
 		77AB898B29C80F2F0087DA08 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		77AB899629C94A7C0087DA08 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		77AB899829C94AA30087DA08 /* TypeContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeContext.swift; sourceTree = "<group>"; };
 		77AB899B29C94AFB0087DA08 /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		77AB89A029C94B330087DA08 /* Iterators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iterators.swift; sourceTree = "<group>"; };
-		77AB89A229C94BF20087DA08 /* ClassInheritanceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInheritanceNode.swift; sourceTree = "<group>"; };
 		77AB89A429C94DB00087DA08 /* ContextIteratorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextIteratorsTests.swift; sourceTree = "<group>"; };
 		77E1043429C80DE8006BFB1A /* SMCKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMCKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E1043729C80DE8006BFB1A /* SMCKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMCKit.h; sourceTree = "<group>"; };
@@ -107,8 +107,8 @@
 			children = (
 				77E1043829C80DE8006BFB1A /* SMCKit.docc */,
 				77E1043729C80DE8006BFB1A /* SMCKit.h */,
-				77AB89A229C94BF20087DA08 /* ClassInheritanceNode.swift */,
 				77AB898B29C80F2F0087DA08 /* Tests.swift */,
+				7706EE6029DBBBA900DB6BFE /* TypeNode.swift */,
 				77AB899529C94A5F0087DA08 /* Contexts */,
 				77AB899A29C94AE00087DA08 /* Protocols */,
 			);
@@ -240,8 +240,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				77AB899C29C94AFB0087DA08 /* TreeNode.swift in Sources */,
+				7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */,
 				77AB899729C94A7C0087DA08 /* Context.swift in Sources */,
-				77AB89A329C94BF20087DA08 /* ClassInheritanceNode.swift in Sources */,
 				77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */,
 				77AB89A129C94B330087DA08 /* Iterators.swift in Sources */,
 				77AB898C29C80F2F0087DA08 /* Tests.swift in Sources */,

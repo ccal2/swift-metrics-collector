@@ -1,15 +1,17 @@
 //
-//  ClassInheritanceNode.swift
+//  TypeNode.swift
 //  SMCKit
 //
 //  Created by Carolina Lopes on 20/03/23.
 //
 
-class ClassInheritanceNode: TreeNode {
+class ClassNode: TypeNode { }
 
-    let context: ClassContext
-    private(set) weak var parent: ClassInheritanceNode?
-    private(set) var children: [ClassInheritanceNode] = []
+class TypeNode {
+
+    let context: TypeContext
+    private(set) weak var parent: TypeNode?
+    private(set) var children: [TypeNode] = []
 
     var identifier: String {
         context.fullIdentifier
@@ -31,7 +33,7 @@ class ClassInheritanceNode: TreeNode {
         return depth
     }
 
-    init(parent: ClassInheritanceNode?, context: ClassContext) {
+    init(parent: TypeNode?, context: TypeContext) {
         self.parent = parent
         self.context = context
         parent?.children.append(self)
