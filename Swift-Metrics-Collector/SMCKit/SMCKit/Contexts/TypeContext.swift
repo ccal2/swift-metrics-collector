@@ -40,4 +40,12 @@ class TypeContext: Context {
         super.init(parent: parent)
     }
 
+    func isSuperType(of context: TypeContext) -> Bool {
+        guard let firstInheritedType = context.firstInheritedType else {
+            return false
+        }
+
+        return allPossibleIdentifiers.contains(firstInheritedType)
+    }
+
 }
