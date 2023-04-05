@@ -33,15 +33,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         let identifier = node.identifier.text
         print("visiting class: '\(identifier)'")
 
-        let firstInheritedType: String?
-        let typeName = node.inheritanceClause?.inheritedTypeCollection.first?.typeName
-        if let simpleTypeIdentifier = typeName?.as(SimpleTypeIdentifierSyntax.self) {
-            firstInheritedType = simpleTypeIdentifier.name.text
-        } else if let memberTypeIdentifier = typeName?.as(MemberTypeIdentifierSyntax.self) {
-            firstInheritedType = memberTypeIdentifier.trimmedDescription
-        } else {
-            firstInheritedType = nil
-        }
+        let firstInheritedType = firstInheritedType(for: node.inheritanceClause)
         print("\tfirstInheritedType: '\(firstInheritedType ?? "nil")'")
 
         let classContext = ClassContext(parent: currentContext, identifier: identifier, firstInheritedType: firstInheritedType)
@@ -100,6 +92,18 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         }
 
         return false
+    }
+
+    private func firstInheritedType(for inheritanceClause: TypeInheritanceClauseSyntax?) -> String? {
+        let typeName = inheritanceClause?.inheritedTypeCollection.first?.typeName
+
+        if let simpleTypeIdentifier = typeName?.as(SimpleTypeIdentifierSyntax.self) {
+            return simpleTypeIdentifier.name.text
+        } else if let memberTypeIdentifier = typeName?.as(MemberTypeIdentifierSyntax.self) {
+            return memberTypeIdentifier.trimmedDescription
+        } else {
+            return nil
+        }
     }
 
 }
