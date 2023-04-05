@@ -10,6 +10,8 @@
 		7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6029DBBBA900DB6BFE /* TypeNode.swift */; };
 		7706EE6329DBBC7300DB6BFE /* VariableDeclarationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */; };
 		7706EE6629DBBDAA00DB6BFE /* VariableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6529DBBDAA00DB6BFE /* VariableNode.swift */; };
+		77821E9A29DCEF0E00BBA1E9 /* ElementsTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */; };
+		77821E9C29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */; };
 		77AB898C29C80F2F0087DA08 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB898B29C80F2F0087DA08 /* Tests.swift */; };
 		77AB898F29C80FAB0087DA08 /* SwiftParser in Frameworks */ = {isa = PBXBuildFile; productRef = 77AB898E29C80FAB0087DA08 /* SwiftParser */; };
 		77AB899129C80FAB0087DA08 /* SwiftSyntax in Frameworks */ = {isa = PBXBuildFile; productRef = 77AB899029C80FAB0087DA08 /* SwiftSyntax */; };
@@ -36,6 +38,8 @@
 		7706EE6029DBBBA900DB6BFE /* TypeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeNode.swift; sourceTree = "<group>"; };
 		7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableDeclarationContext.swift; sourceTree = "<group>"; };
 		7706EE6529DBBDAA00DB6BFE /* VariableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableNode.swift; sourceTree = "<group>"; };
+		77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTree.swift; sourceTree = "<group>"; };
+		77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTreeGeneratorVisitor.swift; sourceTree = "<group>"; };
 		77AB898B29C80F2F0087DA08 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		77AB899629C94A7C0087DA08 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		77AB899829C94AA30087DA08 /* TypeContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeContext.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 			children = (
 				77E1043829C80DE8006BFB1A /* SMCKit.docc */,
 				77E1043729C80DE8006BFB1A /* SMCKit.h */,
+				77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */,
+				77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */,
 				77AB898B29C80F2F0087DA08 /* Tests.swift */,
 				77AB899529C94A5F0087DA08 /* Contexts */,
 				7706EE6429DBBD9500DB6BFE /* Nodes */,
@@ -244,7 +250,9 @@
 			files = (
 				7706EE6329DBBC7300DB6BFE /* VariableDeclarationContext.swift in Sources */,
 				7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */,
+				77821E9C29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift in Sources */,
 				77AB899729C94A7C0087DA08 /* Context.swift in Sources */,
+				77821E9A29DCEF0E00BBA1E9 /* ElementsTree.swift in Sources */,
 				7706EE6629DBBDAA00DB6BFE /* VariableNode.swift in Sources */,
 				77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */,
 				77AB89A129C94B330087DA08 /* Iterators.swift in Sources */,
