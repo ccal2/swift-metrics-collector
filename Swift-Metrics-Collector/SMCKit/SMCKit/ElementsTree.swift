@@ -12,9 +12,9 @@ class ElementsTree {
     let rootContext: Context
 
     /// Types declared in the root context
-    private(set)var types: [TypeNode] = []
+    private(set) var types: [TypeNode] = []
     /// Variables declared in the root context
-    private(set)var variables: [VariableNode] = []
+    private(set) var variables: [VariableNode] = []
     /// Methods declared in the root context
 //     private(set) var methods: [MethodNode] = []
 
