@@ -15,17 +15,9 @@ class Context {
     // MARK: Computed properties
 
     var variableDeclarations: [VariableDeclarationContext] {
-        var variables: [VariableDeclarationContext] = []
-
-        for child in children {
-            guard let variableDeclContext = child as? VariableDeclarationContext else {
-                continue
-            }
-
-            variables.append(variableDeclContext)
+        children.compactMap { context in
+            context as? VariableDeclarationContext
         }
-
-        return variables
     }
 
     // MARK: - Initializers

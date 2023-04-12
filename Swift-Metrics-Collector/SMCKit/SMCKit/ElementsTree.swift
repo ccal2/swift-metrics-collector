@@ -38,21 +38,27 @@ class ElementsTree {
         }
         generatedTree = true
 
-        var contextsWaitingForSuperType: [TypeContext] = []
-
-        var iterator = ContextBreadthIterator(root: rootContext)
-        while let currentContext = iterator.next() {
-            if let typeContext = currentContext as? TypeContext {
-                handleTypeContext(typeContext, contextsWaitingForSuperType: &contextsWaitingForSuperType)
-            }
-        }
-
-        handleRemainingContextsWitingForSuperType(&contextsWaitingForSuperType)
+        generateTypes()
     }
 
     // MARK: - Private methods
 
-    // MARK: Handle type
+    // MARK: Handle types
+
+    private func generateTypes() {
+        var contextsWaitingForSuperType: [TypeContext] = []
+
+        var iterator = ContextBreadthIterator(root: rootContext)
+        while let currentContext = iterator.next() {
+            guard let typeContext = currentContext as? TypeContext else {
+                continue
+            }
+
+            handleTypeContext(typeContext, contextsWaitingForSuperType: &contextsWaitingForSuperType)
+        }
+
+        handleRemainingContextsWitingForSuperType(&contextsWaitingForSuperType)
+    }
 
     private func handleTypeContext(_ context: TypeContext, contextsWaitingForSuperType: inout [TypeContext]) {
         var superTypeNode: TypeNode? = nil

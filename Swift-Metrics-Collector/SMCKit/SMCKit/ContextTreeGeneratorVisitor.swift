@@ -26,15 +26,8 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     // MARK: Visit overrides
 
     override func visit(_ node: ClassDeclSyntax) -> SyntaxVisitorContinueKind {
-//        print("class declaration:")
-//        dump(node)
-//        print("------------")
-
         let identifier = node.identifier.text
-        print("visiting class: '\(identifier)'")
-
         let firstInheritedType = firstInheritedType(for: node.inheritanceClause)
-        print("\tfirstInheritedType: '\(firstInheritedType ?? "nil")'")
 
         let classContext = ClassContext(parent: currentContext, identifier: identifier, firstInheritedType: firstInheritedType)
         currentContext = classContext
@@ -50,10 +43,6 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     }
 
     override func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
-//        print("variable declaration:")
-//        dump(node)
-//        print("------------")
-
         let variableDeclContext = VariableDeclarationContext(parent: currentContext, isStatic: isStatic(modifiers: node.modifiers))
         currentContext = variableDeclContext
 
@@ -70,8 +59,6 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     override func visit(_ node: IdentifierPatternSyntax) -> SyntaxVisitorContinueKind {
         if let variableDeclContext = currentContext as? VariableDeclarationContext {
             variableDeclContext.identifier = node.identifier.text
-            print("visiting variable declaration: '\(node.identifier.text)'")
-            print("\tisStatic: \(variableDeclContext.isStatic)")
         }
         // else...
 
