@@ -34,7 +34,7 @@ public class MyTestingClass {
         tree.generateTree()
         print("Type inheritance trees:")
         for root in tree.types {
-            root.printWithChildren(prefix: "\t")
+            print(root.printableDescription())
         }
         print("--------------")
     }

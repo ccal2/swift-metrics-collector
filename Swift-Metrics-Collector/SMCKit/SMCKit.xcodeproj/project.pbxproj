@@ -10,6 +10,11 @@
 		7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6029DBBBA900DB6BFE /* TypeNode.swift */; };
 		7706EE6329DBBC7300DB6BFE /* VariableDeclarationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */; };
 		7706EE6629DBBDAA00DB6BFE /* VariableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6529DBBDAA00DB6BFE /* VariableNode.swift */; };
+		776C3E8129E4E54D00F127C7 /* MethodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8029E4E54D00F127C7 /* MethodNode.swift */; };
+		776C3E8329E4E57A00F127C7 /* MethodContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8229E4E57A00F127C7 /* MethodContext.swift */; };
+		776C3E8729E4ECCB00F127C7 /* MethodParameterContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8629E4ECCB00F127C7 /* MethodParameterContext.swift */; };
+		776C3E8929E4F13B00F127C7 /* MethodParameterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8829E4F13B00F127C7 /* MethodParameterNode.swift */; };
+		776C3E8B29E65BF000F127C7 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8A29E65BF000F127C7 /* BlockNode.swift */; };
 		77821E9A29DCEF0E00BBA1E9 /* ElementsTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */; };
 		77821E9C29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */; };
 		77AB898C29C80F2F0087DA08 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB898B29C80F2F0087DA08 /* Tests.swift */; };
@@ -17,7 +22,7 @@
 		77AB899129C80FAB0087DA08 /* SwiftSyntax in Frameworks */ = {isa = PBXBuildFile; productRef = 77AB899029C80FAB0087DA08 /* SwiftSyntax */; };
 		77AB899729C94A7C0087DA08 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB899629C94A7C0087DA08 /* Context.swift */; };
 		77AB899929C94AA30087DA08 /* TypeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB899829C94AA30087DA08 /* TypeContext.swift */; };
-		77AB89A129C94B330087DA08 /* Iterators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB89A029C94B330087DA08 /* Iterators.swift */; };
+		77AB89A129C94B330087DA08 /* ContextIterators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB89A029C94B330087DA08 /* ContextIterators.swift */; };
 		77AB89A529C94DB00087DA08 /* ContextIteratorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB89A429C94DB00087DA08 /* ContextIteratorsTests.swift */; };
 		77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 77E1043829C80DE8006BFB1A /* SMCKit.docc */; };
 		77E1043F29C80DE8006BFB1A /* SMCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E1043429C80DE8006BFB1A /* SMCKit.framework */; };
@@ -38,12 +43,17 @@
 		7706EE6029DBBBA900DB6BFE /* TypeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeNode.swift; sourceTree = "<group>"; };
 		7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableDeclarationContext.swift; sourceTree = "<group>"; };
 		7706EE6529DBBDAA00DB6BFE /* VariableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableNode.swift; sourceTree = "<group>"; };
+		776C3E8029E4E54D00F127C7 /* MethodNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodNode.swift; sourceTree = "<group>"; };
+		776C3E8229E4E57A00F127C7 /* MethodContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodContext.swift; sourceTree = "<group>"; };
+		776C3E8629E4ECCB00F127C7 /* MethodParameterContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodParameterContext.swift; sourceTree = "<group>"; };
+		776C3E8829E4F13B00F127C7 /* MethodParameterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodParameterNode.swift; sourceTree = "<group>"; };
+		776C3E8A29E65BF000F127C7 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTree.swift; sourceTree = "<group>"; };
 		77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTreeGeneratorVisitor.swift; sourceTree = "<group>"; };
 		77AB898B29C80F2F0087DA08 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		77AB899629C94A7C0087DA08 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		77AB899829C94AA30087DA08 /* TypeContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeContext.swift; sourceTree = "<group>"; };
-		77AB89A029C94B330087DA08 /* Iterators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iterators.swift; sourceTree = "<group>"; };
+		77AB89A029C94B330087DA08 /* ContextIterators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextIterators.swift; sourceTree = "<group>"; };
 		77AB89A429C94DB00087DA08 /* ContextIteratorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextIteratorsTests.swift; sourceTree = "<group>"; };
 		77E1043429C80DE8006BFB1A /* SMCKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMCKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E1043729C80DE8006BFB1A /* SMCKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMCKit.h; sourceTree = "<group>"; };
@@ -75,6 +85,9 @@
 		7706EE6429DBBD9500DB6BFE /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				776C3E8A29E65BF000F127C7 /* BlockNode.swift */,
+				776C3E8029E4E54D00F127C7 /* MethodNode.swift */,
+				776C3E8829E4F13B00F127C7 /* MethodParameterNode.swift */,
 				7706EE6029DBBBA900DB6BFE /* TypeNode.swift */,
 				7706EE6529DBBDAA00DB6BFE /* VariableNode.swift */,
 			);
@@ -85,7 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				77AB899629C94A7C0087DA08 /* Context.swift */,
-				77AB89A029C94B330087DA08 /* Iterators.swift */,
+				776C3E8229E4E57A00F127C7 /* MethodContext.swift */,
+				776C3E8629E4ECCB00F127C7 /* MethodParameterContext.swift */,
 				77AB899829C94AA30087DA08 /* TypeContext.swift */,
 				7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */,
 			);
@@ -115,6 +129,7 @@
 			children = (
 				77E1043829C80DE8006BFB1A /* SMCKit.docc */,
 				77E1043729C80DE8006BFB1A /* SMCKit.h */,
+				77AB89A029C94B330087DA08 /* ContextIterators.swift */,
 				77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */,
 				77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */,
 				77AB898B29C80F2F0087DA08 /* Tests.swift */,
@@ -249,15 +264,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7706EE6329DBBC7300DB6BFE /* VariableDeclarationContext.swift in Sources */,
+				776C3E8929E4F13B00F127C7 /* MethodParameterNode.swift in Sources */,
+				776C3E8729E4ECCB00F127C7 /* MethodParameterContext.swift in Sources */,
 				7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */,
 				77821E9C29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift in Sources */,
 				77AB899729C94A7C0087DA08 /* Context.swift in Sources */,
+				776C3E8B29E65BF000F127C7 /* BlockNode.swift in Sources */,
+				776C3E8329E4E57A00F127C7 /* MethodContext.swift in Sources */,
 				77821E9A29DCEF0E00BBA1E9 /* ElementsTree.swift in Sources */,
 				7706EE6629DBBDAA00DB6BFE /* VariableNode.swift in Sources */,
 				77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */,
-				77AB89A129C94B330087DA08 /* Iterators.swift in Sources */,
+				77AB89A129C94B330087DA08 /* ContextIterators.swift in Sources */,
 				77AB898C29C80F2F0087DA08 /* Tests.swift in Sources */,
 				77AB899929C94AA30087DA08 /* TypeContext.swift in Sources */,
+				776C3E8129E4E54D00F127C7 /* MethodNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

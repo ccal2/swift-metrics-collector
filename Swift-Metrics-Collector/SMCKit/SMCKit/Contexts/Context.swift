@@ -20,6 +20,12 @@ class Context {
         }
     }
 
+    var methods: [MethodContext] {
+        children.compactMap { context in
+            context as? MethodContext
+        }
+    }
+
     // MARK: - Initializers
 
     init(parent: Context?) {

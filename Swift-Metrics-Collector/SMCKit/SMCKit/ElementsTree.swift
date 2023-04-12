@@ -16,7 +16,7 @@ class ElementsTree {
     /// Variables declared in the root context
     private(set) var variables: [VariableNode] = []
     /// Methods declared in the root context
-//     private(set) var methods: [MethodNode] = []
+    private(set) var methods: [MethodNode] = []
 
     /// All types declared in the root context or nested in other types
     private(set) var allTypes: [TypeNode] = []
@@ -39,6 +39,7 @@ class ElementsTree {
         generatedTree = true
 
         generateTypes()
+        generateGlobalVariablesAndMethods()
     }
 
     // MARK: - Private methods
@@ -126,6 +127,28 @@ class ElementsTree {
         while !contexts.isEmpty {
             handleTypeContext(contexts[0], contextsWaitingForSuperType: &contexts)
         }
+    }
+
+    // MARK: Handle variables and methods
+
+    private func generateGlobalVariablesAndMethods() {
+        for child in rootContext.children {
+            if let variableContext = child as? VariableDeclarationContext {
+                handleVariableContext(variableContext)
+            } else if let methodContext = child as? MethodContext {
+                handleMethodContext(methodContext)
+            }
+        }
+    }
+
+    private func handleVariableContext(_ context: VariableDeclarationContext) {
+        let variableNode = VariableNode(parent: nil, context: context)
+        variables.append(variableNode)
+    }
+
+    private func handleMethodContext(_ context: MethodContext) {
+        let methodNode = MethodNode(parent: nil, context: context)
+        methods.append(methodNode)
     }
 
 }

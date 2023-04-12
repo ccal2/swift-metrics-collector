@@ -65,6 +65,45 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         return .skipChildren
     }
 
+    override func visit(_ node: FunctionDeclSyntax) -> SyntaxVisitorContinueKind {
+        let methodContext = MethodContext(parent: currentContext,
+                                          identifier: node.identifier.text,
+                                          returnTypeIdentifier: typeIdentifier(for: node.signature.output?.returnType),
+                                          isStatic: isStatic(modifiers: node.modifiers))
+        currentContext = methodContext
+
+        return .visitChildren
+    }
+
+    override func visitPost(_ node: FunctionDeclSyntax) {
+        guard let parentContext = currentContext.parent else {
+            fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
+        }
+        currentContext = parentContext
+    }
+
+    override func visit(_ node: FunctionParameterSyntax) -> SyntaxVisitorContinueKind {
+        guard let methodContext = currentContext as? MethodContext else {
+            assertionFailure("The current context must be a MethodContext")
+            return .visitChildren
+        }
+
+        let parameterContext = MethodParameterContext(parent: methodContext,
+                                                      firstName: node.firstName?.text,
+                                                      secondName: node.secondName?.text,
+                                                      typeIdentifier:  typeIdentifier(for: node.type))
+        currentContext = parameterContext
+
+        return .skipChildren
+    }
+
+    override func visitPost(_ node: FunctionParameterSyntax) {
+        guard let parentContext = currentContext.parent else {
+            fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
+        }
+        currentContext = parentContext
+    }
+
     // MARK: - Private methods
 
     private func isStatic(modifiers: ModifierListSyntax?) -> Bool {
