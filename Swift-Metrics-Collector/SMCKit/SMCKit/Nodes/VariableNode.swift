@@ -7,24 +7,28 @@
 
 class VariableNode: CustomStringConvertible {
 
+    // MARK: - Properties
+
     let context: VariableDeclarationContext
 
-    var identifier: String {
+    lazy var identifier: String = {
         guard let identifier = context.identifier else {
             fatalError("The variable identifier must be set before initializing the VariableNode")
         }
 
         return identifier
-    }
+    }()
 
-    var isStatic: Bool {
+    lazy var isStatic: Bool = {
         context.isStatic
-    }
+    }()
 
-    var description: String {
+    lazy var description: String = {
         let postfix = isStatic ? " (static)" : ""
         return identifier + postfix
-    }
+    }()
+
+    // MARK: - Initializers
 
     init(context: VariableDeclarationContext) {
         self.context = context

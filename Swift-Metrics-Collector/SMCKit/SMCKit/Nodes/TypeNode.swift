@@ -9,20 +9,19 @@ class ClassNode: TypeNode { }
 
 class TypeNode {
 
+    // MARK: - Properties
+
     let context: TypeContext
+
     private(set) weak var parent: TypeNode?
     private(set) var children: [TypeNode] = []
     private(set) var variables: [VariableNode] = []
 
-    var identifier: String {
+    lazy var identifier: String = {
         context.fullIdentifier
-    }
+    }()
 
-    var numberOfChildren: Int {
-        children.count
-    }
-
-    var depthOfInheritance: Int {
+    lazy var depthOfInheritance: Int = {
         var depth = 0
 
         var node = self
@@ -32,7 +31,15 @@ class TypeNode {
         }
 
         return depth
+    }()
+
+    // MARK: Computed properties
+
+    var numberOfChildren: Int {
+        children.count
     }
+
+    // MARK: - Initializers
 
     init(parent: TypeNode?, context: TypeContext) {
         self.parent = parent
@@ -40,6 +47,8 @@ class TypeNode {
         self.variables = context.variableDeclarations.map(VariableNode.init)
         parent?.children.append(self)
     }
+
+    // MARK: - Methods
 
     func printWithChildren(prefix: String = "") {
         print(prefix + identifier + " (NOC: \(numberOfChildren) | DIT: \(depthOfInheritance))")

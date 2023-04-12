@@ -50,6 +50,10 @@ class ElementsTree {
         handleRemainingContextsWitingForSuperType(&contextsWaitingForSuperType)
     }
 
+    // MARK: - Private methods
+
+    // MARK: Handle type
+
     private func handleTypeContext(_ context: TypeContext, contextsWaitingForSuperType: inout [TypeContext]) {
         var superTypeNode: TypeNode? = nil
         if let firstInheritedType = context.firstInheritedType {

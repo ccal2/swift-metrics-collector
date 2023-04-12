@@ -54,7 +54,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
 //        dump(node)
 //        print("------------")
 
-        let variableDeclContext = VariableDeclarationContext(parent: currentContext, isStatic: isStatic(variableDeclaration: node))
+        let variableDeclContext = VariableDeclarationContext(parent: currentContext, isStatic: isStatic(modifiers: node.modifiers))
         currentContext = variableDeclContext
 
         return .visitChildren
@@ -78,10 +78,10 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         return .skipChildren
     }
 
-    // MARK: Helpers
+    // MARK: - Private methods
 
-    private func isStatic(variableDeclaration node: VariableDeclSyntax) -> Bool {
-        guard let modifiers = node.modifiers else {
+    private func isStatic(modifiers: ModifierListSyntax?) -> Bool {
+        guard let modifiers = modifiers else {
             return false
         }
 
@@ -95,11 +95,17 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     }
 
     private func firstInheritedType(for inheritanceClause: TypeInheritanceClauseSyntax?) -> String? {
-        let typeName = inheritanceClause?.inheritedTypeCollection.first?.typeName
+        if let typeName = inheritanceClause?.inheritedTypeCollection.first?.typeName {
+            return typeIdentifier(for: typeName)
+        } else {
+            return nil
+        }
+    }
 
-        if let simpleTypeIdentifier = typeName?.as(SimpleTypeIdentifierSyntax.self) {
+    private func typeIdentifier(for type: TypeSyntax?) -> String? {
+        if let simpleTypeIdentifier = type?.as(SimpleTypeIdentifierSyntax.self) {
             return simpleTypeIdentifier.name.text
-        } else if let memberTypeIdentifier = typeName?.as(MemberTypeIdentifierSyntax.self) {
+        } else if let memberTypeIdentifier = type?.as(MemberTypeIdentifierSyntax.self) {
             return memberTypeIdentifier.trimmedDescription
         } else {
             return nil

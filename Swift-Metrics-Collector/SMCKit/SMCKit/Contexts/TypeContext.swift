@@ -10,6 +10,8 @@ class ClassContext: TypeContext { }
 
 class TypeContext: Context {
 
+    // MARK: - Properties
+
     let identifier: String
     let firstInheritedType: String?
 
@@ -34,11 +36,15 @@ class TypeContext: Context {
         return identifiers
     }()
 
+    // MARK: - Initializers
+
     init(parent: Context, identifier: String, firstInheritedType: String?) {
         self.identifier = identifier
         self.firstInheritedType = firstInheritedType
         super.init(parent: parent)
     }
+
+    // MARK: - Methods
 
     func isSuperType(of context: TypeContext) -> Bool {
         guard let firstInheritedType = context.firstInheritedType else {

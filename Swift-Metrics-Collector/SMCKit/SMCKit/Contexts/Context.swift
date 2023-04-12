@@ -7,13 +7,12 @@
 
 class Context {
 
+    // MARK: - Properties
+
     private(set) weak var parent: Context?
     private(set) var children: [Context] = []
 
-    init(parent: Context?) {
-        self.parent = parent
-        parent?.children.append(self)
-    }
+    // MARK: Computed properties
 
     var variableDeclarations: [VariableDeclarationContext] {
         var variables: [VariableDeclarationContext] = []
@@ -29,7 +28,16 @@ class Context {
         return variables
     }
 
+    // MARK: - Initializers
+
+    init(parent: Context?) {
+        self.parent = parent
+        parent?.children.append(self)
+    }
+
 }
+
+// MARK: - Equatable
 
 extension Context: Equatable {
 
