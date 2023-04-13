@@ -13,11 +13,11 @@ class MethodParameterNode {
 
     private(set) weak var parent: MethodNode?
 
-    lazy var label: String? = {
+    private(set) lazy var label: String? = {
         context.firstName
     }()
 
-    lazy var identifier: String = {
+    private(set) lazy var identifier: String = {
         if let secondName = context.secondName {
             return secondName
         }
@@ -29,7 +29,7 @@ class MethodParameterNode {
         return firstName
     }()
 
-    lazy var typeIdentifier: String = {
+    private(set) lazy var typeIdentifier: String = {
         guard let type = context.typeIdentifier else {
             fatalError("Missing type identifier in parameter")
         }

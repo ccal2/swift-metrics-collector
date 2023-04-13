@@ -5,9 +5,7 @@
 //  Created by Carolina Lopes on 20/03/23.
 //
 
-class ClassNode: TypeNode { }
-
-class TypeNode: BlockNode {
+class TypeNode: ContainerNode {
 
     // MARK: - Properties
 
@@ -15,6 +13,10 @@ class TypeNode: BlockNode {
 
     private(set) weak var parent: TypeNode?
     private(set) var children: [TypeNode] = []
+
+    private(set) lazy var kind: TypeKind = {
+        context.kind
+    }()
 
     private(set) lazy var identifier: String = {
         context.fullIdentifier

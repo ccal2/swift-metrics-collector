@@ -5,22 +5,20 @@
 //  Created by Carolina Lopes on 20/03/23.
 //
 
-class ClassContext: TypeContext { }
-
-
 class TypeContext: Context {
 
     // MARK: - Properties
 
     let identifier: String
     let firstInheritedType: String?
+    let kind: TypeKind
 
-    lazy var fullIdentifier: String = {
+    private(set) lazy var fullIdentifier: String = {
         // Since allPossibleIdentifiers starts with one element, it will never be empty
         allPossibleIdentifiers.last!
     }()
 
-    lazy var allPossibleIdentifiers: [String] = {
+    private(set) lazy var allPossibleIdentifiers: [String] = {
         var identifiers: [String] = [identifier]
         var prefix = ""
         var context: Context = self
@@ -38,9 +36,10 @@ class TypeContext: Context {
 
     // MARK: - Initializers
 
-    init(parent: Context, identifier: String, firstInheritedType: String?) {
+    init(parent: Context, identifier: String, firstInheritedType: String?, kind: TypeKind) {
         self.identifier = identifier
         self.firstInheritedType = firstInheritedType
+        self.kind = kind
         super.init(parent: parent)
     }
 

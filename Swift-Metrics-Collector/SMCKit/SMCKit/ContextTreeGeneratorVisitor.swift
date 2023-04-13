@@ -29,7 +29,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         let identifier = node.identifier.text
         let firstInheritedType = firstInheritedType(for: node.inheritanceClause)
 
-        let classContext = ClassContext(parent: currentContext, identifier: identifier, firstInheritedType: firstInheritedType)
+        let classContext = TypeContext(parent: currentContext, identifier: identifier, firstInheritedType: firstInheritedType, kind: .class)
         currentContext = classContext
 
         return .visitChildren

@@ -5,13 +5,13 @@
 //  Created by Carolina Lopes on 10/04/23.
 //
 
-class MethodNode: BlockNode {
+class MethodNode: ContainerNode {
 
     // MARK: - Properties
 
     let context: MethodContext
 
-    private(set) weak var parent: BlockNode?
+    private(set) weak var parent: ContainerNode?
 
     private(set) lazy var identifier: String = {
         context.identifier
@@ -39,7 +39,7 @@ class MethodNode: BlockNode {
 
     // MARK: - Initializers
 
-    init(parent: BlockNode?, context: MethodContext) {
+    init(parent: ContainerNode?, context: MethodContext) {
         self.parent = parent
         self.context = context
         super.init()

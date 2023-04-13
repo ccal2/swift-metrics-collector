@@ -11,7 +11,7 @@ class VariableNode {
 
     let context: VariableDeclarationContext
 
-    private(set) weak var parent: BlockNode?
+    private(set) weak var parent: ContainerNode?
 
     private(set) lazy var identifier: String = {
         guard let identifier = context.identifier else {
@@ -27,7 +27,7 @@ class VariableNode {
 
     // MARK: - Initializers
 
-    init(parent: BlockNode?, context: VariableDeclarationContext) {
+    init(parent: ContainerNode?, context: VariableDeclarationContext) {
         self.parent = parent
         self.context = context
     }
