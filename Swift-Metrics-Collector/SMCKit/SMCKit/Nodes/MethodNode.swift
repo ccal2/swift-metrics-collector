@@ -37,6 +37,39 @@ class MethodNode: ContainerNode {
         }
     }()
 
+    private(set) lazy var variableAccesses: [VariableAccessNode] = {
+        context.variableAccesses.map { context in
+            VariableAccessNode(parent: self, context: context)
+        }
+    }()
+
+    // If an instance variable is accessed without self and later on a local variable is declared with the same name, that access will be ignored!
+    // To fix this, we'd need to save the indexes of the declarataion and the access and use that when identifing wheter an access is related to an instance variable or not
+    private(set) lazy var accessedInstanceVariables: Set<VariableNode> = {
+        // TODO: look for TypeNode parent recursively
+        //      To do that, it might be needed to create e Node superclass, so that there's always a `parent` variable
+        guard let typeNode = parent as? TypeNode else {
+            return []
+        }
+
+        var instanceVariables: Set<VariableNode> = []
+        for variableAccess in variableAccesses {
+            if let localVariable = variables.first(withIdentifier: variableAccess.identifier) {
+                guard variableAccess.accessedUsingSelf else {
+                    continue
+                }
+                instanceVariables.insert(localVariable)
+            } else {
+                guard let instanceVariable = typeNode.nonStaticVariables.first(withIdentifier: variableAccess.identifier) else {
+                    continue
+                }
+                instanceVariables.insert(instanceVariable)
+            }
+        }
+
+        return instanceVariables
+    }()
+
     // MARK: - Initializers
 
     init(parent: ContainerNode?, context: MethodContext) {
@@ -58,6 +91,14 @@ class MethodNode: ContainerNode {
             variable.printableDescription(identationLevel: identationLevel + 1)
         }.joined(separator: ",\n")
 
+        let variableAccessesDescription = variableAccesses.map { variableAccess in
+            variableAccess.printableDescription(identationLevel: identationLevel + 1)
+        }.joined(separator: ",\n")
+
+        let accessedInstanceVariablesDescription = accessedInstanceVariables.map { instanceVariable in
+            instanceVariable.printableDescription(identationLevel: identationLevel + 1)
+        }.joined(separator: ",\n")
+
         return """
         \(prefix)Method: {
         \(prefix)   identifier: \(identifier),
@@ -68,6 +109,12 @@ class MethodNode: ContainerNode {
         \(prefix)   returnTypeIdentifier: \(returnTypeIdentifier ?? "nil"),
         \(prefix)   variables: [
         \(variablesDescription)
+        \(prefix)   ]
+        \(prefix)   variable accesses: [
+        \(variableAccessesDescription)
+        \(prefix)   ]
+        \(prefix)   accessed instance variables: [
+        \(accessedInstanceVariablesDescription)
         \(prefix)   ]
         \(prefix)}
         """

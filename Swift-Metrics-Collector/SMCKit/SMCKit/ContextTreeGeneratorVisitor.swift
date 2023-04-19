@@ -96,6 +96,34 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         return .skipChildren
     }
 
+    override func visit(_ node: MemberAccessExprSyntax) -> SyntaxVisitorContinueKind {
+        guard let identifierExpr = node.base?.as(IdentifierExprSyntax.self) else {
+            return .visitChildren
+        }
+
+        if identifierExpr.identifier.tokenKind == .keyword(.self) {
+            guard let nameToken = node.name.as(TokenSyntax.self),
+                  case let .identifier(nameIdentifier) = nameToken.tokenKind,
+                  !(node.parent?.is(FunctionCallExprSyntax.self) ?? false) else {
+                return .skipChildren
+            }
+
+            _ = VariableAccessContext(parent: currentContext, identifier: nameIdentifier, accessedUsingSelf: true)
+        } else {
+            _ = VariableAccessContext(parent: currentContext, identifier: identifierExpr.identifier.text, accessedUsingSelf: false)
+        }
+
+        return .skipChildren
+    }
+
+    override func visit(_ node: IdentifierExprSyntax) -> SyntaxVisitorContinueKind {
+        if !(node.parent?.is(FunctionCallExprSyntax.self) ?? false) {
+            _ = VariableAccessContext(parent: currentContext, identifier: node.identifier.text, accessedUsingSelf: false)
+        }
+
+        return .skipChildren
+    }
+
     // MARK: - Private methods
 
     private func isStatic(modifiers: ModifierListSyntax?) -> Bool {

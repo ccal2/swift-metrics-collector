@@ -28,6 +28,12 @@ class TypeNode: ContainerNode {
         }
     }()
 
+    private(set) lazy var nonStaticVariables: [VariableNode] = {
+        variables.filter { node in
+            !node.isStatic
+        }
+    }()
+
     private(set) lazy var methods: [MethodNode]  = {
         context.methods.map { context in
             MethodNode(parent: self, context: context)

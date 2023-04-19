@@ -56,3 +56,17 @@ extension VariableNode: CustomStringConvertible {
     }
 
 }
+
+// MARK: - Hashable
+
+extension VariableNode: Hashable {
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(context)
+    }
+
+    static func == (lhs: VariableNode, rhs: VariableNode) -> Bool {
+        lhs.context == rhs.context
+    }
+
+}

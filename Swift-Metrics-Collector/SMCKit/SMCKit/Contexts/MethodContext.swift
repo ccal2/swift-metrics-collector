@@ -21,6 +21,12 @@ class MethodContext: Context {
         }
     }
 
+    var variableAccesses: [VariableAccessContext] {
+        children.compactMap { context in
+            context as? VariableAccessContext
+        }
+    }
+
     // MARK: - Initializers
 
     init(parent: Context, identifier: String, returnTypeIdentifier: String?, isStatic: Bool) {
