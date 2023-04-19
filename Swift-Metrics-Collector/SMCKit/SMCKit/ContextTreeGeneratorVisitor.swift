@@ -88,20 +88,12 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
             return .visitChildren
         }
 
-        let parameterContext = MethodParameterContext(parent: methodContext,
-                                                      firstName: node.firstName?.text,
-                                                      secondName: node.secondName?.text,
-                                                      typeIdentifier:  typeIdentifier(for: node.type))
-        currentContext = parameterContext
+        _ = MethodParameterContext(parent: methodContext,
+                                   firstName: node.firstName?.text,
+                                   secondName: node.secondName?.text,
+                                   typeIdentifier:  typeIdentifier(for: node.type))
 
         return .skipChildren
-    }
-
-    override func visitPost(_ node: FunctionParameterSyntax) {
-        guard let parentContext = currentContext.parent else {
-            fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
-        }
-        currentContext = parentContext
     }
 
     // MARK: - Private methods
