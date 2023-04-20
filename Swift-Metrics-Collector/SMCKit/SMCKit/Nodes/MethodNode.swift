@@ -78,6 +78,10 @@ class MethodNode: ContainerNode<MethodContext> {
             variable.printableDescription(identationLevel: identationLevel + 1)
         }.joined(separator: ",\n")
 
+        let methodsDescription = methods.map { method in
+            method.printableDescription(identationLevel: identationLevel + 1)
+        }.joined(separator: ",\n")
+
         let variableAccessesDescription = variableAccesses.map { variableAccess in
             variableAccess.printableDescription(identationLevel: identationLevel + 1)
         }.joined(separator: ",\n")
@@ -96,10 +100,13 @@ class MethodNode: ContainerNode<MethodContext> {
         \(prefix)   returnTypeIdentifier: \(returnTypeIdentifier ?? "nil"),
         \(prefix)   variables: [
         \(variablesDescription)
-        \(prefix)   ]
+        \(prefix)   ],
+        \(prefix)   methods: [
+        \(methodsDescription)
+        \(prefix)   ],
         \(prefix)   variable accesses: [
         \(variableAccessesDescription)
-        \(prefix)   ]
+        \(prefix)   ],
         \(prefix)   accessed instance variables: [
         \(accessedInstanceVariablesDescription)
         \(prefix)   ]
