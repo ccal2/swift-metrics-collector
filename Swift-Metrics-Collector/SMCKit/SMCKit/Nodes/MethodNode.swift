@@ -36,9 +36,17 @@ class MethodNode: ContainerNode<MethodContext> {
     // If an instance variable is accessed without self and later on a local variable is declared with the same name, that access will be ignored!
     // To fix this, we'd need to save the indexes of the declarataion and the access and use that when identifing wheter an access is related to an instance variable or not
     private(set) lazy var accessedInstanceVariables: Set<VariableNode> = {
-        // TODO: look for TypeNode parent recursively
-        //      To do that, it might be needed to create e Node superclass, so that there's always a `parent` variable
-        guard let typeNode = parent as? TypeNode else {
+        // localVariables will store all variables declared inside this method or any other method that includes it (until the type delcaration is reached)
+        // e.g.: class A { func fA() { class B { func fB() { func gB() {} } } } } | object is method f: all variables declared in methods f and g
+        var localVariables = variables
+
+        var node = parent
+        while let methodParent = node as? MethodNode {
+            localVariables.append(contentsOf: methodParent.variables)
+            node = methodParent.parent
+        }
+
+        guard let typeNode = node as? TypeNode else {
             return []
         }
 
@@ -50,10 +58,14 @@ class MethodNode: ContainerNode<MethodContext> {
                 }
             }
 
-            guard let instanceVariable = typeNode.nonStaticVariables.first(withIdentifier: variableAccess.identifier) else {
+            guard let instanceVariable = typeNode.allNonStaticVariables.first(withIdentifier: variableAccess.identifier) else {
                 continue
             }
             instanceVariables.insert(instanceVariable)
+        }
+
+        for child in methods {
+            instanceVariables.formUnion(child.accessedInstanceVariables)
         }
 
         return instanceVariables

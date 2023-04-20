@@ -19,8 +19,20 @@ class TypeNode: ContainerNode<TypeContext> {
         context.fullIdentifier
     }()
 
-    private(set) lazy var nonStaticVariables: [VariableNode] = {
-        variables.filter { node in
+    private(set) lazy var allVariables: [VariableNode] = {
+        var allVariables = variables
+
+        var node: any NodeObject = self
+        while let parent = node.parent as? TypeNode {
+            node = parent
+            allVariables.append(contentsOf: parent.variables)
+        }
+
+        return allVariables
+    }()
+
+    private(set) lazy var allNonStaticVariables: [VariableNode] = {
+        allVariables.filter { node in
             !node.isStatic
         }
     }()
