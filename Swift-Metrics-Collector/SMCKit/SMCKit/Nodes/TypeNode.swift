@@ -5,13 +5,10 @@
 //  Created by Carolina Lopes on 20/03/23.
 //
 
-class TypeNode: ContainerNode {
+class TypeNode: ContainerNode<TypeContext> {
 
     // MARK: - Properties
 
-    let context: TypeContext
-
-    private(set) weak var parent: TypeNode?
     private(set) var children: [TypeNode] = []
 
     private(set) lazy var kind: TypeKind = {
@@ -22,21 +19,9 @@ class TypeNode: ContainerNode {
         context.fullIdentifier
     }()
 
-    private(set) lazy var variables: [VariableNode] = {
-        context.variableDeclarations.map { context in
-            VariableNode(parent: self, context: context)
-        }
-    }()
-
     private(set) lazy var nonStaticVariables: [VariableNode] = {
         variables.filter { node in
             !node.isStatic
-        }
-    }()
-
-    private(set) lazy var methods: [MethodNode]  = {
-        context.methods.map { context in
-            MethodNode(parent: self, context: context)
         }
     }()
 
@@ -49,7 +34,7 @@ class TypeNode: ContainerNode {
     private(set) lazy var depthOfInheritance: Int = {
         var depth = 0
 
-        var node = self
+        var node: any NodeObject = self
         while let parent = node.parent {
             depth += 1
             node = parent
@@ -91,9 +76,7 @@ class TypeNode: ContainerNode {
     // MARK: - Initializers
 
     init(parent: TypeNode?, context: TypeContext) {
-        self.parent = parent
-        self.context = context
-        super.init()
+        super.init(parent: parent, context: context)
 
         parent?.children.append(self)
     }

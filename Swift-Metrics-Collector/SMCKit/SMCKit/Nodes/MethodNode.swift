@@ -5,13 +5,9 @@
 //  Created by Carolina Lopes on 10/04/23.
 //
 
-class MethodNode: ContainerNode {
+class MethodNode: ContainerNode<MethodContext> {
 
     // MARK: - Properties
-
-    let context: MethodContext
-
-    private(set) weak var parent: ContainerNode?
 
     private(set) lazy var identifier: String = {
         context.identifier
@@ -29,12 +25,6 @@ class MethodNode: ContainerNode {
 
     private(set) lazy var returnTypeIdentifier: String? = {
         context.returnTypeIdentifier
-    }()
-
-    private(set) lazy var variables: [VariableNode] = {
-        context.variableDeclarations.map { context in
-            VariableNode(parent: self, context: context)
-        }
     }()
 
     private(set) lazy var variableAccesses: [VariableAccessNode] = {
@@ -72,10 +62,8 @@ class MethodNode: ContainerNode {
 
     // MARK: - Initializers
 
-    init(parent: ContainerNode?, context: MethodContext) {
-        self.parent = parent
-        self.context = context
-        super.init()
+    init(parent: (any ContainerNodeObject)?, context: MethodContext) {
+        super.init(parent: parent, context: context)
     }
 
     // MARK: - Methods

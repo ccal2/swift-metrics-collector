@@ -5,13 +5,9 @@
 //  Created by Carolina Lopes on 03/04/23.
 //
 
-class VariableNode {
+class VariableNode: Node<VariableDeclarationContext>  {
 
     // MARK: - Properties
-
-    let context: VariableDeclarationContext
-
-    private(set) weak var parent: ContainerNode?
 
     private(set) lazy var identifier: String = {
         guard let identifier = context.identifier else {
@@ -27,9 +23,8 @@ class VariableNode {
 
     // MARK: - Initializers
 
-    init(parent: ContainerNode?, context: VariableDeclarationContext) {
-        self.parent = parent
-        self.context = context
+    init(parent: (any ContainerNodeObject)?, context: VariableDeclarationContext) {
+        super.init(parent: parent, context: context)
     }
 
     // MARK: - Methods

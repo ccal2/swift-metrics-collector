@@ -5,13 +5,9 @@
 //  Created by Carolina Lopes on 10/04/23.
 //
 
-class MethodParameterNode {
+class MethodParameterNode: Node<MethodParameterContext> {
 
     // MARK: - Properties
-
-    let context: MethodParameterContext
-
-    private(set) weak var parent: MethodNode?
 
     private(set) lazy var label: String? = {
         context.firstName
@@ -40,8 +36,7 @@ class MethodParameterNode {
     // MARK: - Initializers
 
     init(parent: MethodNode, context: MethodParameterContext) {
-        self.parent = parent
-        self.context = context
+        super.init(parent: parent, context: context)
     }
 
     // MARK: - Methods

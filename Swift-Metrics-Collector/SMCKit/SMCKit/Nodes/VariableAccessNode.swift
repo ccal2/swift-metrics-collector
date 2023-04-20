@@ -5,13 +5,9 @@
 //  Created by Carolina Lopes on 18/04/23.
 //
 
-class VariableAccessNode {
+class VariableAccessNode: Node<VariableAccessContext> {
 
     // MARK: - Properties
-
-    let context: VariableAccessContext
-
-    private(set) weak var parent: MethodNode?
 
     private(set) lazy var identifier: String = {
         context.identifier
@@ -24,8 +20,7 @@ class VariableAccessNode {
     // MARK: - Initializers
 
     init(parent: MethodNode?, context: VariableAccessContext) {
-        self.parent = parent
-        self.context = context
+        super.init(parent: parent, context: context)
     }
 
     // MARK: - Methods
