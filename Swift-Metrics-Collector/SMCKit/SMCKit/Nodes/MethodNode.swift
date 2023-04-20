@@ -44,17 +44,16 @@ class MethodNode: ContainerNode<MethodContext> {
 
         var instanceVariables: Set<VariableNode> = []
         for variableAccess in variableAccesses {
-            if let localVariable = variables.first(withIdentifier: variableAccess.identifier) {
-                guard variableAccess.accessedUsingSelf else {
+            if !variableAccess.accessedUsingSelf {
+                guard localVariables.first(withIdentifier: variableAccess.identifier) == nil else {
                     continue
                 }
-                instanceVariables.insert(localVariable)
-            } else {
-                guard let instanceVariable = typeNode.nonStaticVariables.first(withIdentifier: variableAccess.identifier) else {
-                    continue
-                }
-                instanceVariables.insert(instanceVariable)
             }
+
+            guard let instanceVariable = typeNode.nonStaticVariables.first(withIdentifier: variableAccess.identifier) else {
+                continue
+            }
+            instanceVariables.insert(instanceVariable)
         }
 
         return instanceVariables
