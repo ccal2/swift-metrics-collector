@@ -11,26 +11,25 @@ public class MyTestingClass {
 
     // MARK: - Properties
 
-    private let fileContent: String
+    private let globalContext = Context(parent: nil)
+    private lazy var visitor = ContextTreeGeneratorVisitor(rootContext: globalContext)
+    private lazy var tree = ElementsTree(rootContext: globalContext)
 
     // MARK: - Initializers
 
-    public init(fileContent: String) {
-        self.fileContent = fileContent
-    }
+    public init() { }
 
     // MARK: - Methods
 
-    public func proccess() {
-        let sourceFile = Parser.parse(source: fileContent)
-//        dump(sourceFile)
+    public func proccessFile(at filePath: String) throws {
+        let fileContent = try String(contentsOfFile: filePath, encoding: .utf8)
+        proccess(content: fileContent)
+    }
 
-        let globalContext = Context(parent: nil)
-        let visitor = ContextTreeGeneratorVisitor(rootContext: globalContext)
+    public func proccess(content: String) {
+        let sourceFile = Parser.parse(source: content)
         visitor.walk(sourceFile)
-        print("--------------")
 
-        let tree = ElementsTree(rootContext: globalContext)
         tree.generateTree()
         print("Type inheritance trees:")
         for root in tree.types {

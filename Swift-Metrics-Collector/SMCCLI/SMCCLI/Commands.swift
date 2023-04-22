@@ -27,10 +27,8 @@ struct SwiftMetricsCollector: ParsableCommand {
 
     func run() {
         do {
-            let fileContent = try String(contentsOfFile: filePath, encoding: .utf8)
-
-            let testingClass = MyTestingClass(fileContent: fileContent)
-            testingClass.proccess()
+            let testingClass = MyTestingClass()
+            try testingClass.proccessFile(at: filePath)
         } catch {
             // TODO: handle error
         }
