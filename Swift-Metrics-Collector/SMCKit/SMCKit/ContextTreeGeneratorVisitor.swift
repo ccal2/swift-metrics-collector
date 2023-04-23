@@ -82,6 +82,11 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         currentContext = parentContext
     }
 
+    override func visit(_ node: InitializerDeclSyntax) -> SyntaxVisitorContinueKind {
+        // Ignore initializers
+        return .skipChildren
+    }
+
     override func visit(_ node: FunctionParameterSyntax) -> SyntaxVisitorContinueKind {
         guard let methodContext = currentContext as? MethodContext else {
             assertionFailure("The current context must be a MethodContext")
