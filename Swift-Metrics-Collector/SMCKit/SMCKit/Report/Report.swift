@@ -19,7 +19,7 @@ struct Metrics: Codable {
     let depthOfInheritance: Int
     let lackOfCohesionInMethods: Int
 
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey, CaseIterable {
         case numberOfChildren = "Number of Children (NOC)"
         case depthOfInheritance = "Depth of Inheritance (DIT)"
         case lackOfCohesionInMethods = "Lack of Cohesion in Methods (LCOM)"

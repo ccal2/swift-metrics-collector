@@ -19,3 +19,21 @@ class JSONReportStructurer: ReportStructurer {
     }
 
 }
+
+class CSVReportStructurer: ReportStructurer {
+
+    func structure(report: Report) throws -> String {
+        let metricsHeader = Metrics.CodingKeys.allCases.map { element in
+            element.rawValue
+        }.joined(separator: ",")
+
+        var csvString = "identifier,\(metricsHeader)\n"
+
+        for item in report.classes {
+            csvString.append("\(item.identifier),\(item.metrics.numberOfChildren),\(item.metrics.depthOfInheritance),\(item.metrics.lackOfCohesionInMethods)\n")
+        }
+
+        return csvString
+    }
+
+}

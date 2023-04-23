@@ -40,7 +40,7 @@ public class MyTestingClass {
         let reportStructurer: ReportStructurer
         switch fileFormat {
         case .csv:
-            fatalError("not implemented yet")
+            reportStructurer = CSVReportStructurer()
         case .json:
             reportStructurer = JSONReportStructurer()
         }
