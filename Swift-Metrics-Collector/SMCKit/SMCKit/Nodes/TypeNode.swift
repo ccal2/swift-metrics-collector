@@ -63,6 +63,8 @@ class TypeNode: ContainerNode<TypeContext> {
 
     /// Consider a Class C_1_ with n methods M_1_,M_2_,...,M_n_. Let {I_j_} = set of instance variables used by method M_i_.
     /// There are n such sets {l_1_},..., {I_n_}. Let P = {(l_i_,I_j_) | I_i_^ I_j_= 0} and Q =  {(l_i_,I_j_) | I_i_^ I_j_!= 0}. If all n sets {I_1_},...,{I_n_} are 0 then let P = 0).
+    /// LCOM =  |P| - |Q|, if |P| > |Q|
+    ///        0, otherwise
     var lackOfCohesionInMethods: Int {
         let methodsCount = instanceMethods.count
         var disjointSets = 0
