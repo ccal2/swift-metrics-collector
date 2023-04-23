@@ -25,7 +25,7 @@ struct SwiftMetricsCollector: ParsableCommand {
     @Flag(help: "Report file format")
     var reportFormat: ReportFormat = .json
 
-    @Option(help: "Path where to save the report")
+    @Option(help: "Path where to save the report. If it ends with a \"/\", the report will be saved in the given directory with the default name (\(Self.defaultReportFileName))")
     var reportFilePath: String? = nil
 
     // MARK: - Methods
@@ -50,24 +50,25 @@ struct SwiftMetricsCollector: ParsableCommand {
             print(error)
         }
 
-        let definitiveReportFilePath: String
-        if let reportFilePath {
-            if reportFilePath.last == "/" {
-                definitiveReportFilePath = "\(reportFilePath)\(Self.defaultReportFileName)"
-            } else {
-                definitiveReportFilePath = reportFilePath
-            }
-        } else {
-            definitiveReportFilePath = "\(Self.defaultReportFileDirectory)\(Self.defaultReportFileName)"
-        }
-
         do {
-            try testingClass.saveReport(at: definitiveReportFilePath,
+            try testingClass.saveReport(at: reportPath(),
                                         fileFormat: reportFormat.reportFileFormat)
         } catch {
             // TODO: handle error
             print(error)
         }
+    }
+
+    private func reportPath() -> String {
+        guard let reportFilePath else {
+            return "\(Self.defaultReportFileDirectory)\(Self.defaultReportFileName)"
+        }
+
+        guard reportFilePath.last != "/" else {
+            return "\(reportFilePath)\(Self.defaultReportFileName)"
+        }
+
+        return reportFilePath
     }
 
 }
