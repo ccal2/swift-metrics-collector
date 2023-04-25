@@ -41,18 +41,18 @@ struct SwiftMetricsCollector: ParsableCommand {
     }
 
     func run() {
-        let testingClass = MyTestingClass()
+        let collector = MetricsCollector()
 
         do {
-            try testingClass.proccessFile(at: filePath)
+            try collector.proccessFile(at: filePath)
         } catch {
             // TODO: handle error
             print(error)
         }
 
         do {
-            try testingClass.saveReport(at: reportPath(),
-                                        fileFormat: reportFormat.reportFileFormat)
+            try collector.saveReport(at: reportPath(),
+                                     fileFormat: reportFormat.reportFileFormat)
         } catch {
             // TODO: handle error
             print(error)
@@ -82,7 +82,7 @@ extension SwiftMetricsCollector {
         case json
 
         /// Direct maping for `MyTestingClass.ReportFileFormat`
-        var reportFileFormat: MyTestingClass.ReportFileFormat {
+        var reportFileFormat: MetricsCollector.ReportFileFormat {
             switch self {
             case .csv:
                 return .csv

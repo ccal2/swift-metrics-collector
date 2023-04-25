@@ -20,7 +20,7 @@
 		776C3E8D29E783E800F127C7 /* TypeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8C29E783E800F127C7 /* TypeKind.swift */; };
 		77821E9A29DCEF0E00BBA1E9 /* ElementsTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */; };
 		77821E9C29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */; };
-		77AB898C29C80F2F0087DA08 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB898B29C80F2F0087DA08 /* Tests.swift */; };
+		77AB898C29C80F2F0087DA08 /* MetricsCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB898B29C80F2F0087DA08 /* MetricsCollector.swift */; };
 		77AB898F29C80FAB0087DA08 /* SwiftParser in Frameworks */ = {isa = PBXBuildFile; productRef = 77AB898E29C80FAB0087DA08 /* SwiftParser */; };
 		77AB899129C80FAB0087DA08 /* SwiftSyntax in Frameworks */ = {isa = PBXBuildFile; productRef = 77AB899029C80FAB0087DA08 /* SwiftSyntax */; };
 		77AB899729C94A7C0087DA08 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB899629C94A7C0087DA08 /* Context.swift */; };
@@ -60,7 +60,7 @@
 		776C3E8C29E783E800F127C7 /* TypeKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeKind.swift; sourceTree = "<group>"; };
 		77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsTree.swift; sourceTree = "<group>"; };
 		77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTreeGeneratorVisitor.swift; sourceTree = "<group>"; };
-		77AB898B29C80F2F0087DA08 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		77AB898B29C80F2F0087DA08 /* MetricsCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsCollector.swift; sourceTree = "<group>"; };
 		77AB899629C94A7C0087DA08 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		77AB899829C94AA30087DA08 /* TypeContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeContext.swift; sourceTree = "<group>"; };
 		77AB89A029C94B330087DA08 /* ContextIterators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextIterators.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 				77AB89A029C94B330087DA08 /* ContextIterators.swift */,
 				77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */,
 				77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */,
-				77AB898B29C80F2F0087DA08 /* Tests.swift */,
+				77AB898B29C80F2F0087DA08 /* MetricsCollector.swift */,
 				776C3E8C29E783E800F127C7 /* TypeKind.swift */,
 				77AB899529C94A5F0087DA08 /* Contexts */,
 				7720DB3B29EF7A1400BC5F31 /* Extensions */,
@@ -319,7 +319,7 @@
 				77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */,
 				77AB89A129C94B330087DA08 /* ContextIterators.swift in Sources */,
 				7720DB3829EF6D4600BC5F31 /* VariableAccessContext.swift in Sources */,
-				77AB898C29C80F2F0087DA08 /* Tests.swift in Sources */,
+				77AB898C29C80F2F0087DA08 /* MetricsCollector.swift in Sources */,
 				77AB899929C94AA30087DA08 /* TypeContext.swift in Sources */,
 				776C3E8129E4E54D00F127C7 /* MethodNode.swift in Sources */,
 			);

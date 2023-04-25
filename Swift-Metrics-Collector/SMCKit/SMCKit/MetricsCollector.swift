@@ -1,5 +1,5 @@
 //
-//  Tests.swift
+//  MetricsCollector.swift
 //  SMCKit
 //
 //  Created by Carolina Lopes on 20/03/23.
@@ -7,7 +7,7 @@
 
 import SwiftParser
 
-public class MyTestingClass {
+public class MetricsCollector {
 
     // MARK: - Properties
 
@@ -93,7 +93,7 @@ public class MyTestingClass {
 
 // MARK: - ReportFileFormat
 
-public extension MyTestingClass {
+public extension MetricsCollector {
 
     enum ReportFileFormat: String {
         case csv
