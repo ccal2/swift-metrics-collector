@@ -87,10 +87,20 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         return .skipChildren
     }
 
+    override func visit(_ node: EnumCaseDeclSyntax) -> SyntaxVisitorContinueKind {
+        // Ignore enum case declarations
+        return .skipChildren
+    }
+
+    override func visit(_ node: ClosureSignatureSyntax) -> SyntaxVisitorContinueKind {
+        // Ignore closure signatures
+        return .skipChildren
+    }
+
     override func visit(_ node: FunctionParameterSyntax) -> SyntaxVisitorContinueKind {
         guard let methodContext = currentContext as? MethodContext else {
             assertionFailure("The current context must be a MethodContext")
-            return .visitChildren
+            return .skipChildren
         }
 
         _ = MethodParameterContext(parent: methodContext,
