@@ -11,10 +11,10 @@ public class MetricsCollector {
 
     // MARK: - Properties
 
+    private let fileManager: FileManager
     private let globalContext = Context(parent: nil)
     private lazy var visitor = ContextTreeGeneratorVisitor(rootContext: globalContext)
     private lazy var tree = ElementsTree(rootContext: globalContext)
-    private let fileManager: FileManager
 
     // MARK: - Initializers
 
