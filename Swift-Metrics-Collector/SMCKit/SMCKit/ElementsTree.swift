@@ -117,6 +117,7 @@ class ElementsTree {
                 types.append(typeNode)
                 contexts.remove(at: index)
                 // Don't increment the index because one element has been removed
+                continue
             }
 
             index += 1
