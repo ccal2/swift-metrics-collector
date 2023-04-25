@@ -23,6 +23,11 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
 
     // MARK: - Methods
 
+    func newFileContext(named identifier: String) {
+        let fileContext = FileContext(parent: rootContext, identifier: identifier)
+        currentContext = fileContext
+    }
+
     // MARK: Visit overrides
 
     override func visit(_ node: ClassDeclSyntax) -> SyntaxVisitorContinueKind {

@@ -24,15 +24,13 @@ public class MetricsCollector {
 
     // MARK: - Public methods
 
-    public func proccessFile(at filePath: String) throws {
-        let fileContent = try String(contentsOfFile: filePath, encoding: .utf8)
-        proccess(content: fileContent)
+    public func analyse(path: String) throws {
+        try process(path: path)
+        tree.generateTree()
     }
 
-    public func proccess(content: String) {
-        let sourceFile = Parser.parse(source: content)
-        visitor.walk(sourceFile)
-
+    public func analyse(content: String) {
+        process(content: content)
         tree.generateTree()
     }
 
@@ -52,6 +50,77 @@ public class MetricsCollector {
     }
 
     // MARK: - Private methods
+
+    private func process(path: String) throws {
+        if path.last == "/" {
+            try processDirectory(at: path)
+        } else {
+            try processFile(at: path)
+        }
+    }
+
+    private func processDirectory(at path: String) throws {
+        let filePaths = siwftFilePaths(at: path)
+
+        for filePath in filePaths {
+            try processFile(at: filePath)
+        }
+    }
+
+    private func processFile(at filePath: String) throws {
+        let expandedPath = NSString(string: filePath).expandingTildeInPath
+        let fileURL = URL(fileURLWithPath: expandedPath)
+
+        guard let fileName = fileURL.deletingPathExtension().pathComponents.last else {
+            throw NSError(domain: "", code: 0)
+        }
+
+        visitor.newFileContext(named: fileName)
+
+        let fileContent = try String(contentsOfFile: expandedPath, encoding: .utf8)
+        process(content: fileContent)
+    }
+
+    private func process(content: String) {
+        let sourceFile = Parser.parse(source: content)
+        visitor.walk(sourceFile)
+    }
+
+    private func siwftFilePaths(at path: String) -> [String] {
+        let expandedPath = NSString(string: path).expandingTildeInPath
+        let resourceKeys = Set<URLResourceKey>([.isRegularFileKey, .nameKey, .pathKey])
+
+        guard let enumerator = FileManager.default.enumerator(at: URL(fileURLWithPath: expandedPath),
+                                                              includingPropertiesForKeys: Array(resourceKeys),
+                                                              options: [.skipsHiddenFiles, .skipsPackageDescendants]) else {
+            return []
+        }
+
+        var siwftFilePaths: [String] = []
+        for case let fileURL as URL in enumerator {
+            do {
+                let fileAttributes = try fileURL.resourceValues(forKeys: resourceKeys)
+
+                guard fileAttributes.isRegularFile == true else {
+                    continue
+                }
+
+                guard let path = fileAttributes.path else {
+                    continue
+                }
+
+                guard URL(fileURLWithPath: path).pathExtension.lowercased() == "swift" else {
+                    continue
+                }
+
+                siwftFilePaths.append(path)
+            } catch {
+                print(error, fileURL)
+            }
+        }
+
+        return siwftFilePaths
+    }
 
     private func reportFileURL(from path: String, fileExtension: String) -> URL {
         let expandedPath = NSString(string: path).expandingTildeInPath
