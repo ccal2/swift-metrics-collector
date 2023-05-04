@@ -9,6 +9,8 @@ class TypeNode: ContainerNode<TypeContext> {
 
     // MARK: - Properties
 
+    var extensions: [TypeExtensionNode] = []
+
     private(set) var children: [TypeNode] = []
 
     private(set) lazy var kind: TypeKind = {
@@ -28,6 +30,10 @@ class TypeNode: ContainerNode<TypeContext> {
             allVariables.append(contentsOf: parent.variables)
         }
 
+        extensions.forEach { node in
+            allVariables.append(contentsOf: node.variables)
+        }
+
         return allVariables
     }()
 
@@ -37,8 +43,24 @@ class TypeNode: ContainerNode<TypeContext> {
         }
     }()
 
+    private(set) lazy var methodsIncludingExtensions: [MethodNode] = {
+        var allMethods = methods
+
+        extensions.forEach { node in
+            allMethods.append(contentsOf: node.methods)
+        }
+
+        return allMethods
+    }()
+
     private(set) lazy var instanceMethods: [MethodNode]  = {
         methods.filter { node in
+            !node.isStatic
+        }
+    }()
+
+    private(set) lazy var instanceMethodsIncludingExtensions: [MethodNode]  = {
+        methodsIncludingExtensions.filter { node in
             !node.isStatic
         }
     }()
@@ -66,7 +88,7 @@ class TypeNode: ContainerNode<TypeContext> {
     /// LCOM =  |P| - |Q|, if |P| > |Q|
     ///        0, otherwise
     var lackOfCohesionInMethods: Int {
-        let methodsCount = instanceMethods.count
+        let methodsCount = instanceMethodsIncludingExtensions.count
         var disjointSets = 0
         var intersectingSets = 0
 
@@ -76,7 +98,7 @@ class TypeNode: ContainerNode<TypeContext> {
 
         for i in 0 ..< methodsCount-1 {
             for j in i+1 ..< methodsCount {
-                if instanceMethods[i].accessedInstanceVariables.isDisjoint(with: instanceMethods[j].accessedInstanceVariables) {
+                if instanceMethodsIncludingExtensions[i].accessedInstanceVariables.isDisjoint(with: instanceMethodsIncludingExtensions[j].accessedInstanceVariables) {
                     disjointSets += 1
                 } else {
                     intersectingSets += 1
@@ -100,10 +122,6 @@ class TypeNode: ContainerNode<TypeContext> {
     func printableDescription(identationLevel: Int = 0) -> String {
         let prefix = Array(repeating: "\t", count: identationLevel).joined()
 
-        let childrenDescription = children.map { child in
-            child.printableDescription(identationLevel: identationLevel + 1)
-        }.joined(separator: ",\n")
-
         let variablesDescription = variables.map { variable in
             variable.printableDescription(identationLevel: identationLevel + 1)
         }.joined(separator: ",\n")
@@ -112,21 +130,32 @@ class TypeNode: ContainerNode<TypeContext> {
             method.printableDescription(identationLevel: identationLevel + 1)
         }.joined(separator: ",\n")
 
+        let extensionsDescription = extensions.map { `extension` in
+            `extension`.printableDescription(identationLevel: identationLevel + 1)
+        }.joined(separator: ",\n")
+
+        let childrenDescription = children.map { child in
+            child.printableDescription(identationLevel: identationLevel + 1)
+        }.joined(separator: ",\n")
+
         return """
         \(prefix)Type: {
-        \(prefix)   identifier: \(identifier)
-        \(prefix)   children: [
-        \(childrenDescription)
-        \(prefix)   ],
+        \(prefix)   identifier: \(identifier),
         \(prefix)   variables: [
         \(variablesDescription)
         \(prefix)   ],
         \(prefix)   methods: [
         \(methodsDescription)
         \(prefix)   ],
+        \(prefix)   extensions: [
+        \(extensionsDescription)
+        \(prefix)   ],
         \(prefix)   NOC: \(numberOfChildren),
         \(prefix)   DIT: \(depthOfInheritance),
         \(prefix)   LCOM: \(lackOfCohesionInMethods),
+        \(prefix)   children: [
+        \(childrenDescription)
+        \(prefix)   ]
         \(prefix)}
         """
     }

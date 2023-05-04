@@ -39,7 +39,7 @@ class ElementsTree {
         generatedTree = true
 
         generateTypes()
-        generateGlobalVariablesAndMethods()
+        generateOtherElements()
     }
 
     // MARK: - Private methods
@@ -130,14 +130,22 @@ class ElementsTree {
         }
     }
 
-    // MARK: Handle variables and methods
+    // MARK: Handle other elements
 
-    private func generateGlobalVariablesAndMethods() {
-        for child in rootContext.children {
-            if let variableContext = child as? VariableDeclarationContext {
+    private func generateOtherElements() {
+        handleGlobalContext(rootContext)
+    }
+
+    private func handleGlobalContext(_ context: Context) {
+        for child in context.children {
+            if let fileExtension = child as? FileContext {
+                handleGlobalContext(fileExtension)
+            } else if let variableContext = child as? VariableDeclarationContext {
                 handleVariableContext(variableContext)
             } else if let methodContext = child as? MethodContext {
                 handleMethodContext(methodContext)
+            } else if let typeExtensionContext = child as? TypeExtensionContext {
+                handleTypeExtensionContext(typeExtensionContext)
             }
         }
     }
@@ -150,6 +158,17 @@ class ElementsTree {
     private func handleMethodContext(_ context: MethodContext) {
         let methodNode = MethodNode(parent: nil, context: context)
         methods.append(methodNode)
+    }
+
+    private func handleTypeExtensionContext(_ context: TypeExtensionContext) {
+        for type in allTypes {
+            guard type.identifier == context.identifier else {
+                continue
+            }
+
+            _ = TypeExtensionNode(parent: type, context: context)
+            return
+        }
     }
 
 }

@@ -46,6 +46,10 @@ class MethodNode: ContainerNode<MethodContext> {
             node = methodParent.parent
         }
 
+        if node is TypeExtensionNode {
+            node = node?.parent
+        }
+
         guard let typeNode = node as? TypeNode else {
             return []
         }

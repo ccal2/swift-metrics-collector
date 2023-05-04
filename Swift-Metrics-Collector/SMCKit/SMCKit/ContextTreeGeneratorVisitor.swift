@@ -47,6 +47,26 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         currentContext = parentContext
     }
 
+    override func visit(_ node: ExtensionDeclSyntax) -> SyntaxVisitorContinueKind {
+        // TODO: handle all types
+        guard let identifier = node.extendedType.as(SimpleTypeIdentifierSyntax.self)?.name.text else {
+            assertionFailure("Type not handled")
+            return .skipChildren
+        }
+
+        let extensionContext = TypeExtensionContext(parent: currentContext, identifier: identifier)
+        currentContext = extensionContext
+
+        return .visitChildren
+    }
+
+    override func visitPost(_ node: ExtensionDeclSyntax) {
+        guard let parentContext = currentContext.parent else {
+            fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
+        }
+        currentContext = parentContext
+    }
+
     override func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
         let variableDeclContext = VariableDeclarationContext(parent: currentContext, isStatic: isStatic(modifiers: node.modifiers))
         currentContext = variableDeclContext
