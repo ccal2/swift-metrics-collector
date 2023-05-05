@@ -58,7 +58,7 @@ class ElementsTree {
             handleTypeContext(typeContext, contextsWaitingForSuperType: &contextsWaitingForSuperType)
         }
 
-        handleRemainingContextsWitingForSuperType(&contextsWaitingForSuperType)
+        handleRemainingContextsWaitingForSuperType(&contextsWaitingForSuperType)
     }
 
     private func handleTypeContext(_ context: TypeContext, contextsWaitingForSuperType: inout [TypeContext]) {
@@ -101,7 +101,7 @@ class ElementsTree {
         }
     }
 
-    private func handleRemainingContextsWitingForSuperType(_ contexts: inout [TypeContext]) {
+    private func handleRemainingContextsWaitingForSuperType(_ contexts: inout [TypeContext]) {
         // If the super type hasn't been found after iterating over all contexts,
         // then it could be a protocol or some class defined outside of the scope.
         // In this case, create a node with no parent
