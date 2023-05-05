@@ -91,45 +91,45 @@ class MethodNode: ContainerNode<MethodContext> {
         let prefix = Array(repeating: "\t", count: identationLevel).joined()
 
         let parametersDescription = parameters.map { parameter in
-            parameter.printableDescription(identationLevel: identationLevel + 1)
+            parameter.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         let variablesDescription = variables.map { variable in
-            variable.printableDescription(identationLevel: identationLevel + 1)
+            variable.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         let methodsDescription = methods.map { method in
-            method.printableDescription(identationLevel: identationLevel + 1)
+            method.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         let variableAccessesDescription = variableAccesses.map { variableAccess in
-            variableAccess.printableDescription(identationLevel: identationLevel + 1)
+            variableAccess.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         let accessedInstanceVariablesDescription = accessedInstanceVariables.map { instanceVariable in
-            instanceVariable.printableDescription(identationLevel: identationLevel + 1)
+            instanceVariable.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         return """
         \(prefix)Method: {
-        \(prefix)   identifier: \(identifier),
-        \(prefix)   isStatic: \(isStatic)
-        \(prefix)   parameters: [
+        \(prefix)\tidentifier: \(identifier),
+        \(prefix)\tisStatic: \(isStatic)
+        \(prefix)\tparameters: [
         \(parametersDescription)
-        \(prefix)   ],
-        \(prefix)   returnTypeIdentifier: \(returnTypeIdentifier ?? "nil"),
-        \(prefix)   variables: [
+        \(prefix)\t],
+        \(prefix)\treturnTypeIdentifier: \(returnTypeIdentifier ?? "nil"),
+        \(prefix)\tvariables: [
         \(variablesDescription)
-        \(prefix)   ],
-        \(prefix)   methods: [
+        \(prefix)\t],
+        \(prefix)\tmethods: [
         \(methodsDescription)
-        \(prefix)   ],
-        \(prefix)   variable accesses: [
+        \(prefix)\t],
+        \(prefix)\tvariable accesses: [
         \(variableAccessesDescription)
-        \(prefix)   ],
-        \(prefix)   accessed instance variables: [
+        \(prefix)\t],
+        \(prefix)\taccessed instance variables: [
         \(accessedInstanceVariablesDescription)
-        \(prefix)   ]
+        \(prefix)\t]
         \(prefix)}
         """
     }

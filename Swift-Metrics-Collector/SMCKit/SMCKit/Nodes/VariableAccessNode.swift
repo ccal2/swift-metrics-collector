@@ -30,8 +30,8 @@ class VariableAccessNode: Node<VariableAccessContext> {
 
         return """
         \(prefix)Variable access: {
-        \(prefix)   identifier: \(identifier),
-        \(prefix)   accessedUsingSelf: \(accessedUsingSelf)
+        \(prefix)\tidentifier: \(identifier),
+        \(prefix)\taccessedUsingSelf: \(accessedUsingSelf)
         \(prefix)}
         """
     }

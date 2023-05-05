@@ -46,9 +46,9 @@ class MethodParameterNode: Node<MethodParameterContext> {
 
         return """
         \(prefix)Parameter: {
-        \(prefix)   label: \(label ?? "nil"),
-        \(prefix)   identifier: \(identifier),
-        \(prefix)   typeIdentifier: \(typeIdentifier)
+        \(prefix)\tlabel: \(label ?? "nil"),
+        \(prefix)\tidentifier: \(identifier),
+        \(prefix)\ttypeIdentifier: \(typeIdentifier)
         \(prefix)}
         """
     }

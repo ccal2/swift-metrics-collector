@@ -34,8 +34,8 @@ class VariableNode: Node<VariableDeclarationContext>  {
 
         return """
         \(prefix)Variable: {
-        \(prefix)   identifier: \(identifier),
-        \(prefix)   isStatic: \(isStatic)
+        \(prefix)\tidentifier: \(identifier),
+        \(prefix)\tisStatic: \(isStatic)
         \(prefix)}
         """
     }

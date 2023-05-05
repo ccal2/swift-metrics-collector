@@ -27,22 +27,22 @@ class TypeExtensionNode: ContainerNode<TypeExtensionContext> {
         let prefix = Array(repeating: "\t", count: identationLevel).joined()
 
         let variablesDescription = variables.map { variable in
-            variable.printableDescription(identationLevel: identationLevel + 1)
+            variable.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         let methodsDescription = methods.map { method in
-            method.printableDescription(identationLevel: identationLevel + 1)
+            method.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         return """
         \(prefix)Extension: {
-        \(prefix)   identifier: \(identifier)
-        \(prefix)   variables: [
+        \(prefix)\tidentifier: \(identifier)
+        \(prefix)\tvariables: [
         \(variablesDescription)
-        \(prefix)   ],
-        \(prefix)   methods: [
+        \(prefix)\t],
+        \(prefix)\tmethods: [
         \(methodsDescription)
-        \(prefix)   ]
+        \(prefix)\t]
         \(prefix)}
         """
     }

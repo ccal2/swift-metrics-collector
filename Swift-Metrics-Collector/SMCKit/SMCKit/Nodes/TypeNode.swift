@@ -123,39 +123,39 @@ class TypeNode: ContainerNode<TypeContext> {
         let prefix = Array(repeating: "\t", count: identationLevel).joined()
 
         let variablesDescription = variables.map { variable in
-            variable.printableDescription(identationLevel: identationLevel + 1)
+            variable.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         let methodsDescription = methods.map { method in
-            method.printableDescription(identationLevel: identationLevel + 1)
+            method.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         let extensionsDescription = extensions.map { `extension` in
-            `extension`.printableDescription(identationLevel: identationLevel + 1)
+            `extension`.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         let childrenDescription = children.map { child in
-            child.printableDescription(identationLevel: identationLevel + 1)
+            child.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
         return """
         \(prefix)Type: {
-        \(prefix)   identifier: \(identifier),
-        \(prefix)   variables: [
+        \(prefix)\tidentifier: \(identifier),
+        \(prefix)\tvariables: [
         \(variablesDescription)
-        \(prefix)   ],
-        \(prefix)   methods: [
+        \(prefix)\t],
+        \(prefix)\tmethods: [
         \(methodsDescription)
-        \(prefix)   ],
-        \(prefix)   extensions: [
+        \(prefix)\t],
+        \(prefix)\textensions: [
         \(extensionsDescription)
-        \(prefix)   ],
-        \(prefix)   NOC: \(numberOfChildren),
-        \(prefix)   DIT: \(depthOfInheritance),
-        \(prefix)   LCOM: \(lackOfCohesionInMethods),
-        \(prefix)   children: [
+        \(prefix)\t],
+        \(prefix)\tNOC: \(numberOfChildren),
+        \(prefix)\tDIT: \(depthOfInheritance),
+        \(prefix)\tLCOM: \(lackOfCohesionInMethods),
+        \(prefix)\tchildren: [
         \(childrenDescription)
-        \(prefix)   ]
+        \(prefix)\t]
         \(prefix)}
         """
     }
