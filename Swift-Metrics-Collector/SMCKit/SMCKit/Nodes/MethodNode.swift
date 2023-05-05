@@ -27,10 +27,14 @@ class MethodNode: ContainerNode<MethodContext> {
         context.returnTypeIdentifier
     }()
 
-    private(set) lazy var variableAccesses: [VariableAccessNode] = {
-        context.variableAccesses.map { context in
-            VariableAccessNode(parent: self, context: context)
+    private(set) lazy var variableAccesses: Set<VariableAccessNode> = {
+        var variableAccesses: Set<VariableAccessNode> = []
+
+        for accessContext in context.variableAccesses {
+            variableAccesses.insert(VariableAccessNode(parent: self, context: accessContext))
         }
+
+        return variableAccesses
     }()
 
     // If an instance variable is accessed without self and later on a local variable is declared with the same name, that access will be ignored!
