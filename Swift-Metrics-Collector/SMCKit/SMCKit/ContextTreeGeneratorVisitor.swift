@@ -48,13 +48,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     }
 
     override func visit(_ node: ExtensionDeclSyntax) -> SyntaxVisitorContinueKind {
-        // TODO: handle all types
-        guard let identifier = node.extendedType.as(SimpleTypeIdentifierSyntax.self)?.name.text else {
-            assertionFailure("Type not handled")
-            return .skipChildren
-        }
-
-        let extensionContext = TypeExtensionContext(parent: currentContext, identifier: identifier)
+        let extensionContext = TypeExtensionContext(parent: currentContext, identifier: node.extendedType.trimmedDescription)
         currentContext = extensionContext
 
         return .visitChildren
@@ -93,7 +87,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     override func visit(_ node: FunctionDeclSyntax) -> SyntaxVisitorContinueKind {
         let methodContext = MethodContext(parent: currentContext,
                                           identifier: node.identifier.text,
-                                          returnTypeIdentifier: typeIdentifier(for: node.signature.output?.returnType),
+                                          returnTypeIdentifier: node.signature.output?.returnType.trimmedDescription,
                                           isStatic: isStatic(modifiers: node.modifiers))
         currentContext = methodContext
 
@@ -131,7 +125,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         _ = MethodParameterContext(parent: methodContext,
                                    firstName: node.firstName?.text,
                                    secondName: node.secondName?.text,
-                                   typeIdentifier:  typeIdentifier(for: node.type))
+                                   typeIdentifier:  node.type?.trimmedDescription)
 
         return .skipChildren
     }
@@ -181,21 +175,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     }
 
     private func firstInheritedType(for inheritanceClause: TypeInheritanceClauseSyntax?) -> String? {
-        if let typeName = inheritanceClause?.inheritedTypeCollection.first?.typeName {
-            return typeIdentifier(for: typeName)
-        } else {
-            return nil
-        }
-    }
-
-    private func typeIdentifier(for type: TypeSyntax?) -> String? {
-        if let simpleTypeIdentifier = type?.as(SimpleTypeIdentifierSyntax.self) {
-            return simpleTypeIdentifier.name.text
-        } else if let memberTypeIdentifier = type?.as(MemberTypeIdentifierSyntax.self) {
-            return memberTypeIdentifier.trimmedDescription
-        } else {
-            return nil
-        }
+        inheritanceClause?.inheritedTypeCollection.first?.typeName.trimmedDescription
     }
 
 }
