@@ -70,11 +70,15 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "/Users/carolinalopes/Documents/Code/Swift-metrics-extractor/"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "/Users/carolinalopes/Documents/Faculdade/2021.2\ e\ 2022.1/TCC/Ponto/Ponto-MVVM/Ponto-MVVM/"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "~/Documents/Faculdade/2022.2\ 2\ 2023.1/TCC/swift-metrics-collector/Swift-Metrics-Collector/SMCKit/SMCKit/"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--json"

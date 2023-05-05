@@ -31,11 +31,12 @@ struct SwiftMetricsCollector: ParsableCommand {
     // MARK: - Methods
 
     func validate() throws {
-        guard FileManager.default.fileExists(atPath: filePath) else {
+        let expandedPath = NSString(string: filePath).expandingTildeInPath
+        guard FileManager.default.fileExists(atPath: expandedPath) else {
             throw ValidationError("<file-path> \(filePath) doesn't exist.")
         }
 
-        guard FileManager.default.isReadableFile(atPath: filePath) else {
+        guard FileManager.default.isReadableFile(atPath: expandedPath) else {
             throw ValidationError("<file-path> \(filePath) is not readable.")
         }
     }
