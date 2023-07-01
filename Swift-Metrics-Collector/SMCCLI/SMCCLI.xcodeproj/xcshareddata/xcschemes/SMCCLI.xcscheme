@@ -57,28 +57,12 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/carolinalopes/Documents/Code/Swift-metrics-extractor/testingFile.swift "
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/carolinalopes/Documents/Code/Swift-metrics-extractor/ClassFoo1_testingFile.swift "
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/carolinalopes/Documents/Faculdade/2021.2\ e\ 2022.1/TCC/Ponto/Ponto-MVVM/Ponto-MVVM/ViewModel/CurrentTimeCardViewModel.swift  "
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/carolinalopes/Documents/Code/Swift-metrics-extractor/"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/carolinalopes/Documents/Faculdade/2021.2\ e\ 2022.1/TCC/Ponto/Ponto-MVVM/Ponto-MVVM/"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "~/Documents/Faculdade/2022.2\ 2\ 2023.1/TCC/swift-metrics-collector/Swift-Metrics-Collector/SMCKit/SMCKit/"
+            argument = "~/Documents/Faculdade/2022.2\ e\ 2023.1/TCC/swift-metrics-collector/Example/"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "~/Documents/Faculdade/2022.2\ e\ 2023.1/TCC/swift-metrics-collector/Swift-Metrics-Collector/SMCKit/SMCKit/"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--json"
@@ -89,16 +73,8 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--report-file-path /Users/carolinalopes/Documents/"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "--report-file-path ~/Downloads/metrics/"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--report-file-path ~/Documents/report.json"
-            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
