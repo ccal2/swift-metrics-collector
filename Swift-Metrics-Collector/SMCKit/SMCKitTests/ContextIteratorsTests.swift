@@ -22,14 +22,14 @@ final class ContextIteratorsTests: XCTestCase {
 
     override func setUpWithError() throws {
         global = Context(parent: nil)
-        class1 = TypeContext(parent: global, identifier: "Class1", firstInheritedType: nil)
-        class1_1 = TypeContext(parent: class1, identifier: "Class1_1", firstInheritedType: "Class1_2")
-        class1_2 = TypeContext(parent: class1, identifier: "Class1_2", firstInheritedType: nil)
-        class2 = TypeContext(parent: global, identifier: "Class2", firstInheritedType: "Class1_2")
-        class3 = TypeContext(parent: global, identifier: "Class3", firstInheritedType: "Class1")
-        class3_1 = TypeContext(parent: class3, identifier: "Class3_1", firstInheritedType: nil)
-        class4 = TypeContext(parent: global, identifier: "Class4", firstInheritedType: "Class3")
-        class5 = TypeContext(parent: global, identifier: "Class5", firstInheritedType: "Class1")
+        class1 = TypeContext(parent: global, identifier: "Class1", firstInheritedType: nil, kind: .class)
+        class1_1 = TypeContext(parent: class1, identifier: "Class1_1", firstInheritedType: "Class1_2", kind: .class)
+        class1_2 = TypeContext(parent: class1, identifier: "Class1_2", firstInheritedType: nil, kind: .class)
+        class2 = TypeContext(parent: global, identifier: "Class2", firstInheritedType: "Class1_2", kind: .class)
+        class3 = TypeContext(parent: global, identifier: "Class3", firstInheritedType: "Class1", kind: .class)
+        class3_1 = TypeContext(parent: class3, identifier: "Class3_1", firstInheritedType: nil, kind: .class)
+        class4 = TypeContext(parent: global, identifier: "Class4", firstInheritedType: "Class3", kind: .class)
+        class5 = TypeContext(parent: global, identifier: "Class5", firstInheritedType: "Class1", kind: .class)
         // Tree:
         //  global
         //      class1
