@@ -61,6 +61,16 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         currentContext = parentContext
     }
 
+    override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
+        // Ignore struct declarations
+        return .skipChildren
+    }
+
+    override func visit(_ node: EnumDeclSyntax) -> SyntaxVisitorContinueKind {
+        // Ignore enum declarations
+        return .skipChildren
+    }
+
     override func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
         let variableDeclContext = VariableDeclarationContext(parent: currentContext, isStatic: isStatic(modifiers: node.modifiers))
         currentContext = variableDeclContext
@@ -103,11 +113,6 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
 
     override func visit(_ node: InitializerDeclSyntax) -> SyntaxVisitorContinueKind {
         // Ignore initializers
-        return .skipChildren
-    }
-
-    override func visit(_ node: EnumCaseDeclSyntax) -> SyntaxVisitorContinueKind {
-        // Ignore enum case declarations
         return .skipChildren
     }
 
