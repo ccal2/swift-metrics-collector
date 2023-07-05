@@ -9,9 +9,9 @@ class TypeNode: ContainerNode<TypeContext> {
 
     // MARK: - Properties
 
-    var extensions: [TypeExtensionNode] = []
+    var extensions: Set<TypeExtensionNode> = []
 
-    private(set) var children: [TypeNode] = []
+    private(set) var children: Set<TypeNode> = []
 
     private(set) lazy var kind: TypeKind = {
         context.kind
@@ -21,39 +21,39 @@ class TypeNode: ContainerNode<TypeContext> {
         context.fullIdentifier
     }()
 
-    private(set) lazy var allVariables: [VariableNode] = {
+    private(set) lazy var allVariables: Set<VariableNode> = {
         var allVariables = variables
 
         var node: any NodeObject = self
         while let parent = node.parent as? TypeNode {
             node = parent
-            allVariables.append(contentsOf: parent.variables)
+            allVariables.formUnion(parent.allVariables)
         }
 
         extensions.forEach { node in
-            allVariables.append(contentsOf: node.variables)
+            allVariables.formUnion(node.variables)
         }
 
         return allVariables
     }()
 
-    private(set) lazy var allNonStaticVariables: [VariableNode] = {
+    private(set) lazy var allNonStaticVariables: Set<VariableNode> = {
         allVariables.filter { node in
             !node.isStatic
         }
     }()
 
-    private(set) lazy var methodsIncludingExtensions: [MethodNode] = {
+    private(set) lazy var methodsIncludingExtensions: Set<MethodNode> = {
         var allMethods = methods
 
         extensions.forEach { node in
-            allMethods.append(contentsOf: node.methods)
+            allMethods.formUnion(node.methods)
         }
 
         return allMethods
     }()
 
-    private(set) lazy var instanceMethods: [MethodNode]  = {
+    private(set) lazy var instanceMethods: Set<MethodNode>  = {
         methods.filter { node in
             !node.isStatic
         }
@@ -114,7 +114,7 @@ class TypeNode: ContainerNode<TypeContext> {
     init(parent: TypeNode?, context: TypeContext) {
         super.init(parent: parent, context: context)
 
-        parent?.children.append(self)
+        parent?.children.insert(self)
     }
 
     // MARK: - Methods

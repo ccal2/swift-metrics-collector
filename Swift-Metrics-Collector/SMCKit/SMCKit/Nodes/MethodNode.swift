@@ -17,10 +17,14 @@ class MethodNode: ContainerNode<MethodContext> {
         context.isStatic
     }()
 
-    private(set) lazy var parameters: [MethodParameterNode]  = {
-        context.parameters.map { context in
-            MethodParameterNode(parent: self, context: context)
+    private(set) lazy var parameters: Set<MethodParameterNode> = {
+        var parameters: Set<MethodParameterNode> = []
+
+        for context in context.parameters {
+            parameters.insert(MethodParameterNode(parent: self, context: context))
         }
+
+        return parameters
     }()
 
     private(set) lazy var returnTypeIdentifier: String? = {
@@ -46,7 +50,7 @@ class MethodNode: ContainerNode<MethodContext> {
 
         var node = parent
         while let methodParent = node as? MethodNode {
-            localVariables.append(contentsOf: methodParent.variables)
+            localVariables.formUnion(methodParent.variables)
             node = methodParent.parent
         }
 

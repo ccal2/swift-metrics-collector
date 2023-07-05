@@ -18,7 +18,7 @@ class TypeExtensionNode: ContainerNode<TypeExtensionContext> {
     init(parent: TypeNode, context: TypeExtensionContext) {
         super.init(parent: parent, context: context)
 
-        parent.extensions.append(self)
+        parent.extensions.insert(self)
     }
 
     // MARK: - Methods

@@ -15,16 +15,28 @@ class MethodContext: Context {
 
     // MARK: Computed properties
 
-    var parameters: [MethodParameterContext] {
-        children.compactMap { context in
-            context as? MethodParameterContext
+    var parameters: Set<MethodParameterContext> {
+        var parameters: Set<MethodParameterContext> = []
+
+        for context in children {
+            if let parameter = context as? MethodParameterContext {
+                parameters.insert(parameter)
+            }
         }
+
+        return parameters
     }
 
-    var variableAccesses: [VariableAccessContext] {
-        children.compactMap { context in
-            context as? VariableAccessContext
+    var variableAccesses: Set<VariableAccessContext> {
+        var variableAccesses: Set<VariableAccessContext> = []
+
+        for context in children {
+            if let variableAccess = context as? VariableAccessContext {
+                variableAccesses.insert(variableAccess)
+            }
         }
+
+        return variableAccesses
     }
 
     // MARK: - Initializers

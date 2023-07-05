@@ -36,6 +36,14 @@ class VariableAccessNode: Node<VariableAccessContext> {
         """
     }
 
+    // MARK: - Hashable
+
+    // Declared here so it can be overriden
+    override func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+        hasher.combine(accessedUsingSelf)
+    }
+
 }
 
 // MARK: - CustomStringConvertible
@@ -50,12 +58,7 @@ extension VariableAccessNode: CustomStringConvertible {
 
 // MARK: - Hashable
 
-extension VariableAccessNode: Hashable {
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-        hasher.combine(accessedUsingSelf)
-    }
+extension VariableAccessNode {
 
     static func == (lhs: VariableAccessNode, rhs: VariableAccessNode) -> Bool {
         lhs.identifier == rhs.identifier && lhs.accessedUsingSelf == rhs.accessedUsingSelf

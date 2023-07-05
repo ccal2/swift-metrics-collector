@@ -12,14 +12,14 @@ class ElementsTree {
     let rootContext: Context
 
     /// Types declared in the root context
-    private(set) var types: [TypeNode] = []
+    private(set) var types: Set<TypeNode> = []
     /// Variables declared in the root context
-    private(set) var variables: [VariableNode] = []
+    private(set) var variables: Set<VariableNode> = []
     /// Methods declared in the root context
-    private(set) var methods: [MethodNode] = []
+    private(set) var methods: Set<MethodNode> = []
 
     /// All types declared in the root context or nested in other types
-    private(set) var allTypes: [TypeNode] = []
+    private(set) var allTypes: Set<TypeNode> = []
 
     private var generatedTree: Bool = false
 
@@ -80,7 +80,7 @@ class ElementsTree {
         }
 
         let typeNode = TypeNode(parent: superTypeNode, context: context)
-        allTypes.append(typeNode)
+        allTypes.insert(typeNode)
 
         var index = 0
         while index < contextsWaitingForSuperType.count  {
@@ -90,14 +90,14 @@ class ElementsTree {
             }
 
             let subTypeNode = TypeNode(parent: typeNode, context: contextsWaitingForSuperType[index])
-            allTypes.append(subTypeNode)
+            allTypes.insert(subTypeNode)
 
             contextsWaitingForSuperType.remove(at: index)
             // Don't increment the index because one element has been removed
         }
 
         if superTypeNode == nil {
-            types.append(typeNode)
+            types.insert(typeNode)
         }
     }
 
@@ -113,8 +113,8 @@ class ElementsTree {
 
             if !hasSuperType {
                 let typeNode = TypeNode(parent: nil, context: contexts[index])
-                allTypes.append(typeNode)
-                types.append(typeNode)
+                allTypes.insert(typeNode)
+                types.insert(typeNode)
                 contexts.remove(at: index)
                 // Don't increment the index because one element has been removed
                 continue
@@ -152,12 +152,12 @@ class ElementsTree {
 
     private func handleVariableContext(_ context: VariableDeclarationContext) {
         let variableNode = VariableNode(parent: nil, context: context)
-        variables.append(variableNode)
+        variables.insert(variableNode)
     }
 
     private func handleMethodContext(_ context: MethodContext) {
         let methodNode = MethodNode(parent: nil, context: context)
-        methods.append(methodNode)
+        methods.insert(methodNode)
     }
 
     private func handleTypeExtensionContext(_ context: TypeExtensionContext) {

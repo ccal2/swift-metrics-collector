@@ -12,18 +12,32 @@ class Context {
     private(set) weak var parent: Context?
     private(set) var children: [Context] = []
 
+    private let uuid = UUID()
+
     // MARK: Computed properties
 
-    var variableDeclarations: [VariableDeclarationContext] {
-        children.compactMap { context in
-            context as? VariableDeclarationContext
+    var variableDeclarations: Set<VariableDeclarationContext> {
+        var variableDeclarations: Set<VariableDeclarationContext> = []
+
+        for context in children {
+            if let variableDeclaration = context as? VariableDeclarationContext {
+                variableDeclarations.insert(variableDeclaration)
+            }
         }
+
+        return variableDeclarations
     }
 
-    var methods: [MethodContext] {
-        children.compactMap { context in
-            context as? MethodContext
+    var methods: Set<MethodContext> {
+        var methods: Set<MethodContext> = []
+
+        for context in children {
+            if let method = context as? MethodContext {
+                methods.insert(method)
+            }
         }
+
+        return methods
     }
 
     // MARK: - Initializers
@@ -33,14 +47,21 @@ class Context {
         parent?.children.append(self)
     }
 
+    // MARK: - Hashable
+
+    // Declared here so it can be overriden by subclasses
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(uuid)
+    }
+
 }
 
-// MARK: - Equatable
+// MARK: - Hashable
 
-extension Context: Equatable {
+extension Context: Hashable {
 
     static func == (lhs: Context, rhs: Context) -> Bool {
-        lhs === rhs
+        lhs.uuid == rhs.uuid
     }
 
 }

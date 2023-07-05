@@ -27,4 +27,23 @@ class Node<ContextType: Context>: NodeObject {
         self.context = context
     }
 
+
+    // MARK: - Hashable
+
+    // Declared here so it can be overriden by subclasses
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(context)
+    }
+
 }
+
+// MARK: - Hashable
+
+extension Node: Hashable {
+
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        lhs.context == rhs.context
+    }
+
+}
+
