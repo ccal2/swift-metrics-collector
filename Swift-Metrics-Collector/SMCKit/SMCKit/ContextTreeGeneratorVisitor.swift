@@ -116,8 +116,18 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         return .skipChildren
     }
 
+    override func visit(_ node: SubscriptDeclSyntax) -> SyntaxVisitorContinueKind {
+        // Ignore subscript declarations
+        return .skipChildren
+    }
+
     override func visit(_ node: ClosureSignatureSyntax) -> SyntaxVisitorContinueKind {
         // Ignore closure signatures
+        return .skipChildren
+    }
+
+    override func visit(_ node: MacroDeclSyntax) -> SyntaxVisitorContinueKind {
+        // Ignore macro declarations
         return .skipChildren
     }
 
