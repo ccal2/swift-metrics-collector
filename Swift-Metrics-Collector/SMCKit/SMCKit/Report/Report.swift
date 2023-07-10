@@ -15,11 +15,13 @@ struct ReportItem: Codable {
 }
 
 struct Metrics: Codable {
+    let weightedMethodsPerClass: Int
     let numberOfChildren: Int
     let depthOfInheritance: Int
     let lackOfCohesionInMethods: Int
 
     enum CodingKeys: String, CodingKey, CaseIterable {
+        case weightedMethodsPerClass = "Weighted Methods Per Class (WMC)"
         case numberOfChildren = "Number of Children (NOC)"
         case depthOfInheritance = "Depth of Inheritance (DIT)"
         case lackOfCohesionInMethods = "Lack of Cohesion in Methods (LCOM)"

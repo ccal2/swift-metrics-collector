@@ -77,6 +77,10 @@ class TypeNode: ContainerNode<TypeContext> {
         return depth
     }()
 
+    private(set) lazy var weightedMethodsPerClass: Int = {
+        methods.count
+    }()
+
     // MARK: Computed properties
 
     var numberOfChildren: Int {
