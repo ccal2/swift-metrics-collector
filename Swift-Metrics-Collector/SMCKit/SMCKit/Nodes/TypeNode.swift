@@ -21,29 +21,41 @@ class TypeNode: ContainerNode<TypeContext> {
         context.fullIdentifier
     }()
 
-    private(set) lazy var allVariables: Set<VariableNode> = {
-        var allVariables = variables
+    // MARK: Computed properties
 
-        var node: any NodeObject = self
-        while let parent = node.parent as? TypeNode {
-            node = parent
-            allVariables.formUnion(parent.allVariables)
-        }
+    var variablesIncludingExtensions: Set<VariableNode> {
+        var allVariables = variables
 
         extensions.forEach { node in
             allVariables.formUnion(node.variables)
         }
 
         return allVariables
-    }()
+    }
 
-    private(set) lazy var allNonStaticVariables: Set<VariableNode> = {
+    var instanceVariablesIncludingExtensions: [VariableNode] {
+        variablesIncludingExtensions.filter { node in
+            !node.isStatic
+        }
+    }
+
+    var allVariables: Set<VariableNode> {
+        var allVariables = variablesIncludingExtensions
+
+        if let parent = parent as? TypeNode {
+            allVariables.formUnion(parent.allVariables)
+        }
+
+        return allVariables
+    }
+
+    var allNonStaticVariables: Set<VariableNode> {
         allVariables.filter { node in
             !node.isStatic
         }
-    }()
+    }
 
-    private(set) lazy var methodsIncludingExtensions: Set<MethodNode> = {
+    var methodsIncludingExtensions: Set<MethodNode> {
         var allMethods = methods
 
         extensions.forEach { node in
@@ -51,66 +63,12 @@ class TypeNode: ContainerNode<TypeContext> {
         }
 
         return allMethods
-    }()
+    }
 
-    private(set) lazy var instanceMethods: Set<MethodNode>  = {
-        methods.filter { node in
-            !node.isStatic
-        }
-    }()
-
-    private(set) lazy var instanceMethodsIncludingExtensions: [MethodNode]  = {
+    var instanceMethodsIncludingExtensions: [MethodNode] {
         methodsIncludingExtensions.filter { node in
             !node.isStatic
         }
-    }()
-
-    private(set) lazy var depthOfInheritance: Int = {
-        var depth = 0
-
-        var node: any NodeObject = self
-        while let parent = node.parent {
-            depth += 1
-            node = parent
-        }
-
-        return depth
-    }()
-
-    private(set) lazy var weightedMethodsPerClass: Int = {
-        methods.count
-    }()
-
-    // MARK: Computed properties
-
-    var numberOfChildren: Int {
-        children.count
-    }
-
-    /// Consider a Class C_1_ with n methods M_1_,M_2_,...,M_n_. Let {I_j_} = set of instance variables used by method M_i_.
-    /// There are n such sets {l_1_},..., {I_n_}. Let P = {(l_i_,I_j_) | I_i_^ I_j_= 0} and Q =  {(l_i_,I_j_) | I_i_^ I_j_!= 0}. If all n sets {I_1_},...,{I_n_} are 0 then let P = 0).
-    /// LCOM =  |P| - |Q|, if |P| > |Q|
-    ///        0, otherwise
-    var lackOfCohesionInMethods: Int {
-        let methodsCount = instanceMethodsIncludingExtensions.count
-        var disjointSets = 0
-        var intersectingSets = 0
-
-        guard methodsCount > 0 else {
-            return 0
-        }
-
-        for i in 0 ..< methodsCount-1 {
-            for j in i+1 ..< methodsCount {
-                if instanceMethodsIncludingExtensions[i].accessedInstanceVariables.isDisjoint(with: instanceMethodsIncludingExtensions[j].accessedInstanceVariables) {
-                    disjointSets += 1
-                } else {
-                    intersectingSets += 1
-                }
-            }
-        }
-
-        return disjointSets > intersectingSets ? disjointSets - intersectingSets : 0
     }
 
     // MARK: - Initializers
@@ -142,6 +100,8 @@ class TypeNode: ContainerNode<TypeContext> {
             child.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
+        let metrics = MetricsCalcullator.calculateMetrics(for: self)
+
         return """
         \(prefix)Type: {
         \(prefix)\tidentifier: \(identifier),
@@ -154,9 +114,10 @@ class TypeNode: ContainerNode<TypeContext> {
         \(prefix)\textensions: [
         \(extensionsDescription)
         \(prefix)\t],
-        \(prefix)\tNOC: \(numberOfChildren),
-        \(prefix)\tDIT: \(depthOfInheritance),
-        \(prefix)\tLCOM: \(lackOfCohesionInMethods),
+        \(prefix)\tWMC: \(metrics.weightedMethodsPerClass),
+        \(prefix)\tNOC: \(metrics.numberOfChildren),
+        \(prefix)\tDIT: \(metrics.depthOfInheritance),
+        \(prefix)\tLCOM: \(metrics.lackOfCohesionInMethods),
         \(prefix)\tchildren: [
         \(childrenDescription)
         \(prefix)\t]

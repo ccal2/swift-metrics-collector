@@ -149,10 +149,7 @@ public class MetricsCollector {
         for typeNode in tree.allTypes {
             if typeNode.kind == .class {
                 classes.append(ReportItem(identifier: typeNode.identifier,
-                                          metrics: Metrics(weightedMethodsPerClass: typeNode.weightedMethodsPerClass,
-                                                           numberOfChildren: typeNode.numberOfChildren,
-                                                           depthOfInheritance: typeNode.depthOfInheritance,
-                                                           lackOfCohesionInMethods: typeNode.lackOfCohesionInMethods)))
+                                          metrics: MetricsCalcullator.calculateMetrics(for: typeNode)))
             }
         }
 
