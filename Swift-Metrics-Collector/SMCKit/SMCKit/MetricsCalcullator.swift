@@ -22,18 +22,6 @@ struct MetricsCalcullator {
         typeNode.children.count
     }
 
-//    static func calculateDIT(for typeNode: TypeNode) -> Int {
-//        var depth = 0
-//
-//        var node: any NodeObject = typeNode
-//        while let parent = node.parent {
-//            depth += 1
-//            node = parent
-//        }
-//
-//        return depth
-//    }
-
     static func calculateDIT(for typeNode: TypeNode) -> Int {
         guard let parent = typeNode.parent as? TypeNode else {
             return 0
