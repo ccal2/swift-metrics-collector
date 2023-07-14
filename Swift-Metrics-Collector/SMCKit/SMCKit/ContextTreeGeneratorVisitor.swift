@@ -61,16 +61,6 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         currentContext = parentContext
     }
 
-    override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
-        // Ignore struct declarations
-        return .skipChildren
-    }
-
-    override func visit(_ node: EnumDeclSyntax) -> SyntaxVisitorContinueKind {
-        // Ignore enum declarations
-        return .skipChildren
-    }
-
     override func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
         let variableDeclContext = VariableDeclarationContext(parent: currentContext, isStatic: isStatic(modifiers: node.modifiers))
         currentContext = variableDeclContext
@@ -109,26 +99,6 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
             fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
         }
         currentContext = parentContext
-    }
-
-    override func visit(_ node: InitializerDeclSyntax) -> SyntaxVisitorContinueKind {
-        // Ignore initializers
-        return .skipChildren
-    }
-
-    override func visit(_ node: SubscriptDeclSyntax) -> SyntaxVisitorContinueKind {
-        // Ignore subscript declarations
-        return .skipChildren
-    }
-
-    override func visit(_ node: ClosureSignatureSyntax) -> SyntaxVisitorContinueKind {
-        // Ignore closure signatures
-        return .skipChildren
-    }
-
-    override func visit(_ node: MacroDeclSyntax) -> SyntaxVisitorContinueKind {
-        // Ignore macro declarations
-        return .skipChildren
     }
 
     override func visit(_ node: FunctionParameterSyntax) -> SyntaxVisitorContinueKind {
@@ -172,6 +142,22 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
 
         return .skipChildren
     }
+
+    // MARK: Ignored visits
+
+    override func visit(_ node: MissingDeclSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
+    override func visit(_ node: AccessorDeclSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
+    override func visit(_ node: AvailabilitySpecListSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
+    override func visit(_ node: AvailabilityArgumentSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
+    override func visit(_ node: AvailabilityVersionRestrictionListSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
+    override func visit(_ node: AvailabilityVersionRestrictionListEntrySyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
+    override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
+    override func visit(_ node: EnumDeclSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
+    override func visit(_ node: OperatorDeclSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
+    override func visit(_ node: InitializerDeclSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
+    override func visit(_ node: SubscriptDeclSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
+    override func visit(_ node: ClosureSignatureSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
+    override func visit(_ node: MacroDeclSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
 
     // MARK: - Private methods
 
