@@ -11,7 +11,7 @@ struct MetricsCalcullator {
         Metrics(weightedMethodsPerClass: calculateWMC(for: typeNode),
                 numberOfChildren: calculateNOC(for: typeNode),
                 depthOfInheritance: calculateDIT(for: typeNode),
-                lackOfCohesionInMethods: calculateLCOM(for: typeNode))
+                lackOfCohesionInMethods: calculateLCOM_HM(for: typeNode))
     }
 
     static func calculateWMC(for typeNode: TypeNode) -> Int {
@@ -43,9 +43,9 @@ struct MetricsCalcullator {
     }
 
     /// Consider a Class C with n methods M_1_,M_2_,...,M_n_. Let {I_i_} = set of instance variables used by method M_i_.
-    /// Let P = {(l_i_,I_j_) | I_i_^ I_j_= 0} and Q =  {(l_i_,I_j_) | I_i_^ I_j_!= 0}. If all n sets {I_1_},...,{I_n_} are 0 then let P = 0.
-    /// LCOM =  |P| - |Q|, if |P| > |Q|
-    ///        0, otherwise
+    /// Let P = {(I_i_,I_j_) | I_i_ ∩ I_j_ = ∅} and Q = {(I_i_,I_j_) | I_i_ ∩ I_j_ != ∅. If all n sets {I_1_},...,{I_n_} are 0 then let P = ∅.
+    /// LCOM(C) =  |P| - |Q|, if |P| > |Q|
+    ///          0, otherwise
     static func calculateLCOM(for typeNode: TypeNode) -> Int {
         let methods = typeNode.instanceMethodsIncludingExtensions
         let methodsCount = methods.count
@@ -69,26 +69,58 @@ struct MetricsCalcullator {
         return disjointSets > intersectingSets ? disjointSets - intersectingSets : 0
     }
 
-//    static func calculateLCOM_HS(for typeNode: TypeNode) -> Double {
-//        let methods = typeNode.instanceMethodsIncludingExtensions
-//        let m = Double(methods.count)
-//        let variables = typeNode.instanceVariablesIncludingExtensions
-//        let n = Double(variables.count)
-//
-//        guard n > 0 else {
-//            return (0 - m) / (1 - m)
-//        }
-//
-//        var aggregatedMethodCountByVariable: Double = 0.0
-//        for method in methods {
-//            for variable in variables {
-//                if method.accessedInstanceVariables.contains(variable) {
-//                    aggregatedMethodCountByVariable += 1.0
-//                }
-//            }
-//        }
-//
-//        return (aggregatedMethodCountByVariable/n - m)/(1 - m)
-//    }
+    /// Hitz and Montazeri LCOM
+    /// Consider a Class X
+    /// M_X_ is the set of methods of X
+    /// I_X_ is the set of instance variables of X
+    /// G_X_(V,E) is an undirected graph where:
+    ///     - V = M_X_
+    ///     - E = { <m,n> ∈ V x V | ∃ i ∈ I_X :  (m accesses i) ∧ (n accesses i)}
+    /// LCOM(X) = number of connected components of G_X_
+    static func calculateLCOM_HM(for typeNode: TypeNode) -> Int {
+        let methods = typeNode.instanceMethodsIncludingExtensions
+        let methodsCount = methods.count
+
+        guard methodsCount > 0 else {
+            return 0
+        }
+
+        // connectionsByMethod represents the edges in the graph
+        // connectionsByMethod[i] is the list of connections of methods[i]
+        // The connections are represented by the connecting method index in the methods array
+        var connectionsByMethod: [[Int]] = Array(repeating: [], count: methods.count)
+
+        for i in 0 ..< methodsCount-1 {
+            for j in i+1 ..< methodsCount {
+                if !methods[i].accessedInstanceVariables.isDisjoint(with: methods[j].accessedInstanceVariables) {
+                    connectionsByMethod[i].append(j)
+                    connectionsByMethod[j].append(i)
+                }
+            }
+        }
+
+        return connectedComponents(vertices: methods, edges: connectionsByMethod)
+    }
+
+    static func connectedComponents(vertices: Array<Any>, edges: [[Int]]) -> Int {
+        var visited = Array(repeating: false, count: vertices.count)
+
+        func dfs(verticeIndex: Int) {
+            visited[verticeIndex] = true
+
+            let adjacentVertices = edges[verticeIndex]
+            for adjacentIndex in 0 ..< adjacentVertices.count where visited[adjacentVertices[adjacentIndex]] == false {
+                dfs(verticeIndex: adjacentVertices[adjacentIndex])
+            }
+        }
+
+        var componentCount = 0
+        for verticeIndex in 0 ..< vertices.count where visited[verticeIndex] == false {
+            dfs(verticeIndex: verticeIndex)
+            componentCount += 1
+        }
+
+        return componentCount
+    }
 
 }
