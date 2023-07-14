@@ -42,6 +42,9 @@ struct SwiftMetricsCollector: ParsableCommand {
     }
 
     func run() {
+        let startingTime = Date()
+        print("starting: \(startingTime)")
+
         let collector = MetricsCollector()
 
         do {
@@ -58,6 +61,10 @@ struct SwiftMetricsCollector: ParsableCommand {
             // TODO: handle error
             print(error)
         }
+
+        let finisingTime = Date()
+        print("finished: \(finisingTime)")
+        print("elapsed time: \(finisingTime.timeIntervalSince(startingTime))")
     }
 
     private func reportPath() -> String {

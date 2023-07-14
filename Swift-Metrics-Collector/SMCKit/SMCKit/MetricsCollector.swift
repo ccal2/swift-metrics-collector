@@ -49,6 +49,21 @@ public class MetricsCollector {
         try structuredReport.write(to: reportFileURL, atomically: true, encoding: .utf8)
     }
 
+    // MARK: - Internal methods
+
+    func createReport() -> Report {
+        var classes: [ReportItem] = []
+
+        for typeNode in tree.allTypes {
+            if typeNode.kind == .class {
+                classes.append(ReportItem(identifier: typeNode.identifier,
+                                          metrics: MetricsCalcullator.calculateMetrics(for: typeNode)))
+            }
+        }
+
+        return Report(classes: classes)
+    }
+
     // MARK: - Private methods
 
     private func process(path: String) throws {
@@ -141,19 +156,6 @@ public class MetricsCollector {
         }
 
         return url
-    }
-
-    private func createReport() -> Report {
-        var classes: [ReportItem] = []
-
-        for typeNode in tree.allTypes {
-            if typeNode.kind == .class {
-                classes.append(ReportItem(identifier: typeNode.identifier,
-                                          metrics: MetricsCalcullator.calculateMetrics(for: typeNode)))
-            }
-        }
-
-        return Report(classes: classes)
     }
 
 }
