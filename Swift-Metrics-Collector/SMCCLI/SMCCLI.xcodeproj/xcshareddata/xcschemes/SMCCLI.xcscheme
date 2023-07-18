@@ -58,11 +58,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "~/Documents/Faculdade/2022.2\ e\ 2023.1/TCC/swift-metrics-collector/Example/"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "~/Documents/Code/swift-syntax-main/"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "~/Documents/Faculdade/2022.2\ e\ 2023.1/TCC/swift-metrics-collector/Swift-Metrics-Collector/SMCKit/SMCKit/"
