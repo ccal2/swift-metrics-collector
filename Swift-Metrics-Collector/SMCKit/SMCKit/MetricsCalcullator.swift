@@ -11,7 +11,8 @@ struct MetricsCalcullator {
         Metrics(weightedMethodsPerClass: calculateWMC(for: typeNode),
                 numberOfChildren: calculateNOC(for: typeNode),
                 depthOfInheritance: calculateDIT(for: typeNode),
-                lackOfCohesionInMethods: calculateLCOM_HM(for: typeNode))
+                lackOfCohesionInMethods: calculateLCOM_HM(for: typeNode),
+                responseForAClass: calculateRFC(for: typeNode))
     }
 
     static func calculateWMC(for typeNode: TypeNode) -> Int {
@@ -109,6 +110,17 @@ struct MetricsCalcullator {
         }
 
         return componentCount
+    }
+
+    static func calculateRFC(for typeNode: TypeNode) -> Int {
+        var methodCalls: Set<String> = []
+
+        for method in typeNode.allInstanceMethods {
+            methodCalls.insert(method.identifier)
+            methodCalls.formUnion(method.methodCalls)
+        }
+
+        return methodCalls.count
     }
 
 }

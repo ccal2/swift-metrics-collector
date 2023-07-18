@@ -12,6 +12,7 @@ class MethodContext: Context {
     let identifier: String
     let returnTypeIdentifier: String?
     let isStatic: Bool
+    var methodCalls: Set<String> = []
 
     // MARK: Computed properties
 

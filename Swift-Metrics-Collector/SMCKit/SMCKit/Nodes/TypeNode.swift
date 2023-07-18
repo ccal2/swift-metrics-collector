@@ -71,6 +71,16 @@ class TypeNode: ContainerNode<TypeContext> {
         }
     }
 
+    var allInstanceMethods: Set<MethodNode> {
+        var allMethods = Set(instanceMethodsIncludingExtensions)
+
+        if let parent = parent as? TypeNode {
+            allMethods.formUnion(parent.allInstanceMethods)
+        }
+
+        return allMethods
+    }
+
     // MARK: - Initializers
 
     init(parent: TypeNode?, context: TypeContext) {
@@ -118,6 +128,7 @@ class TypeNode: ContainerNode<TypeContext> {
         \(prefix)\tNOC: \(metrics.numberOfChildren),
         \(prefix)\tDIT: \(metrics.depthOfInheritance),
         \(prefix)\tLCOM: \(metrics.lackOfCohesionInMethods),
+        \(prefix)\tRFC: \(metrics.responseForAClass),
         \(prefix)\tchildren: [
         \(childrenDescription)
         \(prefix)\t]

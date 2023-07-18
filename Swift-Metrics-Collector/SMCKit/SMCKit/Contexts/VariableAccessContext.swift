@@ -14,7 +14,7 @@ class VariableAccessContext: Context {
 
     // MARK: - Initializers
 
-    init(parent: Context, identifier: String, accessedUsingSelf: Bool) {
+    init(parent: MethodContext, identifier: String, accessedUsingSelf: Bool) {
         self.identifier = identifier
         self.accessedUsingSelf = accessedUsingSelf
         super.init(parent: parent)

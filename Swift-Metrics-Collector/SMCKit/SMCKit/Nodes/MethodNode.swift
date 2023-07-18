@@ -9,6 +9,10 @@ class MethodNode: ContainerNode<MethodContext> {
 
     // MARK: - Properties
 
+    var methodCalls: Set<String> {
+        context.methodCalls
+    }
+
     private(set) lazy var identifier: String = {
         context.identifier
     }()

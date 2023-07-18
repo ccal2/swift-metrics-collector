@@ -19,11 +19,13 @@ struct Metrics: Codable {
     let numberOfChildren: Int
     let depthOfInheritance: Int
     let lackOfCohesionInMethods: Int
+    let responseForAClass: Int
 
     enum CodingKeys: String, CodingKey, CaseIterable {
         case weightedMethodsPerClass = "Weighted Methods Per Class (WMC)"
         case numberOfChildren = "Number of Children (NOC)"
         case depthOfInheritance = "Depth of Inheritance (DIT)"
         case lackOfCohesionInMethods = "Lack of Cohesion in Methods (LCOM)"
+        case responseForAClass = "Response For a Class (RFC)"
     }
 }
