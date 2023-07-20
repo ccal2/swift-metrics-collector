@@ -7,6 +7,7 @@
 
 ## User settings
 xcuserdata/
+Swift-Metrics-Collector/SMCKit/SMCKitTests/UserSettings.swift
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint

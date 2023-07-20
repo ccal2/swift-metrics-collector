@@ -1,0 +1,148 @@
+= TC-NOC-XXX
+Casos de teste relacionados ao cálculo da métrica NOC (Number of Children).
+
+:toc: auto
+:toc-title: Casos de teste
+:toclevels: 1
+
+
+== TC-NOC-001
+
+=== Cenário
+
+Três classes herdam de uma classe que não herda de nenhuma outra.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2: Class1 {}
+class Class3: Class1 {}
+class Class4: Class1 {}
+----
+
+=== Resultado
+
+NOC(Class1) = 3 +
+NOC(Class2) = 0 +
+NOC(Class3) = 0 +
+NOC(Class4) = 0 +
+
+
+== TC-NOC-002
+
+=== Cenário
+
+Três classes herdam de uma classe que herda de uma outra classe.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2: Class1 {}
+class Class3: Class2 {}
+class Class4: Class2 {}
+class Class5: Class2 {}
+----
+
+=== Resultado
+
+NOC(Class1) = 1 +
+NOC(Class2) = 3 +
+NOC(Class3) = 0 +
+NOC(Class4) = 0 +
+NOC(Class5) = 0 +
+
+
+== TC-NOC-003
+
+=== Cenário
+
+Três classes herdam de uma classe que herda de uma outra classe definida fora do escopo analisado.
+
+=== Entrada
+
+[, swift]
+----
+import Foundation
+
+class Class1: NSObject { }
+class Class2: Class1 {}
+class Class3: Class1 {}
+class Class4: Class1 {}
+----
+
+=== Resultado
+
+NOC(Class1) = 3 +
+NOC(Class2) = 0 +
+NOC(Class3) = 0 +
+NOC(Class4) = 0 +
+
+
+== TC-NOC-004
+
+=== Cenário
+
+Três classes herdam de uma classe que não herda de classe nenhuma e implementa um protocolo.
+
+=== Entrada
+
+[, swift]
+----
+protocol Protocol1 {}
+
+class Class1: Protocol1 { }
+class Class2: Class1 {}
+class Class3: Class1 {}
+class Class4: Class1 {}
+----
+
+=== Resultado
+
+NOC(Class1) = 3 +
+NOC(Class2) = 0 +
+NOC(Class3) = 0 +
+NOC(Class4) = 0 +
+
+
+== TC-NOC-005
+
+=== Cenário
+
+Três classes herdam de uma classe que não herda de nenhuma outra. Cada classe é definida em um arquivo diferente.
+
+=== Entrada
+
+Class1.swift:
+[, swift]
+----
+class Class1 { }
+----
+
+Class2.swift:
+[, swift]
+----
+class Class2: Class1 {}
+----
+
+Class3.swift:
+[, swift]
+----
+class Class3: Class1 {}
+----
+
+Class4.swift:
+[, swift]
+----
+class Class4: Class1 {}
+----
+
+=== Resultado
+
+NOC(Class1) = 3 +
+NOC(Class2) = 0 +
+NOC(Class3) = 0 +
+NOC(Class4) = 0 +

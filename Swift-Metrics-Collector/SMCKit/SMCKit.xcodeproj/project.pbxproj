@@ -15,6 +15,9 @@
 		77196AD82A60C66500BF6308 /* MetricsCalcullatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77196AD72A60C66500BF6308 /* MetricsCalcullatorTests.swift */; };
 		7720DB3829EF6D4600BC5F31 /* VariableAccessContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7720DB3729EF6D4600BC5F31 /* VariableAccessContext.swift */; };
 		7720DB3A29EF6D6D00BC5F31 /* VariableAccessNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7720DB3929EF6D6D00BC5F31 /* VariableAccessNode.swift */; };
+		772C640F2A68AFE10079680C /* TC_NOC_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C640E2A68AFE10079680C /* TC_NOC_Tests.swift */; };
+		772C64112A68B0AE0079680C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C64102A68B0AE0079680C /* Utils.swift */; };
+		772C641F2A68CE0D0079680C /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C641E2A68CE0D0079680C /* UserSettings.swift */; };
 		773E524D2A0347FA00E0F660 /* TypeExtensionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E524C2A0347FA00E0F660 /* TypeExtensionNode.swift */; };
 		776C3E8129E4E54D00F127C7 /* MethodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8029E4E54D00F127C7 /* MethodNode.swift */; };
 		776C3E8329E4E57A00F127C7 /* MethodContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8229E4E57A00F127C7 /* MethodContext.swift */; };
@@ -60,6 +63,17 @@
 		77196AD72A60C66500BF6308 /* MetricsCalcullatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsCalcullatorTests.swift; sourceTree = "<group>"; };
 		7720DB3729EF6D4600BC5F31 /* VariableAccessContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableAccessContext.swift; sourceTree = "<group>"; };
 		7720DB3929EF6D6D00BC5F31 /* VariableAccessNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableAccessNode.swift; sourceTree = "<group>"; };
+		772C640C2A68AFA80079680C /* TC-NOC-001.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-NOC-001.swift"; sourceTree = "<group>"; };
+		772C640E2A68AFE10079680C /* TC_NOC_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TC_NOC_Tests.swift; sourceTree = "<group>"; };
+		772C64102A68B0AE0079680C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		772C64122A68B5C00079680C /* TC-NOC-002.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-NOC-002.swift"; sourceTree = "<group>"; };
+		772C64142A68B63C0079680C /* TC-NOC-003.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-NOC-003.swift"; sourceTree = "<group>"; };
+		772C64162A68C44F0079680C /* TC-NOC-004.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-NOC-004.swift"; sourceTree = "<group>"; };
+		772C64192A68C4F90079680C /* Class1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class1.swift; sourceTree = "<group>"; };
+		772C641A2A68C50A0079680C /* Class2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class2.swift; sourceTree = "<group>"; };
+		772C641B2A68C5250079680C /* Class3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class3.swift; sourceTree = "<group>"; };
+		772C641D2A68C5330079680C /* Class4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class4.swift; sourceTree = "<group>"; };
+		772C641E2A68CE0D0079680C /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		773E524C2A0347FA00E0F660 /* TypeExtensionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeExtensionNode.swift; sourceTree = "<group>"; };
 		776C3E8029E4E54D00F127C7 /* MethodNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodNode.swift; sourceTree = "<group>"; };
 		776C3E8229E4E57A00F127C7 /* MethodContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodContext.swift; sourceTree = "<group>"; };
@@ -129,6 +143,39 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		772C64092A68AF540079680C /* Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				772C640E2A68AFE10079680C /* TC_NOC_Tests.swift */,
+				772C64102A68B0AE0079680C /* Utils.swift */,
+				772C640A2A68AF6F0079680C /* Inputs */,
+			);
+			path = "Test Cases";
+			sourceTree = "<group>";
+		};
+		772C640A2A68AF6F0079680C /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				772C640C2A68AFA80079680C /* TC-NOC-001.swift */,
+				772C64122A68B5C00079680C /* TC-NOC-002.swift */,
+				772C64142A68B63C0079680C /* TC-NOC-003.swift */,
+				772C64162A68C44F0079680C /* TC-NOC-004.swift */,
+				772C64182A68C4D60079680C /* TC-NOC-005 */,
+			);
+			path = Inputs;
+			sourceTree = "<group>";
+		};
+		772C64182A68C4D60079680C /* TC-NOC-005 */ = {
+			isa = PBXGroup;
+			children = (
+				772C64192A68C4F90079680C /* Class1.swift */,
+				772C641A2A68C50A0079680C /* Class2.swift */,
+				772C641B2A68C5250079680C /* Class3.swift */,
+				772C641D2A68C5330079680C /* Class4.swift */,
+			);
+			path = "TC-NOC-005";
+			sourceTree = "<group>";
+		};
 		77AB899529C94A5F0087DA08 /* Contexts */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +242,8 @@
 			children = (
 				77AB89A429C94DB00087DA08 /* ContextIteratorsTests.swift */,
 				77196AD72A60C66500BF6308 /* MetricsCalcullatorTests.swift */,
+				772C641E2A68CE0D0079680C /* UserSettings.swift */,
+				772C64092A68AF540079680C /* Test Cases */,
 			);
 			path = SMCKitTests;
 			sourceTree = "<group>";
@@ -349,7 +398,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				77196AD82A60C66500BF6308 /* MetricsCalcullatorTests.swift in Sources */,
+				772C641F2A68CE0D0079680C /* UserSettings.swift in Sources */,
 				77AB89A529C94DB00087DA08 /* ContextIteratorsTests.swift in Sources */,
+				772C640F2A68AFE10079680C /* TC_NOC_Tests.swift in Sources */,
+				772C64112A68B0AE0079680C /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
