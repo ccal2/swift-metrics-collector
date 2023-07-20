@@ -63,9 +63,9 @@ class ElementsTree {
 
     private func handleTypeContext(_ context: TypeContext, contextsWaitingForSuperType: inout [TypeContext]) {
         var superTypeNode: TypeNode? = nil
-        if let firstInheritedType = context.firstInheritedType {
+        if context.firstInheritedType != nil {
             guard let superTypeNodeIndex = allTypes.firstIndex(where: { typeNode in
-                typeNode.context.allPossibleIdentifiers.contains(firstInheritedType)
+                typeNode.context.isSuperType(of: context)
             }) else {
                 contextsWaitingForSuperType.append(context)
                 return
@@ -82,9 +82,17 @@ class ElementsTree {
         let typeNode = TypeNode(parent: superTypeNode, context: context)
         allTypes.insert(typeNode)
 
+        handlePossibleChildren(of: typeNode, contextsWaitingForSuperType: &contextsWaitingForSuperType)
+
+        if superTypeNode == nil {
+            types.insert(typeNode)
+        }
+    }
+
+    private func handlePossibleChildren(of typeNode: TypeNode, contextsWaitingForSuperType: inout [TypeContext]) {
         var index = 0
         while index < contextsWaitingForSuperType.count  {
-            guard context.isSuperType(of: contextsWaitingForSuperType[index]) else {
+            guard typeNode.context.isSuperType(of: contextsWaitingForSuperType[index]) else {
                 index += 1
                 continue
             }
@@ -95,10 +103,6 @@ class ElementsTree {
             contextsWaitingForSuperType.remove(at: index)
             // Don't increment the index because one element has been removed
         }
-
-        if superTypeNode == nil {
-            types.insert(typeNode)
-        }
     }
 
     private func handleRemainingContextsWaitingForSuperType(_ contexts: inout [TypeContext]) {
@@ -106,27 +110,24 @@ class ElementsTree {
         // then it could be a protocol or some class defined outside of the scope.
         // In this case, create a node with no parent
         var index = 0
-        while index < contexts.count  {
+        while !contexts.isEmpty  {
             let hasSuperType = contexts.contains { otherContext in
                 otherContext.isSuperType(of: contexts[index])
             }
 
-            if !hasSuperType {
+            if hasSuperType {
+                // If the super type of the current context is also waiting, then the current context will have to stay in the queue untill its super type is processed
+                index += 1
+            } else {
                 let typeNode = TypeNode(parent: nil, context: contexts[index])
                 allTypes.insert(typeNode)
                 types.insert(typeNode)
                 contexts.remove(at: index)
-                // Don't increment the index because one element has been removed
-                continue
+
+                handlePossibleChildren(of: typeNode, contextsWaitingForSuperType: &contexts)
+                // Since the context array can be modified in handlePossibleChildren, we need to reset the index
+                index = 0
             }
-
-            index += 1
-        }
-
-        // After handling the cases of protocol or classes defined outside of the scope,
-        // we still might have subclasses of those classes that need to be handled
-        while !contexts.isEmpty {
-            handleTypeContext(contexts[0], contextsWaitingForSuperType: &contexts)
         }
     }
 
