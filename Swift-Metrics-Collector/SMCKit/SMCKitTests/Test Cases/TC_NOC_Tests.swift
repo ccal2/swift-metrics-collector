@@ -124,4 +124,38 @@ final class TC_NOC_Tests: XCTestCase {
         assertNOC(for: class4, expectedValue: 0)
     }
 
+    func test_TC_NOC_006() throws {
+        let report = try analyse(input: "TC-NOC-006.swift")
+
+        XCTAssertEqual(report.classes.count, 7)
+
+        // Class1
+        let class1 = try getClass(from: report, withIdentifier: "Class1")
+        assertNOC(for: class1, expectedValue: 0)
+
+        // Class1_1
+        let class1_1 = try getClass(from: report, withIdentifier: "Class1.Class1_1")
+        assertNOC(for: class1_1, expectedValue: 0)
+
+        // Class1_1_1
+        let class1_1_1 = try getClass(from: report, withIdentifier: "Class1.Class1_1.Class1_1_1")
+        assertNOC(for: class1_1_1, expectedValue: 3)
+
+        // Class1_1_2
+        let class1_1_2 = try getClass(from: report, withIdentifier: "Class1.Class1_1.Class1_1_2")
+        assertNOC(for: class1_1_2, expectedValue: 0)
+
+        // Class1_1_3
+        let class1_1_3 = try getClass(from: report, withIdentifier: "Class1.Class1_1.Class1_1_3")
+        assertNOC(for: class1_1_3, expectedValue: 0)
+
+        // Class2
+        let class2 = try getClass(from: report, withIdentifier: "Class2")
+        assertNOC(for: class2, expectedValue: 0)
+
+        // Class2_1
+        let class2_1 = try getClass(from: report, withIdentifier: "Class2.Class2_1")
+        assertNOC(for: class2_1, expectedValue: 0)
+    }
+
 }
