@@ -1,0 +1,52 @@
+= Swift Metrics Collector
+
+:toc: auto
+
+== EN 🇬🇧
+
+📊 A tool to collect some code metrics from code written in Swift ∙ (early 2023)
+
+This is part of my graduating project.
+
+=== Metrics
+
+The metrics collected by the tool are inspired by the suite described in the link:https://www.doi.org/10.1109/32.295895[article "A Metrics Suite for Object Oriented Design" by Chidamber, S. and Kemerer, C.].
+
+They are:
+
+* Weighted Methods Per Class (WMC)
+* Number of Childrem (NOC)
+* Depth of Inheritance Tree (DIT)
+* Lack of Cohesion in Methods (LCOM)
+    ** This metric calculation differs from the one defined in the article by Chidamber and Kemerer. Instead, I decided to use the definition from the link:https://www.researchgate.net/publication/238729882_Measuring_coupling_and_cohesion_in_object-oriented_systems[article "Measuring coupling and cohesion in object-oriented systems" by Hitz, M. and Montazeri, B.].
+* Response For a Class (RFC)
+* Coupling between Object Classes (CBO) _[TBD]_
+
+=== Tool validation
+
+I wrote a few test cases to validate the tool and implemented them as automated tests in Xcode. The test case descriptions are link:Casos_de_Teste/Casos_de_Teste.adoc[only available in portuguese].
+
+
+== PT-BR 🇧🇷
+
+📊 Uma ferramenta para coletar algumas métricas de código escrito em Swift ∙ (início de 2023)
+
+Este projeto faz parte do meu Trabalho de Graduação.
+
+=== Métricas
+
+As métricas coletadas pela ferramenta foram inspiradas na suíte descrita no link:https://www.doi.org/10.1109/32.295895[artigo "A Metrics Suite for Object Oriented Design" de Chidamber, S. e Kemerer, C.].
+
+Elas são (em tradução livre):
+
+* Métodos ponderados por classe (Weighted Methods Per Class - WMC)
+* Número de filhos (Number of Childrem - NOC)
+* Profundidade da árvore de herança (Depth of Inheritance Tree - DIT)
+* Falta de coesão em métodos (Lack of Cohesion in Methods - LCOM)
+    ** O cálculo dessa métrica difere daquele definido no artigo de Chidamber e Kemerer. Em vez disso, eu decidi usar a definição do link:https://www.researchgate.net/publication/238729882_Measuring_coupling_and_cohesion_in_object-oriented_systems[artigo "Measuring coupling and cohesion in object-oriented systems" de Hitz, M. e Montazeri, B.].
+* Resposta para uma Classe (Response For a Class - RFC)
+* Acoplamento entre classes de objeto (Coupling between Object Classes - CBO) _[a fazer]_
+
+=== Validação da ferramenta
+
+Escrevi alguns casos de teste para validar a ferramenta e implementei eles como testes automatizados no Xcode. Eles estão descritos em link:Casos_de_Teste/Casos_de_Teste.adoc[Casos de Teste].
