@@ -57,16 +57,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "~/Documents/Faculdade/2022.2\ e\ 2023.1/TCC/swift-metrics-collector/Example/"
+            argument = "PATH_TO_ANALYZE"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "~/Documents/Code/swift-syntax-main/"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "~/Documents/Faculdade/2022.2\ e\ 2023.1/TCC/swift-metrics-collector/Swift-Metrics-Collector/SMCKit/SMCKit/"
-            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--json"
