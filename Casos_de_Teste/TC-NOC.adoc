@@ -28,12 +28,12 @@ class Class4: Class1 {}
 
 [%autowidth]
 |===
-| Class  | NOC
+| # | Class  | NOC
 
-| Class1 | 3
-| Class2 | 0
-| Class3 | 0
-| Class4 | 0
+| 1 | Class1 | 3
+| 2 | Class2 | 0
+| 3 | Class3 | 0
+| 4 | Class4 | 0
 |===
 
 
@@ -58,13 +58,13 @@ class Class5: Class2 {}
 
 [%autowidth]
 |===
-| Class  | NOC
+| # | Class  | NOC
 
-| Class1 | 1
-| Class2 | 3
-| Class3 | 0
-| Class4 | 0
-| Class5 | 0
+| 1 | Class1 | 1
+| 2 | Class2 | 3
+| 3 | Class3 | 0
+| 4 | Class4 | 0
+| 5 | Class5 | 0
 |===
 
 
@@ -90,12 +90,12 @@ class Class4: Class1 {}
 
 [%autowidth]
 |===
-| Class  | NOC
+| # | Class  | NOC
 
-| Class1 | 3
-| Class2 | 0
-| Class3 | 0
-| Class4 | 0
+| 1 | Class1 | 3
+| 2 | Class2 | 0
+| 3 | Class3 | 0
+| 4 | Class4 | 0
 |===
 
 
@@ -121,12 +121,12 @@ class Class4: Class1 {}
 
 [%autowidth]
 |===
-| Class  | NOC
+| # | Class  | NOC
 
-| Class1 | 3
-| Class2 | 0
-| Class3 | 0
-| Class4 | 0
+| 1 | Class1 | 3
+| 2 | Class2 | 0
+| 3 | Class3 | 0
+| 4 | Class4 | 0
 |===
 
 
@@ -166,12 +166,12 @@ class Class4: Class1 {}
 
 [%autowidth]
 |===
-| Class  | NOC
+| # | Class  | NOC
 
-| Class1 | 3
-| Class2 | 0
-| Class3 | 0
-| Class4 | 0
+| 1 | Class1 | 3
+| 2 | Class2 | 0
+| 3 | Class3 | 0
+| 4 | Class4 | 0
 |===
 
 
@@ -202,13 +202,13 @@ class Class2 {
 
 [%autowidth]
 |===
-| Class         | NOC
+| # | Class  | NOC
 
-| Class1        | 0
-| Class1_1      | 0
-| Class1_1_1    | 3
-| Class1_1_2    | 0
-| Class1_1_3    | 0
-| Class2        | 0
-| Class2_1      | 0
+| 1 | Class1        | 0
+| 2 | Class1_1      | 0
+| 3 | Class1_1_1    | 3
+| 4 | Class1_1_2    | 0
+| 5 | Class1_1_3    | 0
+| 6 | Class2        | 0
+| 7 | Class2_1      | 0
 |===
