@@ -26,10 +26,15 @@ class Class4: Class1 {}
 
 === Resultado
 
-NOC(Class1) = 3 +
-NOC(Class2) = 0 +
-NOC(Class3) = 0 +
-NOC(Class4) = 0 +
+[%autowidth]
+|===
+| Class  | NOC
+
+| Class1 | 3
+| Class2 | 0
+| Class3 | 0
+| Class4 | 0
+|===
 
 
 == TC-NOC-002
@@ -51,11 +56,16 @@ class Class5: Class2 {}
 
 === Resultado
 
-NOC(Class1) = 1 +
-NOC(Class2) = 3 +
-NOC(Class3) = 0 +
-NOC(Class4) = 0 +
-NOC(Class5) = 0 +
+[%autowidth]
+|===
+| Class  | NOC
+
+| Class1 | 1
+| Class2 | 3
+| Class3 | 0
+| Class4 | 0
+| Class5 | 0
+|===
 
 
 == TC-NOC-003
@@ -78,10 +88,15 @@ class Class4: Class1 {}
 
 === Resultado
 
-NOC(Class1) = 3 +
-NOC(Class2) = 0 +
-NOC(Class3) = 0 +
-NOC(Class4) = 0 +
+[%autowidth]
+|===
+| Class  | NOC
+
+| Class1 | 3
+| Class2 | 0
+| Class3 | 0
+| Class4 | 0
+|===
 
 
 == TC-NOC-004
@@ -104,10 +119,15 @@ class Class4: Class1 {}
 
 === Resultado
 
-NOC(Class1) = 3 +
-NOC(Class2) = 0 +
-NOC(Class3) = 0 +
-NOC(Class4) = 0 +
+[%autowidth]
+|===
+| Class  | NOC
+
+| Class1 | 3
+| Class2 | 0
+| Class3 | 0
+| Class4 | 0
+|===
 
 
 == TC-NOC-005
@@ -144,10 +164,15 @@ class Class4: Class1 {}
 
 === Resultado
 
-NOC(Class1) = 3 +
-NOC(Class2) = 0 +
-NOC(Class3) = 0 +
-NOC(Class4) = 0 +
+[%autowidth]
+|===
+| Class  | NOC
+
+| Class1 | 3
+| Class2 | 0
+| Class3 | 0
+| Class4 | 0
+|===
 
 
 == TC-NOC-006
@@ -175,11 +200,15 @@ class Class2 {
 
 === Resultado
 
-NOC(Class1) = 0 +
-NOC(Class1_1) = 0 +
-NOC(Class1_1_1) = 3 +
-NOC(Class1_1_2) = 0 +
-NOC(Class1_1_3) = 0 +
-NOC(Class2) = 0 +
-NOC(Class2_1) = 0 +
+[%autowidth]
+|===
+| Class         | NOC
 
+| Class1        | 0
+| Class1_1      | 0
+| Class1_1_1    | 3
+| Class1_1_2    | 0
+| Class1_1_3    | 0
+| Class2        | 0
+| Class2_1      | 0
+|===
