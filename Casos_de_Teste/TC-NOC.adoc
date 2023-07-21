@@ -1,10 +1,12 @@
-= TC-NOC-XXX
-Casos de teste relacionados ao cálculo da métrica NOC (Number of Children).
-
-:toc: auto
-:toc-title: Casos de teste
+:toc: macro
+:toc-title:
 :toclevels: 1
 
+= TC-NOC-XXX
+
+Casos de teste relacionados ao cálculo da métrica NOC (Number of Children).
+
+toc::[]
 
 == TC-NOC-001
 
