@@ -72,26 +72,23 @@ class ElementsTree {
             }
 
             superTypeNode = allTypes[superTypeNodeIndex]
-
-            // If the current context was already in the `contextsWaitingForSuperType` list, remove it
-            contextsWaitingForSuperType.removeAll { waitingContext in
-                waitingContext === context
-            }
         }
 
         let typeNode = TypeNode(parent: superTypeNode, context: context)
         allTypes.insert(typeNode)
-
-        handlePossibleChildren(of: typeNode, contextsWaitingForSuperType: &contextsWaitingForSuperType)
-
         if superTypeNode == nil {
             types.insert(typeNode)
         }
+
+        _ = handlePossibleChildren(of: typeNode, contextsWaitingForSuperType: &contextsWaitingForSuperType)
     }
 
-    private func handlePossibleChildren(of typeNode: TypeNode, contextsWaitingForSuperType: inout [TypeContext]) {
+    private func handlePossibleChildren(of typeNode: TypeNode, contextsWaitingForSuperType: inout [TypeContext]) -> [Int] {
+        var removedIndexes: [Int] = []
+        var originalIndexes = Array(0 ..< contextsWaitingForSuperType.count)
+
         var index = 0
-        while index < contextsWaitingForSuperType.count  {
+        while index < contextsWaitingForSuperType.count {
             guard typeNode.context.isSuperType(of: contextsWaitingForSuperType[index]) else {
                 index += 1
                 continue
@@ -101,34 +98,53 @@ class ElementsTree {
             allTypes.insert(subTypeNode)
 
             contextsWaitingForSuperType.remove(at: index)
-            // Don't increment the index because one element has been removed
+            removedIndexes.append(originalIndex(of: index, remainingOriginalIndexes: &originalIndexes, removedIndexes: removedIndexes))
+
+            let otherRemovedIndexes = handlePossibleChildren(of: subTypeNode, contextsWaitingForSuperType: &contextsWaitingForSuperType)
+            let updatedRemovedIndexes = updatedRemovedIndexes(otherRemovedIndexes, previouslyRemovedIndexes: removedIndexes)
+            removedIndexes.append(contentsOf: updatedRemovedIndexes)
+
+            updateIndex(&index, removedIndexes: updatedRemovedIndexes)
         }
+
+        return removedIndexes
     }
 
     private func handleRemainingContextsWaitingForSuperType(_ contexts: inout [TypeContext]) {
-        // If the super type hasn't been found after iterating over all contexts,
-        // then it could be a protocol or some class defined outside of the scope.
-        // In this case, create a node with no parent
+        var removedIndexes: [Int] = []
+        var originalIndexes = Array(0 ..< contexts.count)
+
         var index = 0
-        while !contexts.isEmpty  {
-            let hasSuperType = contexts.contains { otherContext in
+        while index < contexts.count  {
+            let superTypeIsWaiting = contexts.contains { otherContext in
                 otherContext.isSuperType(of: contexts[index])
             }
 
-            if hasSuperType {
-                // If the super type of the current context is also waiting, then the current context will have to stay in the queue untill its super type is processed
+            // If the super type of the current context is also waiting, then the current
+            // context will have to stay in the queue until its super type is processed
+            guard !superTypeIsWaiting else {
                 index += 1
-            } else {
-                let typeNode = TypeNode(parent: nil, context: contexts[index])
-                allTypes.insert(typeNode)
-                types.insert(typeNode)
-                contexts.remove(at: index)
-
-                handlePossibleChildren(of: typeNode, contextsWaitingForSuperType: &contexts)
-                // Since the context array can be modified in handlePossibleChildren, we need to reset the index
-                index = 0
+                continue
             }
+
+            // If the super type hasn't been found after iterating over all contexts,
+            // then it could be a protocol or some class defined outside of the scope.
+            // In this case, create a node with no parent
+            let typeNode = TypeNode(parent: nil, context: contexts[index])
+            allTypes.insert(typeNode)
+            types.insert(typeNode)
+            contexts.remove(at: index)
+            removedIndexes.append(originalIndex(of: index, remainingOriginalIndexes: &originalIndexes, removedIndexes: removedIndexes))
+
+            let otherRemovedIndexes = handlePossibleChildren(of: typeNode, contextsWaitingForSuperType: &contexts)
+            let updatedRemovedIndexes = updatedRemovedIndexes(otherRemovedIndexes, previouslyRemovedIndexes: removedIndexes)
+            removedIndexes.append(contentsOf: updatedRemovedIndexes)
+
+            updateIndex(&index, removedIndexes: updatedRemovedIndexes)
         }
+
+        // All contexts are expected to be handled at this stage
+        assert(contexts.isEmpty)
     }
 
     // MARK: Handle other elements
@@ -170,6 +186,78 @@ class ElementsTree {
             _ = TypeExtensionNode(parent: type, context: context)
             return
         }
+    }
+
+    // MARK: Helpers for relative index handling
+
+    /// Calculate the original index value for a relative index in an array where some values have been previously removed.
+    ///
+    /// An example:
+    /// 1. Consider the following array: ["A", "B", "C", "D", "E"].
+    /// 2. If we remove the values from indexes 0 and 3 from this array, the remaining list will be: ["B", "C", "E"].
+    /// 3. Now, if we want to find out the original index value for the element "E", for example, we can call this function like so: `originalIndex(of: 2, remainingOriginalIndexes: &originalIndexes, removedIndexes: [0, 3])`, where `originalIndexes = [0, 1, 2, 3, 4]`. The return will be `4`.
+    ///
+    /// - Parameters:
+    ///   - relativeIndex: The relative index that we want to find the original value.
+    ///   - remainingOriginalIndexes: An array with the original indexes, but only the ones that haven't been processed as removed yet. This function will update this list as the `removedIndexes` array is processed.
+    ///   - removedIndexes: An array indicating the value of the previously removed indexes from the array.
+    /// - Returns: The original index value of the given `relativeIndex`.
+    private func originalIndex(of relativeIndex: Int, remainingOriginalIndexes: inout [Int], removedIndexes: [Int]) -> Int {
+        var index = 0
+        while index < remainingOriginalIndexes.count {
+            if removedIndexes.contains(remainingOriginalIndexes[index]) {
+                remainingOriginalIndexes.remove(at: index)
+            } else {
+                index += 1
+            }
+        }
+
+        assert(relativeIndex < remainingOriginalIndexes.count)
+        return remainingOriginalIndexes[relativeIndex]
+    }
+
+    /// Map each index of a recently removed value of an array into its original index, taking into account the values that had been removed previously.
+    ///
+    /// An example:
+    /// 1. Consider the following array: ["A", "B", "C", "D", "E"].
+    /// 2. If we remove the values from indexes 0 and 3 from this array, the remaining list will be: ["B", "C", "E"].
+    /// 3. Now, if we use this remaining list to remove the values from indexes 0 and 2, we'll have: ["C"].
+    /// 4. Going back to the original array defined in step 1, if we want to find out the original indexes for the removed values in step 3, we can call this function like so: `updatedRemovedIndexes([0, 2], previouslyRemovedIndexes: [0,3])`. The return will be [1, 4].
+    /// 5. Now, if we want to indicate all the indexes from removed values of the original array, we can combine the `recentlyRemovedIndexes` with the function return: `[0, 3] + [1, 4] = [0, 3, 1, 4]`.
+    ///
+    /// - Parameters:
+    ///   - recentlyRemovedIndexes: The relative indexes of recently removed values.
+    ///   - previouslyRemovedIndexes: The original indexes of the previously removed values.
+    /// - Returns: The original values of the indexes in `recentlyRemovedIndexes`.
+    private func updatedRemovedIndexes(_ recentlyRemovedIndexes: [Int], previouslyRemovedIndexes: [Int]) -> [Int] {
+        var updatedIndexes: [Int] = []
+
+        for otherIndex in recentlyRemovedIndexes {
+            var updatedIndex = otherIndex
+
+            // TODO: Test this more:
+            for index in previouslyRemovedIndexes where index <= updatedIndex {
+                updatedIndex += 1
+            }
+
+            updatedIndexes.append(updatedIndex)
+        }
+
+        return updatedIndexes
+    }
+
+    /// Update the index value of an array, if necessary, taking into account the removed values in the indexes indicated in `removedIndexes`.
+    /// - Parameters:
+    ///   - index: The index to be updated.
+    ///   - removedIndexes: The list of indexes from the array that had its values removed.
+    private func updateIndex(_ index: inout Int, removedIndexes: [Int]) {
+        var newIndex = index
+
+        for removedIndex in removedIndexes where removedIndex < index {
+            newIndex -= 1
+        }
+
+        index = newIndex < 0 ? 0 : newIndex
     }
 
 }
