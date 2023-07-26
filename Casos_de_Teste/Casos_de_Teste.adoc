@@ -1,3 +1,4 @@
 = Casos de Teste
 
 link:TC-NOC.adoc[TC-NOC]
+link:TC-DIT.adoc[TC-DIT]

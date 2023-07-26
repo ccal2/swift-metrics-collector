@@ -18,6 +18,7 @@
 		772C640F2A68AFE10079680C /* TC_NOC_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C640E2A68AFE10079680C /* TC_NOC_Tests.swift */; };
 		772C64112A68B0AE0079680C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C64102A68B0AE0079680C /* Utils.swift */; };
 		772C641F2A68CE0D0079680C /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C641E2A68CE0D0079680C /* UserSettings.swift */; };
+		772C64272A6F55970079680C /* TC_DIT_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C64262A6F55970079680C /* TC_DIT_Tests.swift */; };
 		773E524D2A0347FA00E0F660 /* TypeExtensionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E524C2A0347FA00E0F660 /* TypeExtensionNode.swift */; };
 		776C3E8129E4E54D00F127C7 /* MethodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8029E4E54D00F127C7 /* MethodNode.swift */; };
 		776C3E8329E4E57A00F127C7 /* MethodContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8229E4E57A00F127C7 /* MethodContext.swift */; };
@@ -75,6 +76,15 @@
 		772C641D2A68C5330079680C /* Class4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class4.swift; sourceTree = "<group>"; };
 		772C641E2A68CE0D0079680C /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		772C64232A6A00670079680C /* TC-NOC-006.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-NOC-006.swift"; sourceTree = "<group>"; };
+		772C64252A6F550B0079680C /* TC-DIT-001.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-DIT-001.swift"; sourceTree = "<group>"; };
+		772C64262A6F55970079680C /* TC_DIT_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TC_DIT_Tests.swift; sourceTree = "<group>"; };
+		772C64282A6F571B0079680C /* TC-DIT-002.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-DIT-002.swift"; sourceTree = "<group>"; };
+		772C64292A6F5EEB0079680C /* TC-DIT-003.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-DIT-003.swift"; sourceTree = "<group>"; };
+		772C642C2A6F60410079680C /* Class1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class1.swift; sourceTree = "<group>"; };
+		772C642D2A6F605F0079680C /* Class2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class2.swift; sourceTree = "<group>"; };
+		772C642E2A6F60830079680C /* Class3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class3.swift; sourceTree = "<group>"; };
+		772C642F2A6F60A00079680C /* Class4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class4.swift; sourceTree = "<group>"; };
+		772C64302A6F614B0079680C /* TC-DIT-005.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-DIT-005.swift"; sourceTree = "<group>"; };
 		773E524C2A0347FA00E0F660 /* TypeExtensionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeExtensionNode.swift; sourceTree = "<group>"; };
 		776C3E8029E4E54D00F127C7 /* MethodNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodNode.swift; sourceTree = "<group>"; };
 		776C3E8229E4E57A00F127C7 /* MethodContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodContext.swift; sourceTree = "<group>"; };
@@ -147,6 +157,7 @@
 		772C64092A68AF540079680C /* Test Cases */ = {
 			isa = PBXGroup;
 			children = (
+				772C64262A6F55970079680C /* TC_DIT_Tests.swift */,
 				772C640E2A68AFE10079680C /* TC_NOC_Tests.swift */,
 				772C64102A68B0AE0079680C /* Utils.swift */,
 				772C640A2A68AF6F0079680C /* Inputs */,
@@ -157,6 +168,11 @@
 		772C640A2A68AF6F0079680C /* Inputs */ = {
 			isa = PBXGroup;
 			children = (
+				772C64252A6F550B0079680C /* TC-DIT-001.swift */,
+				772C64282A6F571B0079680C /* TC-DIT-002.swift */,
+				772C64292A6F5EEB0079680C /* TC-DIT-003.swift */,
+				772C642B2A6F5FAB0079680C /* TC-DIT-004 */,
+				772C64302A6F614B0079680C /* TC-DIT-005.swift */,
 				772C640C2A68AFA80079680C /* TC-NOC-001.swift */,
 				772C64122A68B5C00079680C /* TC-NOC-002.swift */,
 				772C64142A68B63C0079680C /* TC-NOC-003.swift */,
@@ -176,6 +192,17 @@
 				772C641D2A68C5330079680C /* Class4.swift */,
 			);
 			path = "TC-NOC-005";
+			sourceTree = "<group>";
+		};
+		772C642B2A6F5FAB0079680C /* TC-DIT-004 */ = {
+			isa = PBXGroup;
+			children = (
+				772C642C2A6F60410079680C /* Class1.swift */,
+				772C642D2A6F605F0079680C /* Class2.swift */,
+				772C642E2A6F60830079680C /* Class3.swift */,
+				772C642F2A6F60A00079680C /* Class4.swift */,
+			);
+			path = "TC-DIT-004";
 			sourceTree = "<group>";
 		};
 		77AB899529C94A5F0087DA08 /* Contexts */ = {
@@ -401,6 +428,7 @@
 			files = (
 				77196AD82A60C66500BF6308 /* MetricsCalcullatorTests.swift in Sources */,
 				772C641F2A68CE0D0079680C /* UserSettings.swift in Sources */,
+				772C64272A6F55970079680C /* TC_DIT_Tests.swift in Sources */,
 				77AB89A529C94DB00087DA08 /* ContextIteratorsTests.swift in Sources */,
 				772C640F2A68AFE10079680C /* TC_NOC_Tests.swift in Sources */,
 				772C64112A68B0AE0079680C /* Utils.swift in Sources */,
