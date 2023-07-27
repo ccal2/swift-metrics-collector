@@ -264,7 +264,7 @@ class Class2: Class1 {
 
 === Cenário
 
-Uma classe é definida com três métodos de instância. Ela herda de uma outra classe que também não tem nenuhum método.
+Uma classe é definida com três métodos de instância. Ela herda de uma outra classe que não tem nenuhum método.
 
 === Entrada
 
