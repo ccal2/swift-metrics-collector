@@ -1,0 +1,430 @@
+:toc: macro
+:toc-title:
+:toclevels: 1
+
+= TC-WMC-XXX
+
+Casos de teste relacionados ao cálculo da métrica WMC (Weighted Methods Per Class).
+
+toc::[]
+
+== TC-WMC-001
+
+=== Cenário
+
+Uma classe é definida sem nenhum método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 0
+|===
+
+
+== TC-WMC-002
+
+=== Cenário
+
+Uma classe é definida sem nenhum método de instância e com um método estático.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    static func method1() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 0
+|===
+
+
+== TC-WMC-003
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância sem modificadores de acesso.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 3
+|===
+
+
+== TC-WMC-004
+
+=== Cenário
+
+Uma classe é definida com cinco métodos de instância, sendo um `internal`, um `public`, um `open`, um `private` e um `fileprivate`.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    internal func method1() { }
+    public func method2() { }
+    open func method3() { }
+    private func method4() { }
+    fileprivate func method5() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 5
+|===
+
+
+== TC-WMC-005
+
+=== Cenário
+
+Uma classe é definida com quatro métodos de instância, sendo um `internal`, um `public`, um `open` e um `private`. O método `internal` não possui nenhum parâmetro e nenhum retorno. O `public` possui parâmetros e nenhum retorno. O `open` possui parâmetros e retorno. O `private` não possui parâmetro e possui retorno.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    internal func method1() { }
+    public func method2(param1: String) { print(param1) }
+    open func method3(param1: Bool, param2: Int) -> Bool { param1 || param2 > 10 }
+    private func method4() -> Double { 42.0 }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 4
+|===
+
+
+== TC-WMC-006
+
+=== Cenário
+
+Uma classe é definida com quatro métodos de instância, sendo um `internal`, um `public`, um `open` e um `private`. O método `internal` não possui nenhum parâmetro e nenhum retorno. O `public` possui parâmetros e nenhum retorno. O `open` possui parâmetros e retorno. O `private` não possui parâmetros e possui retorno.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    internal func method1() { }
+    public func method2(param1: String) { print(param1) }
+    open func method3(param1: Bool, param2: Int) -> Bool { param1 || param2 > 10 }
+    private func method4() -> Double { return 42.0 }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 4
+|===
+
+
+== TC-WMC-007
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância e dois métodos estáticos.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+    static func method4() { }
+    static func method5() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 3
+|===
+
+
+== TC-WMC-008
+
+=== Cenário
+
+Uma classe é definida sem nenhum método. Ela herda de uma outra classe que também não tem nenuhum método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2: Class1 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 0
+| 2 | Class2 | 0
+|===
+
+
+== TC-WMC-009
+
+=== Cenário
+
+Uma classe é definida sem nenhum método. Ela herda de uma outra classe que define três métodos de instância e dois métodos estáticos.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+    static func method4() { }
+    static func method5() { }
+}
+class Class2: Class1 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 3
+| 2 | Class2 | 0
+|===
+
+
+== TC-WMC-010
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância. Ela herda de uma outra classe que define três métodos de instância e dois métodos estáticos.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+    static func method4() { }
+    static func method5() { }
+}
+class Class2: Class1 {
+    func method6() { }
+    func method7() { }
+    func method8() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 3
+| 2 | Class2 | 3
+|===
+
+
+== TC-WMC-011
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância. Ela herda de uma outra classe que também não tem nenuhum método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2: Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 0
+| 2 | Class2 | 3
+|===
+
+
+== TC-WMC-012
+
+=== Cenário
+
+Uma classe não define nenhum método na sua definição principal, mas define dois métodos em uma extensão no mesmo arquivo e mais dois métodos em outra extensão em um outro arquivo.
+
+=== Entrada
+
+Class1.swift:
+[, swift]
+----
+class Class1 { }
+
+extension Class1 { 
+    func method1 { }
+    func method2 { }
+}
+----
+
+Class1+Extension.swift:
+[, swift]
+----
+extension Class1 { 
+    func method3 { }
+    func method4 { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 4
+|===
+
+
+== TC-WMC-013
+
+=== Cenário
+
+Uma classe define um método na sua definição principal, mais dois métodos em uma extensão no mesmo arquivo e mais outros dois métodos em outra extensão em um outro arquivo.
+
+=== Entrada
+
+Class1.swift:
+[, swift]
+----
+class Class1 {
+    func method1 { }
+}
+
+extension Class1 {
+    func method2 { }
+    func method3 { }
+}
+----
+
+Class1+Extension.swift:
+[, swift]
+----
+extension Class1 { 
+    func method4 { }
+    func method5 { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | WMC
+
+| 1 | Class1 | 5
+|===
+
+
+== TC-WMC-014
+
+=== Cenário
+
+Uma classe define um método de instância e uma outra classe interna. Essa classe interna define outra classe interna, que define dois métodos de instância e um estático.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    class Class1_1 {
+        class Class1_1_1 {
+            func method1() { }
+            func method2() -> Bool { true }
+            static func method3(param1: String) { print(param1.count) }
+        }
+    }
+
+    private func method1() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class                         | WMC
+
+| 1 | Class1                        | 1
+| 2 | Class1.Class1_1               | 0
+| 3 | Class1.Class1_1.Class1_1_1    | 2
+|===

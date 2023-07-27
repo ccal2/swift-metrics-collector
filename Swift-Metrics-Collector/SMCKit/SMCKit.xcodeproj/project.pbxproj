@@ -19,6 +19,7 @@
 		772C64112A68B0AE0079680C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C64102A68B0AE0079680C /* Utils.swift */; };
 		772C641F2A68CE0D0079680C /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C641E2A68CE0D0079680C /* UserSettings.swift */; };
 		772C64272A6F55970079680C /* TC_DIT_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C64262A6F55970079680C /* TC_DIT_Tests.swift */; };
+		772C64332A71F70D0079680C /* TC_WMC_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C64322A71F70D0079680C /* TC_WMC_Tests.swift */; };
 		773E524D2A0347FA00E0F660 /* TypeExtensionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773E524C2A0347FA00E0F660 /* TypeExtensionNode.swift */; };
 		776C3E8129E4E54D00F127C7 /* MethodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8029E4E54D00F127C7 /* MethodNode.swift */; };
 		776C3E8329E4E57A00F127C7 /* MethodContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776C3E8229E4E57A00F127C7 /* MethodContext.swift */; };
@@ -86,6 +87,23 @@
 		772C642F2A6F60A00079680C /* Class4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class4.swift; sourceTree = "<group>"; };
 		772C64302A6F614B0079680C /* TC-DIT-005.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-DIT-005.swift"; sourceTree = "<group>"; };
 		772C64312A71ED8B0079680C /* TC-NOC-007.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-NOC-007.swift"; sourceTree = "<group>"; };
+		772C64322A71F70D0079680C /* TC_WMC_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TC_WMC_Tests.swift; sourceTree = "<group>"; };
+		772C64342A71F74A0079680C /* TC-WMC-001.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-001.swift"; sourceTree = "<group>"; };
+		772C64352A71F79A0079680C /* TC-WMC-002.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-002.swift"; sourceTree = "<group>"; };
+		772C64362A71F7CD0079680C /* TC-WMC-003.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-003.swift"; sourceTree = "<group>"; };
+		772C64372A71F7F30079680C /* TC-WMC-004.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-004.swift"; sourceTree = "<group>"; };
+		772C64382A71F82E0079680C /* TC-WMC-005.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-005.swift"; sourceTree = "<group>"; };
+		772C64392A71F85F0079680C /* TC-WMC-006.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-006.swift"; sourceTree = "<group>"; };
+		772C643A2A71F89E0079680C /* TC-WMC-007.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-007.swift"; sourceTree = "<group>"; };
+		772C643B2A71F8B50079680C /* TC-WMC-008.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-008.swift"; sourceTree = "<group>"; };
+		772C643C2A71F9C10079680C /* TC-WMC-009.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-009.swift"; sourceTree = "<group>"; };
+		772C643D2A71F9D40079680C /* TC-WMC-010.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-010.swift"; sourceTree = "<group>"; };
+		772C643E2A71F9EE0079680C /* TC-WMC-011.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-011.swift"; sourceTree = "<group>"; };
+		772C64402A71FA110079680C /* Class1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class1.swift; sourceTree = "<group>"; };
+		772C64412A71FA290079680C /* Class1+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Class1+Extension.swift"; sourceTree = "<group>"; };
+		772C64432A71FA4F0079680C /* Class1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class1.swift; sourceTree = "<group>"; };
+		772C64442A71FA6B0079680C /* Class1+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Class1+Extension.swift"; sourceTree = "<group>"; };
+		772C64452A71FA8E0079680C /* TC-WMC-014.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-014.swift"; sourceTree = "<group>"; };
 		773E524C2A0347FA00E0F660 /* TypeExtensionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeExtensionNode.swift; sourceTree = "<group>"; };
 		776C3E8029E4E54D00F127C7 /* MethodNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodNode.swift; sourceTree = "<group>"; };
 		776C3E8229E4E57A00F127C7 /* MethodContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodContext.swift; sourceTree = "<group>"; };
@@ -160,6 +178,7 @@
 			children = (
 				772C64262A6F55970079680C /* TC_DIT_Tests.swift */,
 				772C640E2A68AFE10079680C /* TC_NOC_Tests.swift */,
+				772C64322A71F70D0079680C /* TC_WMC_Tests.swift */,
 				772C64102A68B0AE0079680C /* Utils.swift */,
 				772C640A2A68AF6F0079680C /* Inputs */,
 			);
@@ -181,6 +200,20 @@
 				772C64182A68C4D60079680C /* TC-NOC-005 */,
 				772C64232A6A00670079680C /* TC-NOC-006.swift */,
 				772C64312A71ED8B0079680C /* TC-NOC-007.swift */,
+				772C64342A71F74A0079680C /* TC-WMC-001.swift */,
+				772C64352A71F79A0079680C /* TC-WMC-002.swift */,
+				772C64362A71F7CD0079680C /* TC-WMC-003.swift */,
+				772C64372A71F7F30079680C /* TC-WMC-004.swift */,
+				772C64382A71F82E0079680C /* TC-WMC-005.swift */,
+				772C64392A71F85F0079680C /* TC-WMC-006.swift */,
+				772C643A2A71F89E0079680C /* TC-WMC-007.swift */,
+				772C643B2A71F8B50079680C /* TC-WMC-008.swift */,
+				772C643C2A71F9C10079680C /* TC-WMC-009.swift */,
+				772C643D2A71F9D40079680C /* TC-WMC-010.swift */,
+				772C643E2A71F9EE0079680C /* TC-WMC-011.swift */,
+				772C643F2A71F9FB0079680C /* TC-WMC-012 */,
+				772C64422A71FA3D0079680C /* TC-WMC-013 */,
+				772C64452A71FA8E0079680C /* TC-WMC-014.swift */,
 			);
 			path = Inputs;
 			sourceTree = "<group>";
@@ -205,6 +238,24 @@
 				772C642F2A6F60A00079680C /* Class4.swift */,
 			);
 			path = "TC-DIT-004";
+			sourceTree = "<group>";
+		};
+		772C643F2A71F9FB0079680C /* TC-WMC-012 */ = {
+			isa = PBXGroup;
+			children = (
+				772C64402A71FA110079680C /* Class1.swift */,
+				772C64412A71FA290079680C /* Class1+Extension.swift */,
+			);
+			path = "TC-WMC-012";
+			sourceTree = "<group>";
+		};
+		772C64422A71FA3D0079680C /* TC-WMC-013 */ = {
+			isa = PBXGroup;
+			children = (
+				772C64432A71FA4F0079680C /* Class1.swift */,
+				772C64442A71FA6B0079680C /* Class1+Extension.swift */,
+			);
+			path = "TC-WMC-013";
 			sourceTree = "<group>";
 		};
 		77AB899529C94A5F0087DA08 /* Contexts */ = {
@@ -431,6 +482,7 @@
 				77196AD82A60C66500BF6308 /* MetricsCalcullatorTests.swift in Sources */,
 				772C641F2A68CE0D0079680C /* UserSettings.swift in Sources */,
 				772C64272A6F55970079680C /* TC_DIT_Tests.swift in Sources */,
+				772C64332A71F70D0079680C /* TC_WMC_Tests.swift in Sources */,
 				77AB89A529C94DB00087DA08 /* ContextIteratorsTests.swift in Sources */,
 				772C640F2A68AFE10079680C /* TC_NOC_Tests.swift in Sources */,
 				772C64112A68B0AE0079680C /* Utils.swift in Sources */,
