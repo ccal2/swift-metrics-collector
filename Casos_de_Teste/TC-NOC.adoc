@@ -202,15 +202,15 @@ class Class2 {
 
 [%autowidth]
 |===
-| # | Class  | NOC
+| # | Class                         | NOC
 
-| 1 | Class1        | 0
-| 2 | Class1_1      | 0
-| 3 | Class1_1_1    | 3
-| 4 | Class1_1_2    | 0
-| 5 | Class1_1_3    | 0
-| 6 | Class2        | 0
-| 7 | Class2_1      | 0
+| 1 | Class1                        | 0
+| 2 | Class1.Class1_1               | 0
+| 3 | Class1.Class1_1.Class1_1_1    | 3
+| 4 | Class1.Class1_1.Class1_1_2    | 0
+| 5 | Class1.Class1_1.Class1_1_3    | 0
+| 6 | Class2                        | 0
+| 7 | Class2_1                      | 0
 |===
 
 
