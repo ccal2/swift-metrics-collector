@@ -94,18 +94,18 @@ struct MetricsCalculator {
     static func connectedComponents(vertices: Array<Any>, edges: [[Int]]) -> Int {
         var visited = Array(repeating: false, count: vertices.count)
 
-        func dfs(verticeIndex: Int) {
-            visited[verticeIndex] = true
+        func dfs(vertexIndex: Int) {
+            visited[vertexIndex] = true
 
-            let adjacentVertices = edges[verticeIndex]
+            let adjacentVertices = edges[vertexIndex]
             for adjacentIndex in 0 ..< adjacentVertices.count where visited[adjacentVertices[adjacentIndex]] == false {
-                dfs(verticeIndex: adjacentVertices[adjacentIndex])
+                dfs(vertexIndex: adjacentVertices[adjacentIndex])
             }
         }
 
         var componentCount = 0
-        for verticeIndex in 0 ..< vertices.count where visited[verticeIndex] == false {
-            dfs(verticeIndex: verticeIndex)
+        for vertexIndex in 0 ..< vertices.count where visited[vertexIndex] == false {
+            dfs(vertexIndex: vertexIndex)
             componentCount += 1
         }
 
