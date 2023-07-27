@@ -48,7 +48,7 @@ struct SwiftMetricsCollector: ParsableCommand {
         let collector = MetricsCollector()
 
         do {
-            try collector.analyse(path: filePath)
+            try collector.analyze(path: filePath)
         } catch {
             // TODO: handle error
             print(error)

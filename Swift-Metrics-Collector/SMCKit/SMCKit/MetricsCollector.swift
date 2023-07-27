@@ -24,12 +24,12 @@ public class MetricsCollector {
 
     // MARK: - Public methods
 
-    public func analyse(path: String) throws {
+    public func analyze(path: String) throws {
         try process(path: path)
         tree.generateTree()
     }
 
-    public func analyse(content: String) {
+    public func analyze(content: String) {
         process(content: content)
         tree.generateTree()
     }
