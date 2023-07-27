@@ -6,6 +6,6 @@
 //
 
 extension Class1 {
-    func method3 { }
     func method4 { }
+    func method5 { }
 }

@@ -67,17 +67,21 @@ final class TC_WMC_Tests: XCTestCase {
 
         // Class1
         let class1 = try getClass(from: report, withIdentifier: "Class1")
-        assertWMC(for: class1, expectedValue: 4)
+        assertWMC(for: class1, expectedValue: 3)
     }
 
     func test_TC_WMC_007() throws {
         let report = try analyze(input: "TC-WMC-007.swift")
 
-        XCTAssertEqual(report.classes.count, 1)
+        XCTAssertEqual(report.classes.count, 2)
 
         // Class1
         let class1 = try getClass(from: report, withIdentifier: "Class1")
-        assertWMC(for: class1, expectedValue: 3)
+        assertWMC(for: class1, expectedValue: 0)
+
+        // Class2
+        let class2 = try getClass(from: report, withIdentifier: "Class2")
+        assertWMC(for: class2, expectedValue: 0)
     }
 
     func test_TC_WMC_008() throws {
@@ -87,7 +91,7 @@ final class TC_WMC_Tests: XCTestCase {
 
         // Class1
         let class1 = try getClass(from: report, withIdentifier: "Class1")
-        assertWMC(for: class1, expectedValue: 0)
+        assertWMC(for: class1, expectedValue: 3)
 
         // Class2
         let class2 = try getClass(from: report, withIdentifier: "Class2")
@@ -105,25 +109,11 @@ final class TC_WMC_Tests: XCTestCase {
 
         // Class2
         let class2 = try getClass(from: report, withIdentifier: "Class2")
-        assertWMC(for: class2, expectedValue: 0)
+        assertWMC(for: class2, expectedValue: 3)
     }
 
     func test_TC_WMC_010() throws {
         let report = try analyze(input: "TC-WMC-010.swift")
-
-        XCTAssertEqual(report.classes.count, 2)
-
-        // Class1
-        let class1 = try getClass(from: report, withIdentifier: "Class1")
-        assertWMC(for: class1, expectedValue: 3)
-
-        // Class2
-        let class2 = try getClass(from: report, withIdentifier: "Class2")
-        assertWMC(for: class2, expectedValue: 3)
-    }
-
-    func test_TC_WMC_011() throws {
-        let report = try analyze(input: "TC-WMC-011.swift")
 
         XCTAssertEqual(report.classes.count, 2)
 
@@ -136,8 +126,8 @@ final class TC_WMC_Tests: XCTestCase {
         assertWMC(for: class2, expectedValue: 3)
     }
 
-    func test_TC_WMC_012() throws {
-        let report = try analyze(input: "TC-WMC-012/")
+    func test_TC_WMC_011() throws {
+        let report = try analyze(input: "TC-WMC-011/")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -146,8 +136,8 @@ final class TC_WMC_Tests: XCTestCase {
         assertWMC(for: class1, expectedValue: 4)
     }
 
-    func test_TC_WMC_013() throws {
-        let report = try analyze(input: "TC-WMC-013/")
+    func test_TC_WMC_012() throws {
+        let report = try analyze(input: "TC-WMC-012/")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -156,8 +146,8 @@ final class TC_WMC_Tests: XCTestCase {
         assertWMC(for: class1, expectedValue: 5)
     }
 
-    func test_TC_WMC_014() throws {
-        let report = try analyze(input: "TC-WMC-014.swift")
+    func test_TC_WMC_013() throws {
+        let report = try analyze(input: "TC-WMC-013.swift")
 
         XCTAssertEqual(report.classes.count, 3)
 

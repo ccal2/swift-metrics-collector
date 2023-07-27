@@ -93,17 +93,16 @@
 		772C64362A71F7CD0079680C /* TC-WMC-003.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-003.swift"; sourceTree = "<group>"; };
 		772C64372A71F7F30079680C /* TC-WMC-004.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-004.swift"; sourceTree = "<group>"; };
 		772C64382A71F82E0079680C /* TC-WMC-005.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-005.swift"; sourceTree = "<group>"; };
-		772C64392A71F85F0079680C /* TC-WMC-006.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-006.swift"; sourceTree = "<group>"; };
-		772C643A2A71F89E0079680C /* TC-WMC-007.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-007.swift"; sourceTree = "<group>"; };
-		772C643B2A71F8B50079680C /* TC-WMC-008.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-008.swift"; sourceTree = "<group>"; };
-		772C643C2A71F9C10079680C /* TC-WMC-009.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-009.swift"; sourceTree = "<group>"; };
-		772C643D2A71F9D40079680C /* TC-WMC-010.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-010.swift"; sourceTree = "<group>"; };
-		772C643E2A71F9EE0079680C /* TC-WMC-011.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-011.swift"; sourceTree = "<group>"; };
+		772C643A2A71F89E0079680C /* TC-WMC-006.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-006.swift"; sourceTree = "<group>"; };
+		772C643B2A71F8B50079680C /* TC-WMC-007.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-007.swift"; sourceTree = "<group>"; };
+		772C643C2A71F9C10079680C /* TC-WMC-008.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-008.swift"; sourceTree = "<group>"; };
+		772C643D2A71F9D40079680C /* TC-WMC-009.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-009.swift"; sourceTree = "<group>"; };
+		772C643E2A71F9EE0079680C /* TC-WMC-010.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-010.swift"; sourceTree = "<group>"; };
 		772C64402A71FA110079680C /* Class1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class1.swift; sourceTree = "<group>"; };
 		772C64412A71FA290079680C /* Class1+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Class1+Extension.swift"; sourceTree = "<group>"; };
 		772C64432A71FA4F0079680C /* Class1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class1.swift; sourceTree = "<group>"; };
 		772C64442A71FA6B0079680C /* Class1+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Class1+Extension.swift"; sourceTree = "<group>"; };
-		772C64452A71FA8E0079680C /* TC-WMC-014.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-014.swift"; sourceTree = "<group>"; };
+		772C64452A71FA8E0079680C /* TC-WMC-013.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-WMC-013.swift"; sourceTree = "<group>"; };
 		773E524C2A0347FA00E0F660 /* TypeExtensionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeExtensionNode.swift; sourceTree = "<group>"; };
 		776C3E8029E4E54D00F127C7 /* MethodNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodNode.swift; sourceTree = "<group>"; };
 		776C3E8229E4E57A00F127C7 /* MethodContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodContext.swift; sourceTree = "<group>"; };
@@ -205,15 +204,14 @@
 				772C64362A71F7CD0079680C /* TC-WMC-003.swift */,
 				772C64372A71F7F30079680C /* TC-WMC-004.swift */,
 				772C64382A71F82E0079680C /* TC-WMC-005.swift */,
-				772C64392A71F85F0079680C /* TC-WMC-006.swift */,
-				772C643A2A71F89E0079680C /* TC-WMC-007.swift */,
-				772C643B2A71F8B50079680C /* TC-WMC-008.swift */,
-				772C643C2A71F9C10079680C /* TC-WMC-009.swift */,
-				772C643D2A71F9D40079680C /* TC-WMC-010.swift */,
-				772C643E2A71F9EE0079680C /* TC-WMC-011.swift */,
-				772C643F2A71F9FB0079680C /* TC-WMC-012 */,
-				772C64422A71FA3D0079680C /* TC-WMC-013 */,
-				772C64452A71FA8E0079680C /* TC-WMC-014.swift */,
+				772C643A2A71F89E0079680C /* TC-WMC-006.swift */,
+				772C643B2A71F8B50079680C /* TC-WMC-007.swift */,
+				772C643C2A71F9C10079680C /* TC-WMC-008.swift */,
+				772C643D2A71F9D40079680C /* TC-WMC-009.swift */,
+				772C643E2A71F9EE0079680C /* TC-WMC-010.swift */,
+				772C643F2A71F9FB0079680C /* TC-WMC-011 */,
+				772C64422A71FA3D0079680C /* TC-WMC-012 */,
+				772C64452A71FA8E0079680C /* TC-WMC-013.swift */,
 			);
 			path = Inputs;
 			sourceTree = "<group>";
@@ -240,22 +238,22 @@
 			path = "TC-DIT-004";
 			sourceTree = "<group>";
 		};
-		772C643F2A71F9FB0079680C /* TC-WMC-012 */ = {
+		772C643F2A71F9FB0079680C /* TC-WMC-011 */ = {
 			isa = PBXGroup;
 			children = (
 				772C64402A71FA110079680C /* Class1.swift */,
 				772C64412A71FA290079680C /* Class1+Extension.swift */,
 			);
-			path = "TC-WMC-012";
+			path = "TC-WMC-011";
 			sourceTree = "<group>";
 		};
-		772C64422A71FA3D0079680C /* TC-WMC-013 */ = {
+		772C64422A71FA3D0079680C /* TC-WMC-012 */ = {
 			isa = PBXGroup;
 			children = (
 				772C64432A71FA4F0079680C /* Class1.swift */,
 				772C64442A71FA6B0079680C /* Class1+Extension.swift */,
 			);
-			path = "TC-WMC-013";
+			path = "TC-WMC-012";
 			sourceTree = "<group>";
 		};
 		77AB899529C94A5F0087DA08 /* Contexts */ = {

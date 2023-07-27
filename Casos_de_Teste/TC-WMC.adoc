@@ -116,34 +116,6 @@ class Class1 {
 
 === Cenário
 
-Uma classe é definida com quatro métodos de instância, sendo um `internal`, um `public`, um `open` e um `private`. O método `internal` não possui nenhum parâmetro e nenhum retorno. O `public` possui parâmetros e nenhum retorno. O `open` possui parâmetros e retorno. O `private` não possui parâmetro e possui retorno.
-
-=== Entrada
-
-[, swift]
-----
-class Class1 {
-    internal func method1() { }
-    public func method2(param1: String) { print(param1) }
-    open func method3(param1: Bool, param2: Int) -> Bool { param1 || param2 > 10 }
-    private func method4() -> Double { 42.0 }
-}
-----
-
-=== Resultado
-
-[%autowidth]
-|===
-| # | Class  | WMC
-
-| 1 | Class1 | 4
-|===
-
-
-== TC-WMC-006
-
-=== Cenário
-
 Uma classe é definida com quatro métodos de instância, sendo um `internal`, um `public`, um `open` e um `private`. O método `internal` não possui nenhum parâmetro e nenhum retorno. O `public` possui parâmetros e nenhum retorno. O `open` possui parâmetros e retorno. O `private` não possui parâmetros e possui retorno.
 
 === Entrada
@@ -168,7 +140,7 @@ class Class1 {
 |===
 
 
-== TC-WMC-007
+== TC-WMC-006
 
 === Cenário
 
@@ -197,7 +169,7 @@ class Class1 {
 |===
 
 
-== TC-WMC-008
+== TC-WMC-007
 
 === Cenário
 
@@ -222,7 +194,7 @@ class Class2: Class1 { }
 |===
 
 
-== TC-WMC-009
+== TC-WMC-008
 
 === Cenário
 
@@ -253,7 +225,7 @@ class Class2: Class1 { }
 |===
 
 
-== TC-WMC-010
+== TC-WMC-009
 
 === Cenário
 
@@ -288,7 +260,7 @@ class Class2: Class1 {
 |===
 
 
-== TC-WMC-011
+== TC-WMC-010
 
 === Cenário
 
@@ -317,7 +289,7 @@ class Class2: Class1 {
 |===
 
 
-== TC-WMC-012
+== TC-WMC-011
 
 === Cenário
 
@@ -355,7 +327,7 @@ extension Class1 {
 |===
 
 
-== TC-WMC-013
+== TC-WMC-012
 
 === Cenário
 
@@ -395,7 +367,7 @@ extension Class1 {
 |===
 
 
-== TC-WMC-014
+== TC-WMC-013
 
 === Cenário
 

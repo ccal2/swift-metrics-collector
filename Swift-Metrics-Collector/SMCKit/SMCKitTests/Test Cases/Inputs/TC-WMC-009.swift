@@ -1,5 +1,5 @@
 //
-//  TC-WMC-009.swift
+//  TC-WMC-010.swift
 //  SMCKit
 //
 //  Created by Carolina Lopes on 26/07/23.
@@ -12,4 +12,8 @@ class Class1 {
     static func method4() { }
     static func method5() { }
 }
-class Class2: Class1 { }
+class Class2: Class1 {
+    func method6() { }
+    func method7() { }
+    func method8() { }
+}
