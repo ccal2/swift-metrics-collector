@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7704C5592A5CC98B00E1AE1A /* Collection+first.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7704C5582A5CC98B00E1AE1A /* Collection+first.swift */; };
-		7704C55B2A5CDA0F00E1AE1A /* MetricsCalcullator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7704C55A2A5CDA0F00E1AE1A /* MetricsCalcullator.swift */; };
+		7704C55B2A5CDA0F00E1AE1A /* MetricsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7704C55A2A5CDA0F00E1AE1A /* MetricsCalculator.swift */; };
 		7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6029DBBBA900DB6BFE /* TypeNode.swift */; };
 		7706EE6329DBBC7300DB6BFE /* VariableDeclarationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */; };
 		7706EE6629DBBDAA00DB6BFE /* VariableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6529DBBDAA00DB6BFE /* VariableNode.swift */; };
@@ -57,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		7704C5582A5CC98B00E1AE1A /* Collection+first.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+first.swift"; sourceTree = "<group>"; };
-		7704C55A2A5CDA0F00E1AE1A /* MetricsCalcullator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsCalcullator.swift; sourceTree = "<group>"; };
+		7704C55A2A5CDA0F00E1AE1A /* MetricsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsCalculator.swift; sourceTree = "<group>"; };
 		7706EE6029DBBBA900DB6BFE /* TypeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeNode.swift; sourceTree = "<group>"; };
 		7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableDeclarationContext.swift; sourceTree = "<group>"; };
 		7706EE6529DBBDAA00DB6BFE /* VariableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableNode.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 				77AB89A029C94B330087DA08 /* ContextIterators.swift */,
 				77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */,
 				77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */,
-				7704C55A2A5CDA0F00E1AE1A /* MetricsCalcullator.swift */,
+				7704C55A2A5CDA0F00E1AE1A /* MetricsCalculator.swift */,
 				77AB898B29C80F2F0087DA08 /* MetricsCollector.swift */,
 				776C3E8C29E783E800F127C7 /* TypeKind.swift */,
 				77AB899529C94A5F0087DA08 /* Contexts */,
@@ -409,7 +409,7 @@
 				77AB899729C94A7C0087DA08 /* Context.swift in Sources */,
 				776C3E8329E4E57A00F127C7 /* MethodContext.swift in Sources */,
 				77821E9A29DCEF0E00BBA1E9 /* ElementsTree.swift in Sources */,
-				7704C55B2A5CDA0F00E1AE1A /* MetricsCalcullator.swift in Sources */,
+				7704C55B2A5CDA0F00E1AE1A /* MetricsCalculator.swift in Sources */,
 				77DC1D9029F4D36E002A1ED3 /* ReportStructurer.swift in Sources */,
 				7706EE6629DBBDAA00DB6BFE /* VariableNode.swift in Sources */,
 				77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */,

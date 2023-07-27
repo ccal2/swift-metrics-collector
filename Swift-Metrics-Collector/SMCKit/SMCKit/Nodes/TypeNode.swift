@@ -110,7 +110,7 @@ class TypeNode: ContainerNode<TypeContext> {
             child.printableDescription(identationLevel: identationLevel + 2)
         }.joined(separator: ",\n")
 
-        let metrics = MetricsCalcullator.calculateMetrics(for: self)
+        let metrics = MetricsCalculator.calculateMetrics(for: self)
 
         return """
         \(prefix)Type: {

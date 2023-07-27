@@ -1,11 +1,11 @@
 //
-//  MetricsCalcullator.swift
+//  MetricsCalculator.swift
 //  SMCKit
 //
 //  Created by Carolina Lopes on 10/07/23.
 //
 
-struct MetricsCalcullator {
+struct MetricsCalculator {
 
     static func calculateMetrics(for typeNode: TypeNode) -> Metrics {
         Metrics(weightedMethodsPerClass: calculateWMC(for: typeNode),

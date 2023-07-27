@@ -1,5 +1,5 @@
 //
-//  MetricsCalcullatorTests.swift
+//  MetricsCalculatorTests.swift
 //  SMCKitTests
 //
 //  Created by Carolina Lopes on 13/07/23.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import SMCKit
 
-final class MetricsCalcullatorTests: XCTestCase {
+final class MetricsCalculatorTests: XCTestCase {
 
     func test_connectedComponents_oneComponent() throws {
         let vertices = ["A", "B", "C", "D", "E", "F"]
@@ -19,7 +19,7 @@ final class MetricsCalcullatorTests: XCTestCase {
                      [2],
                      [2]]
 
-        let connectedComponents = MetricsCalcullator.connectedComponents(vertices: vertices, edges: edges)
+        let connectedComponents = MetricsCalculator.connectedComponents(vertices: vertices, edges: edges)
 
         XCTAssertEqual(connectedComponents, 1)
     }
@@ -33,7 +33,7 @@ final class MetricsCalcullatorTests: XCTestCase {
                      [2],
                      []]
 
-        let connectedComponents = MetricsCalcullator.connectedComponents(vertices: vertices, edges: edges)
+        let connectedComponents = MetricsCalculator.connectedComponents(vertices: vertices, edges: edges)
 
         XCTAssertEqual(connectedComponents, 2)
     }
@@ -50,7 +50,7 @@ final class MetricsCalcullatorTests: XCTestCase {
                      [],
                      [4, 6]]
 
-        let connectedComponents = MetricsCalcullator.connectedComponents(vertices: vertices, edges: edges)
+        let connectedComponents = MetricsCalculator.connectedComponents(vertices: vertices, edges: edges)
 
         XCTAssertEqual(connectedComponents, 4)
     }
