@@ -16,7 +16,7 @@ struct MetricsCalculator {
     }
 
     static func calculateWMC(for typeNode: TypeNode) -> Int {
-        typeNode.methods.count
+        typeNode.instanceMethodsIncludingExtensions.count
     }
 
     static func calculateNOC(for typeNode: TypeNode) -> Int {
