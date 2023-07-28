@@ -1,5 +1,5 @@
 = Casos de Teste
 
-link:TC-NOC.adoc[TC-NOC]
-link:TC-DIT.adoc[TC-DIT]
+link:TC-NOC.adoc[TC-NOC] +
+link:TC-DIT.adoc[TC-DIT] +
 link:TC-WMC.adoc[TC-WMC]
