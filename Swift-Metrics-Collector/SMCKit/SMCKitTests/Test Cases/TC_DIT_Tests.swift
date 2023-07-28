@@ -8,10 +8,12 @@
 import XCTest
 @testable import SMCKit
 
+fileprivate let input_folder = "DIT"
+
 final class TC_DIT_Tests: XCTestCase {
 
     func test_TC_DIT_001() throws {
-        let report = try analyze(input: "TC-DIT-001.swift")
+        let report = try analyze(input: "\(input_folder)/TC-DIT-001.swift")
 
         XCTAssertEqual(report.classes.count, 4)
 
@@ -33,7 +35,7 @@ final class TC_DIT_Tests: XCTestCase {
     }
 
     func test_TC_DIT_002() throws {
-        let report = try analyze(input: "TC-DIT-002.swift")
+        let report = try analyze(input: "\(input_folder)/TC-DIT-002.swift")
 
         XCTAssertEqual(report.classes.count, 4)
 
@@ -55,7 +57,7 @@ final class TC_DIT_Tests: XCTestCase {
     }
 
     func test_TC_DIT_003() throws {
-        let report = try analyze(input: "TC-DIT-003.swift")
+        let report = try analyze(input: "\(input_folder)/TC-DIT-003.swift")
 
         XCTAssertEqual(report.classes.count, 4)
 
@@ -77,7 +79,7 @@ final class TC_DIT_Tests: XCTestCase {
     }
 
     func test_TC_DIT_004() throws {
-        let report = try analyze(input: "TC-DIT-004/")
+        let report = try analyze(input: "\(input_folder)/TC-DIT-004/")
 
         XCTAssertEqual(report.classes.count, 4)
 
@@ -99,7 +101,7 @@ final class TC_DIT_Tests: XCTestCase {
     }
 
     func test_TC_DIT_005() throws {
-        let report = try analyze(input: "TC-DIT-005.swift")
+        let report = try analyze(input: "\(input_folder)/TC-DIT-005.swift")
 
         XCTAssertEqual(report.classes.count, 7)
 

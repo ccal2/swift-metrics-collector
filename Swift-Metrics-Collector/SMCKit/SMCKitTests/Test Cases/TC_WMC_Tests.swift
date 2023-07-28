@@ -8,10 +8,12 @@
 import XCTest
 @testable import SMCKit
 
+fileprivate let input_folder = "WMC"
+
 final class TC_WMC_Tests: XCTestCase {
 
     func test_TC_WMC_001() throws {
-        let report = try analyze(input: "TC-WMC-001.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-001.swift")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -21,7 +23,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_002() throws {
-        let report = try analyze(input: "TC-WMC-002.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-002.swift")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -31,7 +33,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_003() throws {
-        let report = try analyze(input: "TC-WMC-003.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-003.swift")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -41,7 +43,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_004() throws {
-        let report = try analyze(input: "TC-WMC-004.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-004.swift")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -51,7 +53,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_005() throws {
-        let report = try analyze(input: "TC-WMC-005.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-005.swift")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -61,7 +63,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_006() throws {
-        let report = try analyze(input: "TC-WMC-006.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-006.swift")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -71,7 +73,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_007() throws {
-        let report = try analyze(input: "TC-WMC-007.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-007.swift")
 
         XCTAssertEqual(report.classes.count, 2)
 
@@ -85,7 +87,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_008() throws {
-        let report = try analyze(input: "TC-WMC-008.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-008.swift")
 
         XCTAssertEqual(report.classes.count, 2)
 
@@ -99,7 +101,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_009() throws {
-        let report = try analyze(input: "TC-WMC-009.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-009.swift")
 
         XCTAssertEqual(report.classes.count, 2)
 
@@ -113,7 +115,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_010() throws {
-        let report = try analyze(input: "TC-WMC-010.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-010.swift")
 
         XCTAssertEqual(report.classes.count, 2)
 
@@ -127,7 +129,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_011() throws {
-        let report = try analyze(input: "TC-WMC-011/")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-011/")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -137,7 +139,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_012() throws {
-        let report = try analyze(input: "TC-WMC-012/")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-012/")
 
         XCTAssertEqual(report.classes.count, 1)
 
@@ -147,7 +149,7 @@ final class TC_WMC_Tests: XCTestCase {
     }
 
     func test_TC_WMC_013() throws {
-        let report = try analyze(input: "TC-WMC-013.swift")
+        let report = try analyze(input: "\(input_folder)/TC-WMC-013.swift")
 
         XCTAssertEqual(report.classes.count, 3)
 

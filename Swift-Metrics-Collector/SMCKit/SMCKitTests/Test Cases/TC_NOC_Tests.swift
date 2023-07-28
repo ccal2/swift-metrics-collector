@@ -8,10 +8,12 @@
 import XCTest
 @testable import SMCKit
 
+fileprivate let input_folder = "NOC"
+
 final class TC_NOC_Tests: XCTestCase {
 
     func test_TC_NOC_001() throws {
-        let report = try analyze(input: "TC-NOC-001.swift")
+        let report = try analyze(input: "\(input_folder)/TC-NOC-001.swift")
 
         XCTAssertEqual(report.classes.count, 4)
 
@@ -33,7 +35,7 @@ final class TC_NOC_Tests: XCTestCase {
     }
 
     func test_TC_NOC_002() throws {
-        let report = try analyze(input: "TC-NOC-002.swift")
+        let report = try analyze(input: "\(input_folder)/TC-NOC-002.swift")
 
         XCTAssertEqual(report.classes.count, 5)
 
@@ -59,7 +61,7 @@ final class TC_NOC_Tests: XCTestCase {
     }
 
     func test_TC_NOC_003() throws {
-        let report = try analyze(input: "TC-NOC-003.swift")
+        let report = try analyze(input: "\(input_folder)/TC-NOC-003.swift")
 
         XCTAssertEqual(report.classes.count, 4)
 
@@ -81,7 +83,7 @@ final class TC_NOC_Tests: XCTestCase {
     }
 
     func test_TC_NOC_004() throws {
-        let report = try analyze(input: "TC-NOC-004.swift")
+        let report = try analyze(input: "\(input_folder)/TC-NOC-004.swift")
 
         XCTAssertEqual(report.classes.count, 4)
 
@@ -103,7 +105,7 @@ final class TC_NOC_Tests: XCTestCase {
     }
 
     func test_TC_NOC_005() throws {
-        let report = try analyze(input: "TC-NOC-005/")
+        let report = try analyze(input: "\(input_folder)/TC-NOC-005/")
 
         XCTAssertEqual(report.classes.count, 4)
 
@@ -125,7 +127,7 @@ final class TC_NOC_Tests: XCTestCase {
     }
 
     func test_TC_NOC_006() throws {
-        let report = try analyze(input: "TC-NOC-006.swift")
+        let report = try analyze(input: "\(input_folder)/TC-NOC-006.swift")
 
         XCTAssertEqual(report.classes.count, 7)
 
@@ -159,7 +161,7 @@ final class TC_NOC_Tests: XCTestCase {
     }
 
     func test_TC_NOC_007() throws {
-        let report = try analyze(input: "TC-NOC-007.swift")
+        let report = try analyze(input: "\(input_folder)/TC-NOC-007.swift")
 
         XCTAssertEqual(report.classes.count, 4)
 
