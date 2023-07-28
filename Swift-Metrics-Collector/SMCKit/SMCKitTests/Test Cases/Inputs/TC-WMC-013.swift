@@ -10,6 +10,7 @@ class Class1 {
         class Class1_1_1 {
             func method1() { }
             func method2() -> Bool { true }
+
             static func method3(param1: String) { print(param1.count) }
         }
     }

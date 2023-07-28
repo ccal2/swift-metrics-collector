@@ -9,6 +9,7 @@ class Class1 {
     func method1() { }
     func method2() { }
     func method3() { }
+
     static func method4() { }
     static func method5() { }
 }
