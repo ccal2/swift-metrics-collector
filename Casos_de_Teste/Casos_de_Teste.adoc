@@ -2,4 +2,5 @@
 
 link:TC-NOC.adoc[TC-NOC] +
 link:TC-DIT.adoc[TC-DIT] +
-link:TC-WMC.adoc[TC-WMC]
+link:TC-WMC.adoc[TC-WMC] +
+link:TC-RFC.adoc[TC-RFC] +

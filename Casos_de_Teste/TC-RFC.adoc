@@ -1,0 +1,606 @@
+:toc: macro
+:toc-title:
+:toclevels: 1
+
+= TC-RFC-XXX
+
+Casos de teste relacionados ao cálculo da métrica RFC (Response For a Class).
+
+toc::[]
+
+== TC-RFC-001
+
+=== Cenário
+
+Uma classe é definida sem nenhum método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 0
+|===
+
+
+== TC-RFC-002
+
+=== Cenário
+
+Uma classe é definida sem nenhum método de instância e com um método estático.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    static func method1() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 0
+|===
+
+
+== TC-RFC-003
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância sem modificadores de acesso.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 3
+|===
+
+
+== TC-RFC-004
+
+=== Cenário
+
+Uma classe é definida com cinco métodos de instância, sendo um `internal`, um `public`, um `open`, um `private` e um `fileprivate`.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    internal func method1() { }
+    public func method2() { }
+    open func method3() { }
+    private func method4() { }
+    fileprivate func method5() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 5
+|===
+
+
+== TC-RFC-005
+
+=== Cenário
+
+Uma classe é definida com quatro métodos de instância, sendo um `internal`, um `public`, um `open` e um `private`. O método `internal` não possui nenhum parâmetro e nenhum retorno. O `public` possui parâmetros e nenhum retorno. O `open` possui parâmetros e retorno. O `private` não possui parâmetros e possui retorno.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    internal func method1() { }
+    public func method2(param1: String) { }
+    open func method3(param1: Bool, param2: Int) -> Bool { param1 || param2 > 10 }
+    private func method4() -> Double { return 42.0 }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 4
+|===
+
+
+== TC-RFC-006
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância e dois métodos estáticos.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+
+    static func method4() { }
+    static func method5() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 3
+|===
+
+
+== TC-RFC-007
+
+=== Cenário
+
+Uma classe é definida sem nenhum método. Ela herda de uma outra classe que também não tem nenuhum método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2: Class1 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 0
+| 2 | Class2 | 0
+|===
+
+
+== TC-RFC-008
+
+=== Cenário
+
+Uma classe é definida sem nenhum método. Ela herda de uma outra classe que define três métodos de instância e dois métodos estáticos.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+
+    static func method4() { }
+    static func method5() { }
+}
+class Class2: Class1 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 3
+| 2 | Class2 | 3
+|===
+
+
+== TC-RFC-009
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância. Ela herda de uma outra classe que define três métodos de instância e dois métodos estáticos.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+
+    static func method4() { }
+    static func method5() { }
+}
+class Class2: Class1 {
+    func method6() { }
+    func method7() { }
+    func method8() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 3
+| 2 | Class2 | 6
+|===
+
+
+== TC-RFC-010
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância. Ela herda de uma outra classe que não tem nenuhum método.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2: Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 0
+| 2 | Class2 | 3
+|===
+
+
+== TC-RFC-011
+
+=== Cenário
+
+Uma classe não define nenhum método na sua definição principal, mas define dois métodos em uma extensão no mesmo arquivo e mais dois métodos em outra extensão em um outro arquivo.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+Class1.swift:
+[, swift]
+----
+class Class1 { }
+
+extension Class1 { 
+    func method1 { }
+    func method2 { }
+}
+----
+
+Class1+Extension.swift:
+[, swift]
+----
+extension Class1 { 
+    func method3 { }
+    func method4 { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 4
+|===
+
+
+== TC-RFC-012
+
+=== Cenário
+
+Uma classe define um método na sua definição principal, mais dois métodos em uma extensão no mesmo arquivo e mais outros dois métodos em outra extensão em um outro arquivo.
+
+Nenhum dos métodos chama outro método.
+
+=== Entrada
+
+Class1.swift:
+[, swift]
+----
+class Class1 {
+    func method1 { }
+}
+
+extension Class1 {
+    func method2 { }
+    func method3 { }
+}
+----
+
+Class1+Extension.swift:
+[, swift]
+----
+extension Class1 { 
+    func method4 { }
+    func method5 { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 5
+|===
+
+
+== TC-RFC-013
+
+=== Cenário
+
+Uma classe define um método de instância e uma outra classe interna. Essa classe interna define outra classe interna, que define dois métodos de instância e um estático.
+
+Apenas o método estático chama outro método.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    class Class1_1 {
+        class Class1_1_1 {
+            func method1() { }
+            func method2() -> Bool { true }
+
+            static func method3(param1: String) { print(param1.count) }
+        }
+    }
+
+    private func method1() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class                         | WMC
+
+| 1 | Class1                        | 1
+| 2 | Class1.Class1_1               | 0
+| 3 | Class1.Class1_1.Class1_1_1    | 2
+|===
+
+
+== TC-RFC-014
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância e dois métodos estáticos.
+
+Um dos métodos de instância chama outro método de instância definido dentro da mesma classe e mais um outro método definido fora da classe. Um outro método de instância chama o mesmo método definido fora da classe. O outro método de instância não chama outro método. Um dos métodos estáticos chama uma outra função definida fora da classe.
+
+=== Entrada
+
+[, swift]
+----
+func outerMethod1() { }
+
+class Class1 {
+    func method1() { 
+        method3()
+        print("something")
+    }
+    func method2() { }
+    func method3() { 
+        print("else")
+    }
+
+    static func method4() { }
+    static func method5() { 
+        outerMethod1()
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 4
+|===
+
+
+== TC-RFC-015
+
+=== Cenário
+
+Uma classe é definida com três métodos de instância. Ela herda de uma outra classe que define três métodos de instância e dois métodos estáticos.
+
+Na superclasse: um dos métodos de instância chama outro método de instância definido dentro da mesma classe e mais um outro método definido fora da classe; um outro método de instância chama o mesmo método definido fora da classe; o outro método de instância não chama outro método; um dos métodos estáticos chama uma outra função definida fora da classe.
+
+Na outra classe: um dos métodos de instância chama dois métodos definidos fora da classe; um outro método de instância chama o um outro método definido fora da classe; o outro método de instância não chama outro método;
+
+=== Entrada
+
+[, swift]
+----
+func outerMethod1() { }
+func outerMethod2() { }
+func outerMethod3() { }
+
+class Class1 {
+    func method1() { 
+        method3()
+        print("something")
+    }
+    func method2() { }
+    func method3() { 
+        print("else")
+    }
+
+    static func method4() { }
+    static func method5() { 
+        outerMethod1()
+    }
+}
+class Class2: Class1 {
+    func method6() { 
+        outerMethod2()
+        outerMethod3()
+    }
+    func method7() {
+        outerMethod1()
+    }
+    func method8() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 4
+| 2 | Class2 | 10
+|===
+
+
+== TC-RFC-016
+
+=== Cenário
+
+Uma classe é definida com um método de instância.
+
+Esse método faz chamadas de métodos definidos fora da classe de forma aninhada.
+
+=== Entrada
+
+[, swift]
+----
+func outerMethod1() -> String { "some" }
+func outerMethod2() -> String { "thing" }
+func outerMethod3() -> String { "something" }
+func outerMethod4() -> String { "else" }
+func outerMethod5(param1: String, param2: String) -> String {
+    [param1, param2].joined(separator:" ")
+}
+
+class Class1 {
+    func method1() {
+        print(outerMethod1().uppercased() + outerMethod2())
+        print([outerMethod3(), outerMethod4()].joined(separator:" "))
+        print(outerMethod5(param1: outerMethod3(), param2: outerMethod4()))
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 9
+|===
+
+
+== TC-RFC-016
+
+=== Cenário
+
+Uma classe é definida com dois métodos de instância.
+
+Um desses métodos chama um método definido fora da classe. O outro não chama nenhum outro método.
+
+Outra classe é definida com um método de instância.
+
+Esse método instancia dois objetos da outra classe. Com um dos objetos ele chama os dois métodos da outra classe e com o outro objeto chama apenas um dos métodos.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() {
+        print("something")
+    }
+    func method2() { }
+}
+class Class2 {
+    func method3() {
+        let object1 = Class1()
+        let object2 = Class1()
+        object.method1()
+        object.method2()
+        object2.method2()
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 3
+| 2 | Class2 | 4
+|===
