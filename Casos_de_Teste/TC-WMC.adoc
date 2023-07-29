@@ -52,7 +52,7 @@ class Class1 {
 |===
 | # | Class  | WMC
 
-| 1 | Class1 | 0
+| 1 | Class1 | 1
 |===
 
 
@@ -166,7 +166,7 @@ class Class1 {
 |===
 | # | Class  | WMC
 
-| 1 | Class1 | 3
+| 1 | Class1 | 5
 |===
 
 
@@ -222,7 +222,7 @@ class Class2: Class1 { }
 |===
 | # | Class  | WMC
 
-| 1 | Class1 | 3
+| 1 | Class1 | 5
 | 2 | Class2 | 0
 |===
 
@@ -258,7 +258,7 @@ class Class2: Class1 {
 |===
 | # | Class  | WMC
 
-| 1 | Class1 | 3
+| 1 | Class1 | 5
 | 2 | Class2 | 3
 |===
 
@@ -402,5 +402,5 @@ class Class1 {
 
 | 1 | Class1                        | 1
 | 2 | Class1.Class1_1               | 0
-| 3 | Class1.Class1_1.Class1_1_1    | 2
+| 3 | Class1.Class1_1.Class1_1_1    | 3
 |===

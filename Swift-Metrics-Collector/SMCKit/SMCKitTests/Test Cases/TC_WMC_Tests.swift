@@ -29,7 +29,7 @@ final class TC_WMC_Tests: XCTestCase {
 
         // Class1
         let class1 = try getClass(from: report, withIdentifier: "Class1")
-        assertWMC(for: class1, expectedValue: 0)
+        assertWMC(for: class1, expectedValue: 1)
     }
 
     func test_TC_WMC_003() throws {
@@ -69,7 +69,7 @@ final class TC_WMC_Tests: XCTestCase {
 
         // Class1
         let class1 = try getClass(from: report, withIdentifier: "Class1")
-        assertWMC(for: class1, expectedValue: 3)
+        assertWMC(for: class1, expectedValue: 5)
     }
 
     func test_TC_WMC_007() throws {
@@ -93,7 +93,7 @@ final class TC_WMC_Tests: XCTestCase {
 
         // Class1
         let class1 = try getClass(from: report, withIdentifier: "Class1")
-        assertWMC(for: class1, expectedValue: 3)
+        assertWMC(for: class1, expectedValue: 5)
 
         // Class2
         let class2 = try getClass(from: report, withIdentifier: "Class2")
@@ -107,7 +107,7 @@ final class TC_WMC_Tests: XCTestCase {
 
         // Class1
         let class1 = try getClass(from: report, withIdentifier: "Class1")
-        assertWMC(for: class1, expectedValue: 3)
+        assertWMC(for: class1, expectedValue: 5)
 
         // Class2
         let class2 = try getClass(from: report, withIdentifier: "Class2")
@@ -163,7 +163,7 @@ final class TC_WMC_Tests: XCTestCase {
 
         // Class1_1_1
         let class1_1_1 = try getClass(from: report, withIdentifier: "Class1.Class1_1.Class1_1_1")
-        assertWMC(for: class1_1_1, expectedValue: 2)
+        assertWMC(for: class1_1_1, expectedValue: 3)
     }
 
 }
