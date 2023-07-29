@@ -66,8 +66,8 @@ public class MetricsCollector {
     func createReport() -> Report {
         assert(tree.generatedTree, "The report can only be created after the tree has been generated")
 
-        if let report = _report {
-            return report
+        if let _report {
+            return _report
         }
 
         var classes: [String: ReportItem] = [:]
