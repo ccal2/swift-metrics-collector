@@ -14,8 +14,8 @@ struct SwiftMetricsCollector: ParsableCommand {
 
     // MARK: - Constants
 
-    static private let defaultReportFileName: String = "swift-metrics-collector-report"
-    static private let defaultReportFileDirectory: String = "~/Downloads/"
+    static private let defaultReportFileName: String = "report"
+    static private let defaultOutputDirectory: String = "~/Downloads/swift-metrics-collector/"
 
     // MARK: - Arguments, flags and options
 
@@ -25,8 +25,14 @@ struct SwiftMetricsCollector: ParsableCommand {
     @Flag(help: "Report file format")
     var reportFormat: ReportFormat = .json
 
-    @Option(help: "Path where to save the report. If it ends with a \"/\", the report will be saved in the given directory with the default name (\(Self.defaultReportFileName))")
-    var reportFilePath: String? = nil
+    @Option(help: "Path where to save the tool output (report file)")
+    var outputDirectoryPath: String = Self.defaultOutputDirectory
+
+    // MARK: - Other properties
+
+    private var reportPath: String {
+        "\(outputDirectoryPath)\(Self.defaultReportFileName)"
+    }
 
     // MARK: - Methods
 
@@ -38,6 +44,10 @@ struct SwiftMetricsCollector: ParsableCommand {
 
         guard FileManager.default.isReadableFile(atPath: expandedPath) else {
             throw ValidationError("<file-path> \(filePath) is not readable.")
+        }
+
+        guard outputDirectoryPath.last == "/" else {
+            throw ValidationError("<output-directory-path> \(outputDirectoryPath) doesn't end with \"/\".")
         }
     }
 
@@ -55,7 +65,7 @@ struct SwiftMetricsCollector: ParsableCommand {
         }
 
         do {
-            try collector.saveReport(at: reportPath(),
+            try collector.saveReport(at: reportPath,
                                      fileFormat: reportFormat.reportFileFormat)
         } catch {
             // TODO: handle error
@@ -65,18 +75,6 @@ struct SwiftMetricsCollector: ParsableCommand {
         let finisingTime = Date()
         print("finished: \(finisingTime)")
         print("elapsed time: \(finisingTime.timeIntervalSince(startingTime))")
-    }
-
-    private func reportPath() -> String {
-        guard let reportFilePath else {
-            return "\(Self.defaultReportFileDirectory)\(Self.defaultReportFileName)"
-        }
-
-        guard reportFilePath.last != "/" else {
-            return "\(reportFilePath)\(Self.defaultReportFileName)"
-        }
-
-        return reportFilePath
     }
 
 }

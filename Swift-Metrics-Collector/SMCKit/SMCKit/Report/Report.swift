@@ -6,7 +6,7 @@
 //
 
 struct Report: Codable {
-    let classes: [ReportItem]
+    let classes: [String: ReportItem]
 }
 
 struct ReportItem: Codable {
@@ -22,10 +22,10 @@ struct Metrics: Codable {
     let responseForAClass: Int
 
     enum CodingKeys: String, CodingKey, CaseIterable {
-        case weightedMethodsPerClass = "Weighted Methods Per Class (WMC)"
-        case numberOfChildren = "Number of Children (NOC)"
-        case depthOfInheritance = "Depth of Inheritance (DIT)"
-        case lackOfCohesionInMethods = "Lack of Cohesion in Methods (LCOM)"
-        case responseForAClass = "Response For a Class (RFC)"
+        case weightedMethodsPerClass = "WMC"
+        case numberOfChildren = "NOC"
+        case depthOfInheritance = "DIT"
+        case lackOfCohesionInMethods = "LCOM"
+        case responseForAClass = "RFC"
     }
 }

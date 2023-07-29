@@ -27,9 +27,9 @@ class CSVReportStructurer: ReportStructurer {
             element.rawValue
         }.joined(separator: ",")
 
-        var csvString = "identifier,\(metricsHeader)\n"
+        var csvString = "Class,\(metricsHeader)\n"
 
-        for item in report.classes {
+        for item in report.classes.values {
             csvString.append("\(item.identifier),\(item.metrics.weightedMethodsPerClass),\(item.metrics.numberOfChildren),\(item.metrics.depthOfInheritance),\(item.metrics.lackOfCohesionInMethods),\(item.metrics.responseForAClass)\n")
         }
 

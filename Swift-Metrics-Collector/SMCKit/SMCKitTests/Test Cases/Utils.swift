@@ -21,11 +21,7 @@ func analyze(input: String) throws -> Report {
 }
 
 func getClass(from report: Report, withIdentifier classIdentifier: String) throws -> ReportItem {
-    let classItem = report.classes.first { item in
-        item.identifier == classIdentifier
-    }
-
-    guard let classItem else {
+    guard let classItem = report.classes[classIdentifier] else {
         throw NSError(domain: "SMCKitTests", code: 1, userInfo: [NSLocalizedDescriptionKey: "The report has no class with identifier \"\(classIdentifier)\""])
     }
 

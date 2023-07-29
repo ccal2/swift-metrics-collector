@@ -21,7 +21,7 @@ class ElementsTree {
     /// All types declared in the root context or nested in other types
     private(set) var allTypes: Set<TypeNode> = []
 
-    private var generatedTree: Bool = false
+    private(set) var generatedTree: Bool = false
 
     // MARK: - Initializers
 

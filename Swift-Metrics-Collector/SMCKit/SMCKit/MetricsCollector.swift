@@ -16,6 +16,11 @@ public class MetricsCollector {
     private lazy var visitor = ContextTreeGeneratorVisitor(rootContext: globalContext)
     private lazy var tree = ElementsTree(rootContext: globalContext)
 
+    private var _report: Report?
+    private var report: Report {
+        createReport()
+    }
+
     // MARK: - Initializers
 
     public init(fileManager: FileManager = .default) {
@@ -44,7 +49,7 @@ public class MetricsCollector {
         }
 
         let structuredReport = try reportStructurer.structure(report: createReport())
-        let reportFileURL = reportFileURL(from: path, fileExtension: fileFormat.rawValue)
+        let reportFileURL = fileURL(from: path, fileExtension: fileFormat.rawValue)
 
         try structuredReport.write(to: reportFileURL, atomically: true, encoding: .utf8)
     }
@@ -52,16 +57,25 @@ public class MetricsCollector {
     // MARK: - Internal methods
 
     func createReport() -> Report {
-        var classes: [ReportItem] = []
+        assert(tree.generatedTree, "The report can only be created after the tree has been generated")
+
+        if let report = _report {
+            return report
+        }
+
+        var classes: [String: ReportItem] = [:]
 
         for typeNode in tree.allTypes {
             if typeNode.kind == .class {
-                classes.append(ReportItem(identifier: typeNode.identifier,
-                                          metrics: MetricsCalculator.calculateMetrics(for: typeNode)))
+                classes[typeNode.identifier] = ReportItem(identifier: typeNode.identifier,
+                                                          metrics: MetricsCalculator.calculateMetrics(for: typeNode))
             }
         }
 
-        return Report(classes: classes)
+        let report = Report(classes: classes)
+        _report = report
+
+        return report
     }
 
     // MARK: - Private methods
@@ -137,7 +151,12 @@ public class MetricsCollector {
         return siwftFilePaths
     }
 
-    private func reportFileURL(from path: String, fileExtension: String) -> URL {
+    /// Creates an `URL` based on the given path and file extension. If there already exists a file at that path then it tries to add "(1)" at the end of the path. If that already exists, it moves to 2 and so on...
+    /// - Parameters:
+    ///   - path: The path used to create the `URL` object.
+    ///   - fileExtension: The file extension for the file at `path`.
+    /// - Returns: An `URL` for the given path or a similar one with a counter added at the end of the file name, if a file with the same name already exists.
+    private func fileURL(from path: String, fileExtension: String) -> URL {
         let expandedPath = NSString(string: path).expandingTildeInPath
         var url = URL(fileURLWithPath: expandedPath)
 
