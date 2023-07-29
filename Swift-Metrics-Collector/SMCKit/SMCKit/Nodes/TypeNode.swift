@@ -91,23 +91,23 @@ class TypeNode: ContainerNode<TypeContext> {
 
     // MARK: - Methods
 
-    func printableDescription(identationLevel: Int = 0) -> String {
-        let prefix = Array(repeating: "\t", count: identationLevel).joined()
+    func printableDescription(indentationLevel: Int = 0) -> String {
+        let prefix = Array(repeating: "\t", count: indentationLevel).joined()
 
         let variablesDescription = variables.map { variable in
-            variable.printableDescription(identationLevel: identationLevel + 2)
+            variable.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         let methodsDescription = methods.map { method in
-            method.printableDescription(identationLevel: identationLevel + 2)
+            method.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         let extensionsDescription = extensions.map { `extension` in
-            `extension`.printableDescription(identationLevel: identationLevel + 2)
+            `extension`.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         let childrenDescription = children.map { child in
-            child.printableDescription(identationLevel: identationLevel + 2)
+            child.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         let metrics = MetricsCalculator.calculateMetrics(for: self)

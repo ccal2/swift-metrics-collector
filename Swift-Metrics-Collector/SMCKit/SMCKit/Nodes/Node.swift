@@ -30,7 +30,7 @@ class Node<ContextType: Context>: NodeObject {
 
     // MARK: - Hashable
 
-    // Declared here so it can be overriden by subclasses
+    // Declared here so it can be overridden by subclasses
     func hash(into hasher: inout Hasher) {
         hasher.combine(context)
     }

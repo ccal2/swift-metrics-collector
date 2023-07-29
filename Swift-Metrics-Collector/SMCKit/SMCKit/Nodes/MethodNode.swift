@@ -46,9 +46,9 @@ class MethodNode: ContainerNode<MethodContext> {
     }()
 
     // If an instance variable is accessed without self and later on a local variable is declared with the same name, that access will be ignored!
-    // To fix this, we'd need to save the indexes of the declarataion and the access and use that when identifing wheter an access is related to an instance variable or not
+    // To fix this, we'd need to save the indexes of the declaration and the access and use that when identifying whether an access is related to an instance variable or not
     private(set) lazy var accessedInstanceVariables: Set<VariableNode> = {
-        // localVariables will store all variables declared inside this method or any other method that includes it (until the type delcaration is reached)
+        // localVariables will store all variables declared inside this method or any other method that includes it (until the type declaration is reached)
         // e.g.: class A { func fA() { class B { func fB() { func gB() {} } } } } | object is method f: all variables declared in methods f and g
         var localVariables = variables
 
@@ -95,27 +95,27 @@ class MethodNode: ContainerNode<MethodContext> {
 
     // MARK: - Methods
 
-    func printableDescription(identationLevel: Int = 0) -> String {
-        let prefix = Array(repeating: "\t", count: identationLevel).joined()
+    func printableDescription(indentationLevel: Int = 0) -> String {
+        let prefix = Array(repeating: "\t", count: indentationLevel).joined()
 
         let parametersDescription = parameters.map { parameter in
-            parameter.printableDescription(identationLevel: identationLevel + 2)
+            parameter.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         let variablesDescription = variables.map { variable in
-            variable.printableDescription(identationLevel: identationLevel + 2)
+            variable.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         let methodsDescription = methods.map { method in
-            method.printableDescription(identationLevel: identationLevel + 2)
+            method.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         let variableAccessesDescription = variableAccesses.map { variableAccess in
-            variableAccess.printableDescription(identationLevel: identationLevel + 2)
+            variableAccess.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         let accessedInstanceVariablesDescription = accessedInstanceVariables.map { instanceVariable in
-            instanceVariable.printableDescription(identationLevel: identationLevel + 2)
+            instanceVariable.printableDescription(indentationLevel: indentationLevel + 2)
         }.joined(separator: ",\n")
 
         return """

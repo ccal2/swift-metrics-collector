@@ -78,9 +78,9 @@ struct SwiftMetricsCollector: ParsableCommand {
             print(error)
         }
 
-        let finisingTime = Date()
-        print("finished: \(finisingTime)")
-        print("elapsed time: \(finisingTime.timeIntervalSince(startingTime))")
+        let finishingTime = Date()
+        print("finished: \(finishingTime)")
+        print("elapsed time: \(finishingTime.timeIntervalSince(startingTime))")
     }
 
 }

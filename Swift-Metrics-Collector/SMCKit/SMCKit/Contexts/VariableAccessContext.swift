@@ -22,7 +22,7 @@ class VariableAccessContext: Context {
 
     // MARK: - Hashable
 
-    // Declared here so it can be overriden
+    // Declared here so it can be overridden
     override func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
         hasher.combine(accessedUsingSelf)

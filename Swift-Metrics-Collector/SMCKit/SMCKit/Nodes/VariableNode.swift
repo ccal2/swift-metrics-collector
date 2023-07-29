@@ -29,8 +29,8 @@ class VariableNode: Node<VariableDeclarationContext>  {
 
     // MARK: - Methods
 
-    func printableDescription(identationLevel: Int = 0) -> String {
-        let prefix = Array(repeating: "\t", count: identationLevel).joined()
+    func printableDescription(indentationLevel: Int = 0) -> String {
+        let prefix = Array(repeating: "\t", count: indentationLevel).joined()
 
         return """
         \(prefix)Variable: {

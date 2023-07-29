@@ -25,8 +25,8 @@ class VariableAccessNode: Node<VariableAccessContext> {
 
     // MARK: - Methods
 
-    func printableDescription(identationLevel: Int = 0) -> String {
-        let prefix = Array(repeating: "\t", count: identationLevel).joined()
+    func printableDescription(indentationLevel: Int = 0) -> String {
+        let prefix = Array(repeating: "\t", count: indentationLevel).joined()
 
         return """
         \(prefix)Variable access: {
@@ -38,7 +38,7 @@ class VariableAccessNode: Node<VariableAccessContext> {
 
     // MARK: - Hashable
 
-    // Declared here so it can be overriden
+    // Declared here so it can be overridden
     override func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
         hasher.combine(accessedUsingSelf)

@@ -108,7 +108,7 @@ public class MetricsCollector {
     }
 
     private func processDirectory(at path: String) throws {
-        let filePaths = siwftFilePaths(at: path)
+        let filePaths = swiftFilePaths(at: path)
 
         for filePath in filePaths {
             try processFile(at: filePath)
@@ -134,7 +134,7 @@ public class MetricsCollector {
         visitor.walk(sourceFile)
     }
 
-    private func siwftFilePaths(at path: String) -> [String] {
+    private func swiftFilePaths(at path: String) -> [String] {
         let expandedPath = NSString(string: path).expandingTildeInPath
         let resourceKeys = Set<URLResourceKey>([.isRegularFileKey, .nameKey, .pathKey])
 
@@ -144,7 +144,7 @@ public class MetricsCollector {
             return []
         }
 
-        var siwftFilePaths: [String] = []
+        var swiftFilePaths: [String] = []
         for case let fileURL as URL in enumerator {
             do {
                 let fileAttributes = try fileURL.resourceValues(forKeys: resourceKeys)
@@ -161,13 +161,13 @@ public class MetricsCollector {
                     continue
                 }
 
-                siwftFilePaths.append(path)
+                swiftFilePaths.append(path)
             } catch {
                 print(error, fileURL)
             }
         }
 
-        return siwftFilePaths
+        return swiftFilePaths
     }
 
     /// Creates an `URL` based on the given path and file extension. If there already exists a file at that path then it tries to add "(1)" at the end of the path. If that already exists, it moves to 2 and so on...
