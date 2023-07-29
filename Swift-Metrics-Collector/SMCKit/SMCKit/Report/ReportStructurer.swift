@@ -30,7 +30,7 @@ class CSVReportStructurer: ReportStructurer {
         var csvString = "Class,\(metricsHeader)\n"
 
         for item in report.classes.values {
-            csvString.append("\(item.identifier),\(item.metrics.weightedMethodsPerClass),\(item.metrics.numberOfChildren),\(item.metrics.depthOfInheritance),\(item.metrics.lackOfCohesionInMethods),\(item.metrics.responseForAClass)\n")
+            csvString.append("\(item.identifier),\(item.metrics.numberOfChildren),\(item.metrics.depthOfInheritance),\(item.metrics.weightedMethodsPerClass),\(item.metrics.lackOfCohesionInMethods),\(item.metrics.responseForAClass)\n")
         }
 
         return csvString

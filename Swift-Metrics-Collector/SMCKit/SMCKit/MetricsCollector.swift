@@ -199,7 +199,7 @@ public class MetricsCollector {
     private func addTypeNode(for typeNode: TypeNode, toGraph graph: inout String) {
         graph.append("\t\(typeNode.identifier)(\"#nbsp;\(typeNode.identifier)#nbsp;")
         if let metrics = report.classes[typeNode.identifier]?.metrics {
-            graph.append("<br><br>#nbsp;WMC = \(metrics.weightedMethodsPerClass)<br>#nbsp;DIT = \(metrics.depthOfInheritance)<br>#nbsp;NOC = \(metrics.numberOfChildren)<br>#nbsp;LCOM = \(metrics.lackOfCohesionInMethods)<br>#nbsp;RFC = \(metrics.responseForAClass)")
+            graph.append("<br><br>#nbsp;NOC = \(metrics.numberOfChildren)<br>#nbsp;DIT = \(metrics.depthOfInheritance)<br>#nbsp;WMC = \(metrics.weightedMethodsPerClass)<br>#nbsp;LCOM = \(metrics.lackOfCohesionInMethods)<br>#nbsp;RFC = \(metrics.responseForAClass)")
         }
         graph.append("\")\n")
 

@@ -8,9 +8,9 @@
 struct MetricsCalculator {
 
     static func calculateMetrics(for typeNode: TypeNode) -> Metrics {
-        Metrics(weightedMethodsPerClass: calculateWMC(for: typeNode),
-                numberOfChildren: calculateNOC(for: typeNode),
+        Metrics(numberOfChildren: calculateNOC(for: typeNode),
                 depthOfInheritance: calculateDIT(for: typeNode),
+                weightedMethodsPerClass: calculateWMC(for: typeNode),
                 lackOfCohesionInMethods: calculateLCOM_HM(for: typeNode),
                 responseForAClass: calculateRFC(for: typeNode))
     }
