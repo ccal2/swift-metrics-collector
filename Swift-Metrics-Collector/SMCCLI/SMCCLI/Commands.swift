@@ -15,6 +15,7 @@ struct SwiftMetricsCollector: ParsableCommand {
     // MARK: - Constants
 
     static private let defaultReportFileName: String = "report"
+    static private let defaultGraphFileName: String = "graph"
     static private let defaultOutputDirectory: String = "~/Downloads/swift-metrics-collector/"
 
     // MARK: - Arguments, flags and options
@@ -32,6 +33,10 @@ struct SwiftMetricsCollector: ParsableCommand {
 
     private var reportPath: String {
         "\(outputDirectoryPath)\(Self.defaultReportFileName)"
+    }
+
+    private var graphPath: String {
+        "\(outputDirectoryPath)\(Self.defaultGraphFileName)"
     }
 
     // MARK: - Methods
@@ -67,6 +72,7 @@ struct SwiftMetricsCollector: ParsableCommand {
         do {
             try collector.saveReport(at: reportPath,
                                      fileFormat: reportFormat.reportFileFormat)
+            try collector.saveGraph(at: graphPath)
         } catch {
             // TODO: handle error
             print(error)

@@ -54,6 +54,13 @@ public class MetricsCollector {
         try structuredReport.write(to: reportFileURL, atomically: true, encoding: .utf8)
     }
 
+    public func saveGraph(at path: String) throws {
+        let graph = createGraph()
+        let reportFileURL = fileURL(from: path, fileExtension: "mmd")
+
+        try graph.write(to: reportFileURL, atomically: true, encoding: .utf8)
+    }
+
     // MARK: - Internal methods
 
     func createReport() -> Report {
@@ -76,6 +83,18 @@ public class MetricsCollector {
         _report = report
 
         return report
+    }
+
+    func createGraph() -> String {
+        var graph: String = "---\ntitle: Inheritance tree with metrics\n---\ngraph TD\n\tclassDef classNode text-align:left;\n\n"
+
+        for typeNode in tree.allTypes {
+            if typeNode.kind == .class {
+                addTypeNode(for: typeNode, toGraph: &graph)
+            }
+        }
+
+        return graph
     }
 
     // MARK: - Private methods
@@ -175,6 +194,22 @@ public class MetricsCollector {
         }
 
         return url
+    }
+
+    private func addTypeNode(for typeNode: TypeNode, toGraph graph: inout String) {
+        graph.append("\t\(typeNode.identifier)(\"#nbsp;\(typeNode.identifier)#nbsp;")
+        if let metrics = report.classes[typeNode.identifier]?.metrics {
+            graph.append("<br><br>#nbsp;WMC = \(metrics.weightedMethodsPerClass)<br>#nbsp;DIT = \(metrics.depthOfInheritance)<br>#nbsp;NOC = \(metrics.numberOfChildren)<br>#nbsp;LCOM = \(metrics.lackOfCohesionInMethods)<br>#nbsp;RFC = \(metrics.responseForAClass)")
+        }
+        graph.append("\")\n")
+
+        graph.append("\tclass \(typeNode.identifier) classNode\n")
+
+        if let parent = typeNode.parent as? TypeNode {
+            graph.append("\t\(parent.identifier)-->\(typeNode.identifier)\n")
+        }
+
+        graph.append("\n")
     }
 
 }
