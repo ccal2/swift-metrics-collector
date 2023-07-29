@@ -214,4 +214,22 @@ final class TC_RFC_Tests: XCTestCase {
         assertRFC(for: class2, expectedValue: 4)
     }
 
+    func test_TC_RFC_018() throws {
+        let report = try analyze(input: "\(input_folder)/TC-RFC-018.swift")
+
+        XCTAssertEqual(report.classes.count, 3)
+
+        // Class1
+        let class1 = try getClass(from: report, withIdentifier: "Class1")
+        assertRFC(for: class1, expectedValue: 0)
+
+        // Class2
+        let class2 = try getClass(from: report, withIdentifier: "Class2")
+        assertRFC(for: class2, expectedValue: 0)
+
+        // Class3
+        let class3 = try getClass(from: report, withIdentifier: "Class3")
+        assertRFC(for: class3, expectedValue: 3)
+    }
+
 }

@@ -147,6 +147,7 @@
 		77E1043729C80DE8006BFB1A /* SMCKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMCKit.h; sourceTree = "<group>"; };
 		77E1043829C80DE8006BFB1A /* SMCKit.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SMCKit.docc; sourceTree = "<group>"; };
 		77E1043E29C80DE8006BFB1A /* SMCKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SMCKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77F9221F2A7599CD006DE57B /* TC-RFC-018.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-RFC-018.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +322,7 @@
 				772C645D2A73466F0079680C /* TC-RFC-015.swift */,
 				772C645E2A73468B0079680C /* TC-RFC-016.swift */,
 				772C645F2A7346AC0079680C /* TC-RFC-017.swift */,
+				77F9221F2A7599CD006DE57B /* TC-RFC-018.swift */,
 			);
 			path = RFC;
 			sourceTree = "<group>";

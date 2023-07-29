@@ -139,10 +139,14 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         let nameToken = node.name
 
         if node.parent?.is(FunctionCallExprSyntax.self) ?? false {
-            guard case let .identifier(nameIdentifier) = nameToken.tokenKind else {
-                return .visitChildren
+            if case let .identifier(nameIdentifier) = nameToken.tokenKind {
+                methodContext.methodCalls.insert(nameIdentifier)
+            } else if case .keyword(.`init`) = nameToken.tokenKind {
+                // If the method call is an init, try to save the type identifier
+                // If that is not available, save the init keyword
+                let methodCall = node.base?.trimmedDescription ?? nameToken.trimmedDescription
+                methodContext.methodCalls.insert(methodCall)
             }
-            methodContext.methodCalls.insert(nameIdentifier)
         }
 
         guard let baseIdentifierExpr = node.base?.as(IdentifierExprSyntax.self) else {

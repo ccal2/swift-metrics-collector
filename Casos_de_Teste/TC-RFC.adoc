@@ -562,7 +562,7 @@ class Class1 {
 |===
 
 
-== TC-RFC-016
+== TC-RFC-017
 
 === Cenário
 
@@ -603,4 +603,40 @@ class Class2 {
 
 | 1 | Class1 | 3
 | 2 | Class2 | 4
+|===
+
+
+== TC-RFC-018
+
+=== Cenário
+
+Três classes são definidas: duas delas não têm nenhum método e uma delas tem um método de instância.
+
+O método cria dois objeto de cada uma das outras classes, usando `<IdentificadorDaClasse>()` e `<IdentificadorDaClasse>.init()`.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 {
+    func method1() {
+        let object1 = Class1()
+        let object2 = Class2()
+        let object3 = Class1.init()
+        let object4 = Class2.init()
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | RFC
+
+| 1 | Class1 | 0
+| 2 | Class2 | 0
+| 3 | Class3 | 3
 |===
