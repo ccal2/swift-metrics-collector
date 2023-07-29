@@ -20,7 +20,7 @@ struct SwiftMetricsCollector: ParsableCommand {
 
     // MARK: - Arguments, flags and options
 
-    @Argument(help: "Path of the file to be analized")
+    @Argument(help: "Path of the file to be analyzed")
     var filePath: String
 
     @Flag(help: "Report file format")
