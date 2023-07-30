@@ -116,10 +116,19 @@ public class MetricsCollector {
     // MARK: - Private methods
 
     private func process(path: String) throws {
-        if path.last == "/" {
-            try processDirectory(at: path)
-        } else {
+        // Try to process path as a file
+        // If it fails because the path is actually a directory, process it as a directory
+        do {
             try processFile(at: path)
+        } catch let error as NSError {
+            // Expected error thrown by `String(contentsOfFile:encoding:)` if the file path is a directory
+            guard error.domain == NSCocoaErrorDomain && error.underlyingErrors.contains(where: { underlyingError in
+                (underlyingError as NSError).domain == NSPOSIXErrorDomain && (underlyingError as NSError).code == 21
+            }) else {
+                throw error
+            }
+
+            try processDirectory(at: path)
         }
     }
 
