@@ -14,16 +14,16 @@ struct SwiftMetricsCollector: ParsableCommand {
 
     // MARK: - Constants
 
+    static private let defaultOutputPath: String = "~/Downloads/"
+    static private let defaultOutputDirectoryName: String = "swift-metrics-collector-output"
     static private let defaultReportFileName: String = "report"
     static private let defaultInheritanceTreeFileName: String = "inheritance-tree"
     static private let defaultInheritanceTreeWithMetricsFileName: String = "inheritance-tree-with-metrics"
-    static private let defaultOutputPath: String = "~/Downloads/"
-    static private let defaultOutputDirectoryName: String = "swift-metrics-collector-output"
 
     // MARK: - Arguments, flags and options
 
-    @Argument(help: "Path of the file to be analyzed")
-    var filePath: String
+    @Argument(help: "Path of the file or directory to be analyzed")
+    var path: String
 
     @Flag(help: "Report file format")
     var reportFormat: ReportFormat = .json
@@ -40,13 +40,13 @@ struct SwiftMetricsCollector: ParsableCommand {
     // MARK: - Methods
 
     func validate() throws {
-        let expandedPath = NSString(string: filePath).expandingTildeInPath
+        let expandedPath = NSString(string: path).expandingTildeInPath
         guard FileManager.default.fileExists(atPath: expandedPath) else {
-            throw ValidationError("<file-path> \(filePath) doesn't exist.")
+            throw ValidationError("<path> \(path) doesn't exist.")
         }
 
         guard FileManager.default.isReadableFile(atPath: expandedPath) else {
-            throw ValidationError("<file-path> \(filePath) is not readable.")
+            throw ValidationError("<path> \(path) is not readable.")
         }
 
         guard outputDirectoryPath.last == "/" else {
@@ -67,7 +67,7 @@ struct SwiftMetricsCollector: ParsableCommand {
         let collector = MetricsCollector(outputPath: outputDirectory)
 
         do {
-            try collector.analyze(path: filePath)
+            try collector.analyze(path: path)
         } catch {
             // TODO: handle error
             print(error)

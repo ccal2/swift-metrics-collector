@@ -133,15 +133,14 @@ public class MetricsCollector {
 
     private func processFile(at filePath: String) throws {
         let expandedPath = NSString(string: filePath).expandingTildeInPath
-        let fileURL = URL(fileURLWithPath: expandedPath)
+        let fileContent = try String(contentsOfFile: expandedPath, encoding: .utf8)
 
+        let fileURL = URL(fileURLWithPath: expandedPath)
         guard let fileName = fileURL.deletingPathExtension().pathComponents.last else {
             throw NSError(domain: "", code: 0)
         }
 
         visitor.newFileContext(named: fileName)
-
-        let fileContent = try String(contentsOfFile: expandedPath, encoding: .utf8)
         process(content: fileContent)
     }
 
