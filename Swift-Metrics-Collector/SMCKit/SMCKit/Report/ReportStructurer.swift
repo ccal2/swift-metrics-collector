@@ -13,7 +13,7 @@ class JSONReportStructurer: ReportStructurer {
 
     func structure(report: Report) throws -> String {
         let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let jsonData = try encoder.encode(report)
         return String(data: jsonData, encoding: .utf8)!
     }
