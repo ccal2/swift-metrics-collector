@@ -1,0 +1,601 @@
+:toc: macro
+:toc-title:
+:toclevels: 1
+
+= TC-CBO-XXX
+
+Casos de teste relacionados ao cálculo da métrica CBO (Response For a Class).
+
+toc::[]
+
+== TC-CBO-001
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 0
+| 2 | Class2 | 0
+|===
+
+
+== TC-CBO-002
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2: Class1 { }
+class Class3 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+|===
+
+
+== TC-CBO-003
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 {
+    var variable1: Class1?
+
+    init() {
+        let object1: Class2?
+    }
+
+    func method1() {
+        let object1: Class5?
+    }
+
+    static func method2() {
+        let object1: Class6?
+    }
+}
+class Class5 { }
+class Class6 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 4
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-004
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 { }
+class Class5 { }
+class Class6 { }
+
+extension Class4 {
+    var variable1: Class1? { nil }
+
+    func method1() {
+        let object1: Class5?
+    }
+
+    static func method2() {
+        let object1: Class6?
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 0
+| 3 | Class3 | 0
+| 4 | Class4 | 3
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-005
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 {
+    var variable1: Class1?
+
+    init() {
+        let object1: Class2?
+    }
+
+    func method1() {
+        let object1: Class5?
+    }
+
+    static func method2() {
+        let object1: Class6?
+    }
+}
+class Class5 { }
+class Class6 { }
+
+extension Class4 {
+    var variable2: Class1? { variable1 }
+
+    func method3() {
+        let object1: Class5?
+    }
+
+    static func method4() {
+        let object1: Class6?
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 4
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-006
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 {
+    init(param1: Class1) { }
+
+    func method1(param1: Class2, param2: Class5) { }
+
+    static func method2(param1: Class6) { }
+}
+class Class5 { }
+class Class6 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 4
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-007
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 { }
+class Class5 { }
+class Class6 { }
+
+extension Class4 {
+    func method1(param1: Class2, param2: Class5) { }
+
+    static func method2(param1: Class6) { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 0
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 3
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-008
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 {
+    init(param1: Class1) { }
+
+    func method1(param1: Class2, param2: Class5) { }
+
+    static func method2(param1: Class6) { }
+}
+class Class5 { }
+class Class6 { }
+
+extension Class4 {
+    func method3(param1: Class2, param2: Class5) { }
+
+    static func method4(param1: Class6) { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 4
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-009
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 {
+    var variable1 = Class1()
+
+    init() {
+        let object1 = Class2()
+    }
+
+    func method1() {
+        let object1 = Class5()
+    }
+
+    static func method2() {
+        let object1 = Class6()
+    }
+}
+class Class5 { }
+class Class6 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 4
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-010
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 { }
+class Class5 { }
+class Class6 { }
+
+extension Class4 {
+    func method1() {
+        let object1 = Class5()
+    }
+
+    static func method2() {
+        let object1 = Class6()
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 0
+| 2 | Class2 | 0
+| 3 | Class3 | 0
+| 4 | Class4 | 2
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-011
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 {
+    var variable1 = Class1()
+
+    init() {
+        let object1 = Class2()
+    }
+
+    func method1() {
+        let object1 = Class5()
+    }
+
+    static func method2() {
+        let object1 = Class6()
+    }
+}
+class Class5 { }
+class Class6 { }
+
+extension Class4 {
+    func method3() {
+        let object1 = Class5()
+    }
+
+    static func method4() {
+        let object1 = Class6()
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 4
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-012
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4 {
+    var variable1: Class1 = .init()
+
+    init() {
+        let object1: Class2 = .init()
+    }
+
+    func method1() {
+        let object1: Class5 = .init()
+    }
+
+    static func method2() {
+        let object1: Class6 = .init()
+    }
+}
+class Class5 { }
+class Class6 { }
+
+extension Class4 {
+    var variable2: Class1 { variable1 }
+
+    func method3() {
+        let object1: Class5 = .init()
+    }
+
+    static func method4() {
+        let object1: Class6 = .init()
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 4
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+== TC-CBO-013
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 { }
+class Class3 { }
+class Class4: Class1 {
+    let variable1: Class1
+    var variable2 = Class2()
+
+    init(variable1: Class1) {
+        self.variable1 = variable1
+    }
+
+    func method1(param1: Class5) { }
+
+    static func method2() {
+        let object1: Class6 = .init()
+    }
+}
+class Class5 { }
+class Class6 { }
+
+extension Class4 {
+    var variable3: Class2 { variable2 }
+
+    func method3() {
+        let object1: Class5 = .init()
+    }
+
+    static func method4() {
+        let object1: Class6 = .init()
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | CBO
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+| 3 | Class3 | 0
+| 4 | Class4 | 4
+| 5 | Class5 | 1
+| 6 | Class6 | 1
+|===
+
+
+// TODO: Adicionar testes pra classes definidas dentro de outras

@@ -11,7 +11,7 @@ class Node {
 
     private(set) weak var parent: Node?
 
-    private let uuid = UUID()
+    let uuid = UUID()
 
     // MARK: - Initializers
 

@@ -17,6 +17,8 @@ class ElementsTree {
     private(set) var variables: Set<VariableNode> = []
     /// Methods declared in the root context
     private(set) var methods: Set<MethodNode> = []
+    /// Identifiers that might indicate a coupling for a type
+    private(set) var possibleCouplings: [TypeNode: Set<String>] = [:]
 
     /// All types declared in the root context or nested in other types
     private(set) var allTypes: Set<TypeNode> = []
@@ -40,6 +42,7 @@ class ElementsTree {
 
         generateTypes()
         generateOtherElements()
+        generateTypeCouplings()
     }
 
     // MARK: - Private methods
@@ -75,6 +78,7 @@ class ElementsTree {
         }
 
         let typeNode = TypeNode(parent: superTypeNode, context: context)
+        possibleCouplings[typeNode] = context.possibleTypeCouplings
         allTypes.insert(typeNode)
         if superTypeNode == nil {
             types.insert(typeNode)
@@ -131,6 +135,7 @@ class ElementsTree {
             // then it could be a protocol or some class defined outside of the scope.
             // In this case, create a node with no parent
             let typeNode = TypeNode(parent: nil, context: contexts[index])
+            possibleCouplings[typeNode] = contexts[index].possibleTypeCouplings
             allTypes.insert(typeNode)
             types.insert(typeNode)
             contexts.remove(at: index)
@@ -184,8 +189,36 @@ class ElementsTree {
             }
 
             _ = TypeExtensionNode(parent: type, context: context)
+            if possibleCouplings[type] == nil {
+                possibleCouplings[type] = []
+            }
+            possibleCouplings[type]?.formUnion(context.possibleTypeCouplings)
             return
         }
+    }
+
+    // MARK: Handle type couplings
+
+    // TODO: Try to find a better way of collecting this information
+    // Needs to e executed after `generateOtherElements` to take into account the extensions
+    private func generateTypeCouplings() {
+        for (typeNode, possibleTypeCouplings) in possibleCouplings {
+            for possibleCoupling in possibleTypeCouplings {
+                for otherType in allTypes where otherType != typeNode {
+                    if otherType.allPossibleIdentifiers.contains(possibleCoupling) {
+                        saveCouplingBetween(typeNode, and: otherType)
+                    }
+                }
+            }
+        }
+    }
+
+    private func saveCouplingBetween(_ firstType: TypeNode, and secondType: TypeNode) {
+        let coupling = TypeCoupling(types: (firstType, secondType))
+
+        // Save coupling for both types
+        firstType.typeCouplings.insert(coupling)
+        secondType.typeCouplings.insert(coupling)
     }
 
     // MARK: Helpers for relative index handling

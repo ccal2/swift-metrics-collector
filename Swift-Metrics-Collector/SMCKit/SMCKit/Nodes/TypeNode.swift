@@ -14,6 +14,7 @@ class TypeNode: ContainerNode {
     let allPossibleIdentifiers: [String]
 
     var extensions: Set<TypeExtensionNode> = []
+    var typeCouplings: Set<TypeCoupling> = []
 
     private(set) var children: Set<TypeNode> = []
 
@@ -132,11 +133,12 @@ class TypeNode: ContainerNode {
         \(prefix)\textensions: [
         \(extensionsDescription)
         \(prefix)\t],
-        \(prefix)\tWMC: \(metrics.weightedMethodsPerClass),
         \(prefix)\tNOC: \(metrics.numberOfChildren),
         \(prefix)\tDIT: \(metrics.depthOfInheritance),
+        \(prefix)\tWMC: \(metrics.weightedMethodsPerClass),
         \(prefix)\tLCOM: \(metrics.lackOfCohesionInMethods),
         \(prefix)\tRFC: \(metrics.responseForAClass),
+        \(prefix)\tCBO: \(metrics.couplingBetweenObjectClasses),
         \(prefix)\tchildren: [
         \(childrenDescription)
         \(prefix)\t]

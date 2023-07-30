@@ -20,6 +20,7 @@ struct Metrics: Codable {
     let weightedMethodsPerClass: Int
     let lackOfCohesionInMethods: Int
     let responseForAClass: Int
+    let couplingBetweenObjectClasses: Int
 
     enum CodingKeys: String, CodingKey, CaseIterable {
         case numberOfChildren = "NOC"
@@ -27,5 +28,6 @@ struct Metrics: Codable {
         case weightedMethodsPerClass = "WMC"
         case lackOfCohesionInMethods = "LCOM"
         case responseForAClass = "RFC"
+        case couplingBetweenObjectClasses = "CBO"
     }
 }

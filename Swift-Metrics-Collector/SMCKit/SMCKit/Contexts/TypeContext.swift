@@ -5,13 +5,15 @@
 //  Created by Carolina Lopes on 20/03/23.
 //
 
-class TypeContext: Context {
+class TypeContext: Context, Couplable {
 
     // MARK: - Properties
 
     let identifier: String
     let firstInheritedType: String?
     let kind: TypeKind
+
+    var possibleTypeCouplings: Set<String> = []
 
     private(set) lazy var fullIdentifier: String = {
         allPossibleIdentifiers.last ?? identifier

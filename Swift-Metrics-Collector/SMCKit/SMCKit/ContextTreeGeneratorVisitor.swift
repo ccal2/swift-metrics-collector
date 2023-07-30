@@ -21,12 +21,25 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
 
             if let methodContext = currentContext as? MethodContext {
                 currentMethodContext.append(methodContext)
+            } else if let typeContext = currentContext as? TypeContext {
+                currentTypeContext.append(typeContext)
+            } else if let extensionContext = currentContext as? TypeExtensionContext {
+                currentExtensionContext = extensionContext
             }
         }
     }
 
+    var currentCouplableContext: Couplable? {
+        currentExtensionContext ?? currentTypeContext.last
+    }
+
     // Since a method can be defined inside another method, the currentMethodContext is represented by an array that is used as a stack
     var currentMethodContext: [MethodContext] = []
+
+    // Since a class can be defined inside another class, the currentTypeContext is represented by an array that is used as a stack
+    var currentTypeContext: [TypeContext] = []
+
+    var currentExtensionContext: TypeExtensionContext?
 
     // MARK: - Initializers
 
@@ -58,6 +71,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         guard let parentContext = currentContext.parent else {
             fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
         }
+        _ = currentTypeContext.popLast()
         currentContext = parentContext
     }
 
@@ -72,6 +86,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         guard let parentContext = currentContext.parent else {
             fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
         }
+        currentExtensionContext = nil
         currentContext = parentContext
     }
 
@@ -103,8 +118,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
 
     override func visit(_ node: FunctionParameterSyntax) -> SyntaxVisitorContinueKind {
         guard let methodContext = currentContext as? MethodContext else {
-            assertionFailure("The current context must be a MethodContext")
-            return .skipChildren
+            return .visitChildren
         }
 
         _ = MethodParameterContext(parent: methodContext,
@@ -112,26 +126,36 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
                                    secondName: node.secondName?.text,
                                    typeIdentifier:  node.type?.trimmedDescription)
 
-        return .skipChildren
+        return .visitChildren
     }
 
     override func visit(_ node: MemberAccessExprSyntax) -> SyntaxVisitorContinueKind {
-        // Member accesses outside of a method context are not relevant to this tool
-        guard let methodContext = currentMethodContext.last else {
-            return .visitChildren
-        }
-
+        let methodContext = currentMethodContext.last
         let nameToken = node.name
 
         if node.parent?.is(FunctionCallExprSyntax.self) ?? false {
             if case let .identifier(nameIdentifier) = nameToken.tokenKind {
-                methodContext.methodCalls.insert(nameIdentifier)
+                methodContext?.methodCalls.insert(nameIdentifier)
+
+                // A method call can be an initialization, so we need to add all of them as possible type couplings to be verified later
+                currentCouplableContext?.possibleTypeCouplings.insert(node.trimmedDescription)
             } else if case .keyword(.`init`) = nameToken.tokenKind {
-                // If the method call is an init, try to save the type identifier
+                let typeIdentifier = node.base?.trimmedDescription
+
+                // If the method call is an initialization, try to save the type identifier
                 // If that is not available, save the init keyword
-                let methodCall = node.base?.trimmedDescription ?? nameToken.trimmedDescription
-                methodContext.methodCalls.insert(methodCall)
+                methodContext?.methodCalls.insert(typeIdentifier ?? nameToken.trimmedDescription)
+
+                // If the method call is known to be an initialization, try to add only the type identifier as a possible type coupling
+                // If that is not available, ignore it
+                if let typeIdentifier {
+                    currentCouplableContext?.possibleTypeCouplings.insert(typeIdentifier)
+                }
             }
+        }
+
+        guard let methodContext else {
+            return .visitChildren
         }
 
         guard let baseIdentifierExpr = node.base?.as(IdentifierExprSyntax.self) else {
@@ -141,7 +165,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
         if baseIdentifierExpr.identifier.tokenKind == .keyword(.self) {
             guard case let .identifier(nameIdentifier) = nameToken.tokenKind,
                   !(node.parent?.is(FunctionCallExprSyntax.self) ?? false) else {
-                return .skipChildren
+                return .visitChildren
             }
 
             _ = VariableAccessContext(parent: methodContext, identifier: nameIdentifier, accessedUsingSelf: true)
@@ -153,16 +177,28 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     }
 
     override func visit(_ node: IdentifierExprSyntax) -> SyntaxVisitorContinueKind {
-        // Identifier expressions outside of a method context are not relevant to this tool
-        guard let methodContext = currentMethodContext.last else {
+        let methodContext = currentMethodContext.last
+
+        if (node.parent?.is(FunctionCallExprSyntax.self) ?? false) {
+            methodContext?.methodCalls.insert(node.identifier.text)
+
+            // A method call can be an initialization, so we need to add all of them as possible type couplings to be verified later
+            currentCouplableContext?.possibleTypeCouplings.insert(node.trimmedDescription)
             return .skipChildren
         }
 
-        if (node.parent?.is(FunctionCallExprSyntax.self) ?? false) {
-            methodContext.methodCalls.insert(node.identifier.text)
-        } else {
-            _ = VariableAccessContext(parent: methodContext, identifier: node.identifier.text, accessedUsingSelf: false)
+        guard let methodContext else {
+            return .skipChildren
         }
+
+        _ = VariableAccessContext(parent: methodContext, identifier: node.identifier.text, accessedUsingSelf: false)
+
+
+        return .skipChildren
+    }
+
+    override func visit(_ node: SimpleTypeIdentifierSyntax) -> SyntaxVisitorContinueKind  {
+        currentCouplableContext?.possibleTypeCouplings.insert(node.trimmedDescription)
 
         return .skipChildren
     }
@@ -178,7 +214,6 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
     override func visit(_ node: EnumDeclSyntax) -> SyntaxVisitorContinueKind  { return .skipChildren }
     override func visit(_ node: OperatorDeclSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
-    override func visit(_ node: InitializerDeclSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
     override func visit(_ node: SubscriptDeclSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
     override func visit(_ node: ClosureSignatureSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }
     override func visit(_ node: MacroDeclSyntax) -> SyntaxVisitorContinueKind { return .skipChildren }

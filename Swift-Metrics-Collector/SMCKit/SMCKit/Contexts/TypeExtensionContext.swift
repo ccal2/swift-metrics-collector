@@ -5,11 +5,13 @@
 //  Created by Carolina Lopes on 26/04/23.
 //
 
-class TypeExtensionContext: Context {
+class TypeExtensionContext: Context, Couplable {
 
     // MARK: - Properties
 
     let identifier: String
+
+    var possibleTypeCouplings: Set<String> = []
 
     // MARK: - Initializers
 

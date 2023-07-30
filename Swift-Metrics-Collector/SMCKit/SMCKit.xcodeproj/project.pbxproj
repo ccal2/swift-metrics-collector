@@ -45,6 +45,9 @@
 		77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 77E1043829C80DE8006BFB1A /* SMCKit.docc */; };
 		77E1043F29C80DE8006BFB1A /* SMCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77E1043429C80DE8006BFB1A /* SMCKit.framework */; };
 		77E1044529C80DE8006BFB1A /* SMCKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 77E1043729C80DE8006BFB1A /* SMCKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		77F9221E2A757952006DE57B /* Couplable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F9221D2A757952006DE57B /* Couplable.swift */; };
+		77F9222B2A75F808006DE57B /* TypeCoupling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F9222A2A75F808006DE57B /* TypeCoupling.swift */; };
+		77F9222D2A76DF86006DE57B /* TC_CBO_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F9222C2A76DF86006DE57B /* TC_CBO_Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,7 +150,23 @@
 		77E1043729C80DE8006BFB1A /* SMCKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMCKit.h; sourceTree = "<group>"; };
 		77E1043829C80DE8006BFB1A /* SMCKit.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = SMCKit.docc; sourceTree = "<group>"; };
 		77E1043E29C80DE8006BFB1A /* SMCKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SMCKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77F9221D2A757952006DE57B /* Couplable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Couplable.swift; sourceTree = "<group>"; };
 		77F9221F2A7599CD006DE57B /* TC-RFC-018.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-RFC-018.swift"; sourceTree = "<group>"; };
+		77F9222A2A75F808006DE57B /* TypeCoupling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCoupling.swift; sourceTree = "<group>"; };
+		77F9222C2A76DF86006DE57B /* TC_CBO_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TC_CBO_Tests.swift; sourceTree = "<group>"; };
+		77F9222F2A76E110006DE57B /* TC-CBO-001.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-001.swift"; sourceTree = "<group>"; };
+		77F922302A76E123006DE57B /* TC-CBO-002.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-002.swift"; sourceTree = "<group>"; };
+		77F922322A76E13C006DE57B /* TC-CBO-003.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-003.swift"; sourceTree = "<group>"; };
+		77F922332A76E14D006DE57B /* TC-CBO-004.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-004.swift"; sourceTree = "<group>"; };
+		77F922342A76E161006DE57B /* TC-CBO-005.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-005.swift"; sourceTree = "<group>"; };
+		77F922352A76E17D006DE57B /* TC-CBO-006.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-006.swift"; sourceTree = "<group>"; };
+		77F922362A76E193006DE57B /* TC-CBO-007.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-007.swift"; sourceTree = "<group>"; };
+		77F922372A76E1AA006DE57B /* TC-CBO-008.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-008.swift"; sourceTree = "<group>"; };
+		77F922392A76E1BD006DE57B /* TC-CBO-009.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-009.swift"; sourceTree = "<group>"; };
+		77F9223A2A76E1E1006DE57B /* TC-CBO-010.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-010.swift"; sourceTree = "<group>"; };
+		77F9223B2A76E1FB006DE57B /* TC-CBO-011.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-011.swift"; sourceTree = "<group>"; };
+		77F9223C2A76E57F006DE57B /* TC-CBO-012.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-012.swift"; sourceTree = "<group>"; };
+		77F9223D2A76E59C006DE57B /* TC-CBO-013.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-CBO-013.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +216,7 @@
 		772C64092A68AF540079680C /* Test Cases */ = {
 			isa = PBXGroup;
 			children = (
+				77F9222C2A76DF86006DE57B /* TC_CBO_Tests.swift */,
 				772C64262A6F55970079680C /* TC_DIT_Tests.swift */,
 				772C640E2A68AFE10079680C /* TC_NOC_Tests.swift */,
 				772C64462A7343330079680C /* TC_RFC_Tests.swift */,
@@ -210,6 +230,7 @@
 		772C640A2A68AF6F0079680C /* Inputs */ = {
 			isa = PBXGroup;
 			children = (
+				77F9222E2A76E100006DE57B /* CBO */,
 				772C64602A7348070079680C /* DIT */,
 				772C64612A7348120079680C /* NOC */,
 				772C64622A73481F0079680C /* RFC */,
@@ -396,9 +417,11 @@
 				77E1043729C80DE8006BFB1A /* SMCKit.h */,
 				77AB89A029C94B330087DA08 /* ContextIterators.swift */,
 				77821E9B29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift */,
+				77F9221D2A757952006DE57B /* Couplable.swift */,
 				77821E9929DCEF0E00BBA1E9 /* ElementsTree.swift */,
 				7704C55A2A5CDA0F00E1AE1A /* MetricsCalculator.swift */,
 				77AB898B29C80F2F0087DA08 /* MetricsCollector.swift */,
+				77F9222A2A75F808006DE57B /* TypeCoupling.swift */,
 				776C3E8C29E783E800F127C7 /* TypeKind.swift */,
 				77AB899529C94A5F0087DA08 /* Contexts */,
 				7720DB3B29EF7A1400BC5F31 /* Extensions */,
@@ -417,6 +440,26 @@
 				772C64092A68AF540079680C /* Test Cases */,
 			);
 			path = SMCKitTests;
+			sourceTree = "<group>";
+		};
+		77F9222E2A76E100006DE57B /* CBO */ = {
+			isa = PBXGroup;
+			children = (
+				77F9222F2A76E110006DE57B /* TC-CBO-001.swift */,
+				77F922302A76E123006DE57B /* TC-CBO-002.swift */,
+				77F922322A76E13C006DE57B /* TC-CBO-003.swift */,
+				77F922332A76E14D006DE57B /* TC-CBO-004.swift */,
+				77F922342A76E161006DE57B /* TC-CBO-005.swift */,
+				77F922352A76E17D006DE57B /* TC-CBO-006.swift */,
+				77F922362A76E193006DE57B /* TC-CBO-007.swift */,
+				77F922372A76E1AA006DE57B /* TC-CBO-008.swift */,
+				77F922392A76E1BD006DE57B /* TC-CBO-009.swift */,
+				77F9223A2A76E1E1006DE57B /* TC-CBO-010.swift */,
+				77F9223B2A76E1FB006DE57B /* TC-CBO-011.swift */,
+				77F9223C2A76E57F006DE57B /* TC-CBO-012.swift */,
+				77F9223D2A76E59C006DE57B /* TC-CBO-013.swift */,
+			);
+			path = CBO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -543,12 +586,14 @@
 				776C3E8729E4ECCB00F127C7 /* MethodParameterContext.swift in Sources */,
 				7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */,
 				77CDF34129F0B3FA00F9EF2F /* Node.swift in Sources */,
+				77F9222B2A75F808006DE57B /* TypeCoupling.swift in Sources */,
 				77DC1D8D29F48BAF002A1ED3 /* Report.swift in Sources */,
 				773E524D2A0347FA00E0F660 /* TypeExtensionNode.swift in Sources */,
 				77821E9C29DCF60900BBA1E9 /* ContextTreeGeneratorVisitor.swift in Sources */,
 				77AB899729C94A7C0087DA08 /* Context.swift in Sources */,
 				776C3E8329E4E57A00F127C7 /* MethodContext.swift in Sources */,
 				77821E9A29DCEF0E00BBA1E9 /* ElementsTree.swift in Sources */,
+				77F9221E2A757952006DE57B /* Couplable.swift in Sources */,
 				7704C55B2A5CDA0F00E1AE1A /* MetricsCalculator.swift in Sources */,
 				77DC1D9029F4D36E002A1ED3 /* ReportStructurer.swift in Sources */,
 				7706EE6629DBBDAA00DB6BFE /* VariableNode.swift in Sources */,
@@ -574,6 +619,7 @@
 				772C64272A6F55970079680C /* TC_DIT_Tests.swift in Sources */,
 				772C64332A71F70D0079680C /* TC_WMC_Tests.swift in Sources */,
 				77AB89A529C94DB00087DA08 /* ContextIteratorsTests.swift in Sources */,
+				77F9222D2A76DF86006DE57B /* TC_CBO_Tests.swift in Sources */,
 				772C640F2A68AFE10079680C /* TC_NOC_Tests.swift in Sources */,
 				772C64112A68B0AE0079680C /* Utils.swift in Sources */,
 			);

@@ -34,6 +34,7 @@ func assertMetrics(for item: ReportItem, expectedValue: Metrics, file: StaticStr
     assertWMC(for: item, expectedValue: expectedValue.weightedMethodsPerClass, file: file, line: line)
     assertLCOM(for: item, expectedValue: expectedValue.lackOfCohesionInMethods, file: file, line: line)
     assertRFC(for: item, expectedValue: expectedValue.responseForAClass, file: file, line: line)
+    assertCBO(for: item, expectedValue: expectedValue.couplingBetweenObjectClasses, file: file, line: line)
 }
 
 func assertNOC(for item: ReportItem, expectedValue: Int, file: StaticString = #file, line: UInt = #line) {
@@ -54,6 +55,10 @@ func assertLCOM(for item: ReportItem, expectedValue: Int, file: StaticString = #
 
 func assertRFC(for item: ReportItem, expectedValue: Int, file: StaticString = #file, line: UInt = #line) {
     assertMetric("RFC", metricValue: item.metrics.responseForAClass, expectedValue: expectedValue, file: file, line: line)
+}
+
+func assertCBO(for item: ReportItem, expectedValue: Int, file: StaticString = #file, line: UInt = #line) {
+    assertMetric("CBO", metricValue: item.metrics.couplingBetweenObjectClasses, expectedValue: expectedValue, file: file, line: line)
 }
 
 private func assertMetric(_ metricSymbol: String, metricValue: Int, expectedValue: Int, file: StaticString = #file, line: UInt = #line) {

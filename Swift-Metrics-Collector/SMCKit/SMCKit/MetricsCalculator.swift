@@ -12,7 +12,8 @@ struct MetricsCalculator {
                 depthOfInheritance: calculateDIT(for: typeNode),
                 weightedMethodsPerClass: calculateWMC(for: typeNode),
                 lackOfCohesionInMethods: calculateLCOM_HM(for: typeNode),
-                responseForAClass: calculateRFC(for: typeNode))
+                responseForAClass: calculateRFC(for: typeNode),
+                couplingBetweenObjectClasses: calculateCBO(for: typeNode))
     }
 
     static func calculateWMC(for typeNode: TypeNode) -> Int {
@@ -121,6 +122,10 @@ struct MetricsCalculator {
         }
 
         return methodCalls.count
+    }
+
+    static func calculateCBO(for typeNode: TypeNode) -> Int {
+        return typeNode.typeCouplings.count
     }
 
 }
