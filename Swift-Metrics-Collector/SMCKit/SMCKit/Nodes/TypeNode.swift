@@ -5,21 +5,17 @@
 //  Created by Carolina Lopes on 20/03/23.
 //
 
-class TypeNode: ContainerNode<TypeContext> {
+class TypeNode: ContainerNode {
 
     // MARK: - Properties
+
+    let kind: TypeKind
+    let identifier: String
+    let allPossibleIdentifiers: [String]
 
     var extensions: Set<TypeExtensionNode> = []
 
     private(set) var children: Set<TypeNode> = []
-
-    private(set) lazy var kind: TypeKind = {
-        context.kind
-    }()
-
-    private(set) lazy var identifier: String = {
-        context.fullIdentifier
-    }()
 
     // MARK: Computed properties
 
@@ -84,12 +80,24 @@ class TypeNode: ContainerNode<TypeContext> {
     // MARK: - Initializers
 
     init(parent: TypeNode?, context: TypeContext) {
+        self.kind = context.kind
+        self.identifier = context.fullIdentifier
+        self.allPossibleIdentifiers = context.allPossibleIdentifiers
+
         super.init(parent: parent, context: context)
 
         parent?.children.insert(self)
     }
 
     // MARK: - Methods
+
+    func isSuperType(of context: TypeContext) -> Bool {
+        guard let firstInheritedType = context.firstInheritedType else {
+            return false
+        }
+
+        return allPossibleIdentifiers.contains(firstInheritedType)
+    }
 
     func printableDescription(indentationLevel: Int = 0) -> String {
         let prefix = Array(repeating: "\t", count: indentationLevel).joined()

@@ -5,51 +5,23 @@
 //  Created by Carolina Lopes on 10/04/23.
 //
 
-class MethodNode: ContainerNode<MethodContext> {
+class MethodNode: ContainerNode {
 
     // MARK: - Properties
 
-    var methodCalls: Set<String> {
-        context.methodCalls
-    }
+    let methodCalls: Set<String>
+    let identifier: String
+    let isStatic: Bool
+    let returnTypeIdentifier: String?
 
-    private(set) lazy var identifier: String = {
-        context.identifier
-    }()
+    private(set) var parameters: Set<MethodParameterNode> = []
+    private(set) var variableAccesses: Set<VariableAccessNode> = []
 
-    private(set) lazy var isStatic: Bool  = {
-        context.isStatic
-    }()
-
-    private(set) lazy var parameters: Set<MethodParameterNode> = {
-        var parameters: Set<MethodParameterNode> = []
-
-        for context in context.parameters {
-            parameters.insert(MethodParameterNode(parent: self, context: context))
-        }
-
-        return parameters
-    }()
-
-    private(set) lazy var returnTypeIdentifier: String? = {
-        context.returnTypeIdentifier
-    }()
-
-    private(set) lazy var variableAccesses: Set<VariableAccessNode> = {
-        var variableAccesses: Set<VariableAccessNode> = []
-
-        for accessContext in context.variableAccesses {
-            variableAccesses.insert(VariableAccessNode(parent: self, context: accessContext))
-        }
-
-        return variableAccesses
-    }()
-
-    // If an instance variable is accessed without self and later on a local variable is declared with the same name, that access will be ignored!
+    // [Limitation]: If an instance variable is accessed without self and later on a local variable is declared with the same name, that access will be ignored!
     // To fix this, we'd need to save the indexes of the declaration and the access and use that when identifying whether an access is related to an instance variable or not
     private(set) lazy var accessedInstanceVariables: Set<VariableNode> = {
-        // localVariables will store all variables declared inside this method or any other method that includes it (until the type declaration is reached)
-        // e.g.: class A { func fA() { class B { func fB() { func gB() {} } } } } | object is method f: all variables declared in methods f and g
+        // localVariables will store all variables declared inside this method or any other method that it includes (until the type declaration is reached)
+        // e.g.: class A { func fA() { class B { func fB() { func gB() {} } } } } | object is method fB: all variables declared in methods fB and gB
         var localVariables = variables
 
         var node = parent
@@ -89,8 +61,20 @@ class MethodNode: ContainerNode<MethodContext> {
 
     // MARK: - Initializers
 
-    init(parent: (any ContainerNodeObject)?, context: MethodContext) {
+    init(parent: Node?, context: MethodContext) {
+        self.methodCalls = context.methodCalls
+        self.identifier = context.identifier
+        self.isStatic = context.isStatic
+        self.returnTypeIdentifier = context.returnTypeIdentifier
+
         super.init(parent: parent, context: context)
+
+        for context in context.parameters {
+            self.parameters.insert(MethodParameterNode(parent: self, context: context))
+        }
+        for accessContext in context.variableAccesses {
+            self.variableAccesses.insert(VariableAccessNode(parent: self, context: accessContext))
+        }
     }
 
     // MARK: - Methods

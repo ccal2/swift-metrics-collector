@@ -65,7 +65,7 @@ class ElementsTree {
         var superTypeNode: TypeNode? = nil
         if context.firstInheritedType != nil {
             guard let superTypeNodeIndex = allTypes.firstIndex(where: { typeNode in
-                typeNode.context.isSuperType(of: context)
+                typeNode.isSuperType(of: context)
             }) else {
                 contextsWaitingForSuperType.append(context)
                 return
@@ -89,7 +89,7 @@ class ElementsTree {
 
         var index = 0
         while index < contextsWaitingForSuperType.count {
-            guard typeNode.context.isSuperType(of: contextsWaitingForSuperType[index]) else {
+            guard typeNode.isSuperType(of: contextsWaitingForSuperType[index]) else {
                 index += 1
                 continue
             }

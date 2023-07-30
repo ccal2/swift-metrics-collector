@@ -5,22 +5,20 @@
 //  Created by Carolina Lopes on 18/04/23.
 //
 
-class VariableAccessNode: Node<VariableAccessContext> {
+class VariableAccessNode: Node {
 
     // MARK: - Properties
 
-    private(set) lazy var identifier: String = {
-        context.identifier
-    }()
-
-    private(set) lazy var accessedUsingSelf: Bool = {
-        context.accessedUsingSelf
-    }()
+    let identifier: String
+    let accessedUsingSelf: Bool
 
     // MARK: - Initializers
 
     init(parent: MethodNode?, context: VariableAccessContext) {
-        super.init(parent: parent, context: context)
+        self.identifier = context.identifier
+        self.accessedUsingSelf = context.accessedUsingSelf
+
+        super.init(parent: parent)
     }
 
     // MARK: - Methods

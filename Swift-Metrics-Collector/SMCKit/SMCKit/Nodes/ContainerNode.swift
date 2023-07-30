@@ -5,31 +5,24 @@
 //  Created by Carolina Lopes on 12/04/23.
 //
 
-protocol ContainerNodeObject: NodeObject {
-    var variables: Set<VariableNode> { get }
-    var methods: Set<MethodNode> { get }
-}
+class ContainerNode: Node {
 
-class ContainerNode<ContextType: Context>: Node<ContextType>, ContainerNodeObject {
+    // MARK: - Properties
 
-    private(set) lazy var variables: Set<VariableNode> = {
-        var variables: Set<VariableNode> = []
+    private(set) var variables: Set<VariableNode> = []
+    private(set) var methods: Set<MethodNode> = []
+
+    // MARK: - Initializers
+
+    init(parent: Node?, context: Context) {
+        super.init(parent: parent)
 
         for context in context.variableDeclarations {
-            variables.insert(VariableNode(parent: self, context: context))
+            self.variables.insert(VariableNode(parent: self, context: context))
         }
-
-        return variables
-    }()
-
-    private(set) lazy var methods: Set<MethodNode>  = {
-        var methods: Set<MethodNode> = []
-
         for context in context.methods {
-            methods.insert(MethodNode(parent: self, context: context))
+            self.methods.insert(MethodNode(parent: self, context: context))
         }
-
-        return methods
-    }()
+    }
 
 }

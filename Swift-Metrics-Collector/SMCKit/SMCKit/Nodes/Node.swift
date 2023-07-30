@@ -5,26 +5,18 @@
 //  Created by Carolina Lopes on 19/04/23.
 //
 
-protocol NodeObject: AnyObject {
-    associatedtype ContextType: Context
-
-    var context: ContextType { get }
-    var parent: (any NodeObject)? { get }
-}
-
-class Node<ContextType: Context>: NodeObject {
-    typealias ContextType = ContextType
+class Node {
 
     // MARK: - Properties
 
-    let context: ContextType
-    private(set) weak var parent: (any NodeObject)?
+    private(set) weak var parent: Node?
+
+    private let uuid = UUID()
 
     // MARK: - Initializers
 
-    init(parent: (any NodeObject)?, context: ContextType) {
+    init(parent: Node?) {
         self.parent = parent
-        self.context = context
     }
 
 
@@ -32,7 +24,7 @@ class Node<ContextType: Context>: NodeObject {
 
     // Declared here so it can be overridden by subclasses
     func hash(into hasher: inout Hasher) {
-        hasher.combine(context)
+        hasher.combine(uuid)
     }
 
 }
@@ -42,7 +34,7 @@ class Node<ContextType: Context>: NodeObject {
 extension Node: Hashable {
 
     static func == (lhs: Node, rhs: Node) -> Bool {
-        lhs.context == rhs.context
+        lhs.uuid == rhs.uuid
     }
 
 }

@@ -14,8 +14,7 @@ class TypeContext: Context {
     let kind: TypeKind
 
     private(set) lazy var fullIdentifier: String = {
-        // Since allPossibleIdentifiers starts with one element, it will never be empty
-        allPossibleIdentifiers.last!
+        allPossibleIdentifiers.last ?? identifier
     }()
 
     private(set) lazy var allPossibleIdentifiers: [String] = {

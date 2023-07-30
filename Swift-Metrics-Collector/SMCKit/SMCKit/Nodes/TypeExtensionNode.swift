@@ -5,17 +5,17 @@
 //  Created by Carolina Lopes on 03/05/23.
 //
 
-class TypeExtensionNode: ContainerNode<TypeExtensionContext> {
+class TypeExtensionNode: ContainerNode {
 
     // MARK: - Properties
 
-    private(set) lazy var identifier: String = {
-        context.identifier
-    }()
+    let identifier: String
 
     // MARK: - Initializers
 
     init(parent: TypeNode, context: TypeExtensionContext) {
+        self.identifier = context.identifier
+
         super.init(parent: parent, context: context)
 
         parent.extensions.insert(self)

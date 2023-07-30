@@ -5,26 +5,20 @@
 //  Created by Carolina Lopes on 03/04/23.
 //
 
-class VariableNode: Node<VariableDeclarationContext>  {
+class VariableNode: Node  {
 
     // MARK: - Properties
 
-    private(set) lazy var identifier: String = {
-        guard let identifier = context.identifier else {
-            fatalError("The variable identifier must be set before initializing the VariableNode")
-        }
-
-        return identifier
-    }()
-
-    private(set) lazy var isStatic: Bool = {
-        context.isStatic
-    }()
+    let identifier: String
+    let isStatic: Bool
 
     // MARK: - Initializers
 
-    init(parent: (any ContainerNodeObject)?, context: VariableDeclarationContext) {
-        super.init(parent: parent, context: context)
+    init(parent: Node?, context: VariableDeclarationContext) {
+        self.identifier = context.identifier
+        self.isStatic = context.isStatic
+
+        super.init(parent: parent)
     }
 
     // MARK: - Methods

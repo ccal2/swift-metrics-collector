@@ -9,12 +9,13 @@ class VariableDeclarationContext: Context {
 
     // MARK: - Properties
 
-    var identifier: String?
+    let identifier: String
     let isStatic: Bool
 
     // MARK: - Initializers
 
-    init(parent: Context, isStatic: Bool) {
+    init(parent: Context, identifier: String, isStatic: Bool) {
+        self.identifier = identifier
         self.isStatic = isStatic
         super.init(parent: parent)
     }

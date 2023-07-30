@@ -76,26 +76,11 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
     }
 
     override func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
-        let variableDeclContext = VariableDeclarationContext(parent: currentContext, isStatic: isStatic(modifiers: node.modifiers))
-        currentContext = variableDeclContext
+        if let identifier = node.bindings.first?.pattern.as(IdentifierPatternSyntax.self)?.identifier.text {
+            _ = VariableDeclarationContext(parent: currentContext, identifier: identifier, isStatic: isStatic(modifiers: node.modifiers))
+        }
 
         return .visitChildren
-    }
-
-    override func visitPost(_ node: VariableDeclSyntax) {
-        guard let parentContext = currentContext.parent else {
-            fatalError("currentContext.parent can't be nil after visiting something because there will always be the global context")
-        }
-        currentContext = parentContext
-    }
-
-    override func visit(_ node: IdentifierPatternSyntax) -> SyntaxVisitorContinueKind {
-        if let variableDeclContext = currentContext as? VariableDeclarationContext {
-            variableDeclContext.identifier = node.identifier.text
-        }
-        // else...
-
-        return .skipChildren
     }
 
     override func visit(_ node: FunctionDeclSyntax) -> SyntaxVisitorContinueKind {

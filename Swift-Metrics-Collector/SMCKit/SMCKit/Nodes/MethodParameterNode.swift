@@ -5,38 +5,33 @@
 //  Created by Carolina Lopes on 10/04/23.
 //
 
-class MethodParameterNode: Node<MethodParameterContext> {
+class MethodParameterNode: Node {
 
     // MARK: - Properties
 
-    private(set) lazy var label: String? = {
-        context.firstName
-    }()
-
-    private(set) lazy var identifier: String = {
-        if let secondName = context.secondName {
-            return secondName
-        }
-
-        guard let firstName = context.firstName else {
-            fatalError("Missing identifier in parameter")
-        }
-
-        return firstName
-    }()
-
-    private(set) lazy var typeIdentifier: String = {
-        guard let type = context.typeIdentifier else {
-            fatalError("Missing type identifier in parameter")
-        }
-
-        return type
-    }()
+    let label: String?
+    let identifier: String
+    let typeIdentifier: String
 
     // MARK: - Initializers
 
     init(parent: MethodNode, context: MethodParameterContext) {
-        super.init(parent: parent, context: context)
+        guard let type = context.typeIdentifier else {
+            fatalError("Missing type identifier in parameter")
+        }
+
+        self.label = context.firstName
+        if let secondName = context.secondName {
+            self.identifier = secondName
+        } else {
+            guard let firstName = context.firstName else {
+                fatalError("Missing identifier in parameter")
+            }
+            self.identifier = firstName
+        }
+        self.typeIdentifier = type
+
+        super.init(parent: parent)
     }
 
     // MARK: - Methods
