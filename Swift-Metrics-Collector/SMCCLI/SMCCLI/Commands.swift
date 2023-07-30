@@ -98,7 +98,7 @@ extension SwiftMetricsCollector {
         case csv
         case json
 
-        /// Direct maping for `MyTestingClass.ReportFileFormat`
+        /// Direct mapping for `MyTestingClass.ReportFileFormat`
         var reportFileFormat: MetricsCollector.ReportFileFormat {
             switch self {
             case .csv:
