@@ -14,13 +14,13 @@ The metrics collected by the tool are inspired by the suite described in the lin
 
 They are:
 
-* Weighted Methods Per Class (WMC)
-* Number of Childrem (NOC)
+* Weighted Methods per Class (WMC)
+* Number Of Childrem (NOC)
 * Depth of Inheritance Tree (DIT)
 * Lack of Cohesion in Methods (LCOM)
     ** This metric calculation differs from the one defined in the article by Chidamber and Kemerer. Instead, I decided to use the definition from the link:https://www.researchgate.net/publication/238729882_Measuring_coupling_and_cohesion_in_object-oriented_systems[article "Measuring coupling and cohesion in object-oriented systems" by Hitz, M. and Montazeri, B.].
 * Response For a Class (RFC)
-* Coupling between Object Classes (CBO)
+* Coupling Between Object classes (CBO)
 
 === Tool validation
 
@@ -39,13 +39,13 @@ As métricas coletadas pela ferramenta foram inspiradas na suíte descrita no li
 
 Elas são (em tradução livre):
 
-* Métodos ponderados por classe (Weighted Methods Per Class - WMC)
-* Número de filhos (Number of Childrem - NOC)
+* Métodos ponderados por classe (Weighted Methods per Class - WMC)
+* Número de filhos (Number Of Childrem - NOC)
 * Profundidade da árvore de herança (Depth of Inheritance Tree - DIT)
 * Falta de coesão em métodos (Lack of Cohesion in Methods - LCOM)
     ** O cálculo dessa métrica difere daquele definido no artigo de Chidamber e Kemerer. Em vez disso, eu decidi usar a definição do link:https://www.researchgate.net/publication/238729882_Measuring_coupling_and_cohesion_in_object-oriented_systems[artigo "Measuring coupling and cohesion in object-oriented systems" de Hitz, M. e Montazeri, B.].
 * Resposta para uma Classe (Response For a Class - RFC)
-* Acoplamento entre classes de objeto (Coupling between Object Classes - CBO)
+* Acoplamento entre classes de objeto (Coupling Between Object classes - CBO)
 
 === Validação da ferramenta
 
