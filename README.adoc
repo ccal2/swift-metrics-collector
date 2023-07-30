@@ -20,7 +20,7 @@ They are:
 * Lack of Cohesion in Methods (LCOM)
     ** This metric calculation differs from the one defined in the article by Chidamber and Kemerer. Instead, I decided to use the definition from the link:https://www.researchgate.net/publication/238729882_Measuring_coupling_and_cohesion_in_object-oriented_systems[article "Measuring coupling and cohesion in object-oriented systems" by Hitz, M. and Montazeri, B.].
 * Response For a Class (RFC)
-* Coupling between Object Classes (CBO) _[TBD]_
+* Coupling between Object Classes (CBO)
 
 === Tool validation
 
@@ -45,7 +45,7 @@ Elas são (em tradução livre):
 * Falta de coesão em métodos (Lack of Cohesion in Methods - LCOM)
     ** O cálculo dessa métrica difere daquele definido no artigo de Chidamber e Kemerer. Em vez disso, eu decidi usar a definição do link:https://www.researchgate.net/publication/238729882_Measuring_coupling_and_cohesion_in_object-oriented_systems[artigo "Measuring coupling and cohesion in object-oriented systems" de Hitz, M. e Montazeri, B.].
 * Resposta para uma Classe (Response For a Class - RFC)
-* Acoplamento entre classes de objeto (Coupling between Object Classes - CBO) _[a fazer]_
+* Acoplamento entre classes de objeto (Coupling between Object Classes - CBO)
 
 === Validação da ferramenta
 
