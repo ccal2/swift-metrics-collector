@@ -15,8 +15,10 @@ struct SwiftMetricsCollector: ParsableCommand {
     // MARK: - Constants
 
     static private let defaultReportFileName: String = "report"
-    static private let defaultGraphFileName: String = "graph"
-    static private let defaultOutputDirectory: String = "~/Downloads/swift-metrics-collector/"
+    static private let defaultInheritanceTreeFileName: String = "inheritance-tree"
+    static private let defaultInheritanceTreeWithMetricsFileName: String = "inheritance-tree-with-metrics"
+    static private let defaultOutputPath: String = "~/Downloads/"
+    static private let defaultOutputDirectoryName: String = "swift-metrics-collector-output"
 
     // MARK: - Arguments, flags and options
 
@@ -27,16 +29,12 @@ struct SwiftMetricsCollector: ParsableCommand {
     var reportFormat: ReportFormat = .json
 
     @Option(help: "Path where to save the tool output (report file)")
-    var outputDirectoryPath: String = Self.defaultOutputDirectory
+    var outputDirectoryPath: String = Self.defaultOutputPath
 
     // MARK: - Other properties
 
-    private var reportPath: String {
-        "\(outputDirectoryPath)\(Self.defaultReportFileName)"
-    }
-
-    private var graphPath: String {
-        "\(outputDirectoryPath)\(Self.defaultGraphFileName)"
+    private var outputDirectory: String {
+        "\(outputDirectoryPath)\(Self.defaultOutputDirectoryName)/"
     }
 
     // MARK: - Methods
@@ -60,27 +58,34 @@ struct SwiftMetricsCollector: ParsableCommand {
         let startingTime = Date()
         print("starting: \(startingTime)")
 
-        let collector = MetricsCollector()
+        defer {
+            let finishingTime = Date()
+            print("finished: \(finishingTime)")
+            print("elapsed time: \(finishingTime.timeIntervalSince(startingTime))")
+        }
+
+        let collector = MetricsCollector(outputPath: outputDirectory)
 
         do {
             try collector.analyze(path: filePath)
         } catch {
             // TODO: handle error
             print(error)
+            return
         }
 
         do {
-            try collector.saveReport(at: reportPath,
-                                     fileFormat: reportFormat.reportFileFormat)
-            try collector.saveGraph(at: graphPath)
+            try collector.saveReport(withFileName: Self.defaultReportFileName,
+                                     andFormat: reportFormat.reportFileFormat)
+            try collector.saveInheritanceTree(withFileName: Self.defaultInheritanceTreeFileName,
+                                              showMetrics: false)
+            try collector.saveInheritanceTree(withFileName: Self.defaultInheritanceTreeWithMetricsFileName,
+                                              showMetrics: true)
         } catch {
             // TODO: handle error
             print(error)
+            return
         }
-
-        let finishingTime = Date()
-        print("finished: \(finishingTime)")
-        print("elapsed time: \(finishingTime.timeIntervalSince(startingTime))")
     }
 
 }

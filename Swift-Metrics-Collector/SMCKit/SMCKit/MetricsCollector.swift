@@ -11,6 +11,7 @@ public class MetricsCollector {
 
     // MARK: - Properties
 
+    private var outputPath: String
     private let fileManager: FileManager
     private let globalContext = Context(parent: nil)
     private lazy var visitor = ContextTreeGeneratorVisitor(rootContext: globalContext)
@@ -21,9 +22,12 @@ public class MetricsCollector {
         createReport()
     }
 
+    private var createdOutputDirectory: Bool = false
+
     // MARK: - Initializers
 
-    public init(fileManager: FileManager = .default) {
+    public init(outputPath: String, fileManager: FileManager = .default) {
+        self.outputPath = (outputPath as NSString).expandingTildeInPath
         self.fileManager = fileManager
     }
 
@@ -39,7 +43,9 @@ public class MetricsCollector {
         tree.generateTree()
     }
 
-    public func saveReport(at path: String, fileFormat: ReportFileFormat) throws {
+    public func saveReport(withFileName fileName: String, andFormat fileFormat: ReportFileFormat) throws {
+        try createOutputDirectory()
+
         let reportStructurer: ReportStructurer
         switch fileFormat {
         case .csv:
@@ -49,16 +55,20 @@ public class MetricsCollector {
         }
 
         let structuredReport = try reportStructurer.structure(report: createReport())
-        let reportFileURL = fileURL(from: path, fileExtension: fileFormat.rawValue)
 
-        try structuredReport.write(to: reportFileURL, atomically: true, encoding: .utf8)
+        try structuredReport.write(to: outputFileURL(withName: fileName, andExtension: fileFormat.rawValue),
+                                   atomically: true,
+                                   encoding: .utf8)
     }
 
-    public func saveGraph(at path: String) throws {
-        let graph = createGraph()
-        let reportFileURL = fileURL(from: path, fileExtension: "mmd")
+    public func saveInheritanceTree(withFileName fileName: String, showMetrics: Bool) throws {
+        try createOutputDirectory()
 
-        try graph.write(to: reportFileURL, atomically: true, encoding: .utf8)
+        let graph = createGraph(withMetrics: showMetrics)
+
+        try graph.write(to: outputFileURL(withName: fileName, andExtension: "mmd"),
+                        atomically: true,
+                        encoding:.utf8)
     }
 
     // MARK: - Internal methods
@@ -85,12 +95,18 @@ public class MetricsCollector {
         return report
     }
 
-    func createGraph() -> String {
-        var graph: String = "---\ntitle: Inheritance tree with metrics\n---\ngraph TD\n\tclassDef classNode text-align:left;\n\n"
+    func createGraph(withMetrics: Bool) -> String {
+        var graph: String = "---\ntitle: Inheritance tree"
+
+        if withMetrics {
+            graph.append(" with metrics")
+        }
+
+        graph.append("\n---\ngraph TD\n\tclassDef classNode text-align:left;\n\n")
 
         for typeNode in tree.allTypes {
             if typeNode.kind == .class {
-                addTypeNode(for: typeNode, toGraph: &graph)
+                addTypeNode(for: typeNode, toGraph: &graph, withMetrics: withMetrics)
             }
         }
 
@@ -170,35 +186,48 @@ public class MetricsCollector {
         return swiftFilePaths
     }
 
-    /// Creates an `URL` based on the given path and file extension. If there already exists a file at that path then it tries to add "(1)" at the end of the path. If that already exists, it moves to 2 and so on...
-    /// - Parameters:
-    ///   - path: The path used to create the `URL` object.
-    ///   - fileExtension: The file extension for the file at `path`.
-    /// - Returns: An `URL` for the given path or a similar one with a counter added at the end of the file name, if a file with the same name already exists.
-    private func fileURL(from path: String, fileExtension: String) -> URL {
-        let expandedPath = NSString(string: path).expandingTildeInPath
-        var url = URL(fileURLWithPath: expandedPath)
+
+    /// Tries to create a directory at `outputPath`. If there is already a file or directory at that path then it tries to add "(1)" at the end of the path. If that already exists, it moves to 2 and so on.
+    /// If it is needed to add the number differentiator at the end of the output path, this method updates the `outputPath` property accordingly.
+    ///
+    /// E.g.:
+    /// `outputPath` = "~/Downloads/swift-metrics-collector-output/"
+    /// 1. Try to create a directory named "swift-metrics-collector-output" at "~/Downloads/".
+    /// 2. If it already exists, try to create a directory named "swift-metrics-collector-output(1)" at "~/Downloads/".
+    /// 3. If it already exists, try to create a directory named "swift-metrics-collector-output(2)" at "~/Downloads/".
+    /// 4. And so on until it's able to create a file with a non-existing name.
+    private func createOutputDirectory() throws {
+        guard !createdOutputDirectory else {
+            return
+        }
+
+        var counter = 0
+        let originalPath = outputPath
+        while fileManager.fileExists(atPath: outputPath) {
+            counter += 1
+
+            let incrementedPath = "\(originalPath)(\(counter))"
+            outputPath = incrementedPath
+        }
+
+        try fileManager.createDirectory(atPath: outputPath, withIntermediateDirectories: true)
+
+        createdOutputDirectory = true
+    }
+
+    private func outputFileURL(withName fileName: String, andExtension fileExtension: String) -> URL {
+        var url = URL(fileURLWithPath: "\(outputPath)/\(fileName)")
 
         if url.pathExtension.lowercased() != fileExtension.lowercased() {
             url.appendPathExtension(fileExtension)
         }
 
-        var counter = 0
-        let originalFileURL = url
-        let pathExtension = originalFileURL.pathExtension
-        while fileManager.fileExists(atPath: url.path) {
-            counter += 1
-
-            let incrementedPath = "\(originalFileURL.deletingPathExtension().path)(\(counter))"
-            url = URL(fileURLWithPath: incrementedPath).appendingPathExtension(pathExtension)
-        }
-
         return url
     }
 
-    private func addTypeNode(for typeNode: TypeNode, toGraph graph: inout String) {
+    private func addTypeNode(for typeNode: TypeNode, toGraph graph: inout String, withMetrics: Bool) {
         graph.append("\t\(typeNode.identifier)(\"#nbsp;\(typeNode.identifier)#nbsp;")
-        if let metrics = report.classes[typeNode.identifier]?.metrics {
+        if let metrics = report.classes[typeNode.identifier]?.metrics, withMetrics {
             graph.append("<br><br>#nbsp;NOC = \(metrics.numberOfChildren)<br>#nbsp;DIT = \(metrics.depthOfInheritance)<br>#nbsp;WMC = \(metrics.weightedMethodsPerClass)<br>#nbsp;LCOM = \(metrics.lackOfCohesionInMethods)<br>#nbsp;RFC = \(metrics.responseForAClass)")
         }
         graph.append("\")\n")
