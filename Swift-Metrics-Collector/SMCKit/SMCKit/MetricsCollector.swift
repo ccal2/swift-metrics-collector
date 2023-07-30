@@ -243,7 +243,7 @@ public class MetricsCollector {
         graph.append("\tclass \(typeNode.identifier) classNode\n")
 
         if let parent = typeNode.parent as? TypeNode {
-            graph.append("\t\(parent.identifier)-->\(typeNode.identifier)\n")
+            graph.append("\t\(parent.identifier)--->\(typeNode.identifier)\n")
         }
 
         graph.append("\n")
