@@ -44,7 +44,7 @@ Elas são (em tradução livre):
 * Profundidade da árvore de herança (Depth of Inheritance Tree - DIT)
 * Falta de coesão em métodos (Lack of Cohesion in Methods - LCOM)
     ** O cálculo dessa métrica difere daquele definido no artigo de Chidamber e Kemerer. Em vez disso, eu decidi usar a definição do link:https://www.researchgate.net/publication/238729882_Measuring_coupling_and_cohesion_in_object-oriented_systems[artigo "Measuring coupling and cohesion in object-oriented systems" de Hitz, M. e Montazeri, B.].
-* Resposta para uma Classe (Response For a Class - RFC)
+* Resposta para uma classe (Response For a Class - RFC)
 * Acoplamento entre classes de objeto (Coupling Between Object classes - CBO)
 
 === Validação da ferramenta
