@@ -15,7 +15,7 @@ let inputsDirectoryPath = "\(UserSettings.projectPath)/SMCKit/SMCKitTests/Test C
 // MARK: - Methods
 
 func analyze(input: String) throws -> Report {
-    let collector = MetricsCollector()
+    let collector = MetricsCollector(outputPath: "")
     try collector.analyze(path: "\(inputsDirectoryPath)/\(input)")
     return collector.createReport()
 }
