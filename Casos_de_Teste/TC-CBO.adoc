@@ -4,7 +4,7 @@
 
 = TC-CBO-XXX
 
-Casos de teste relacionados ao cálculo da métrica CBO (Response For a Class).
+Casos de teste relacionados ao cálculo da métrica CBO (Coupling Between Object classes).
 
 toc::[]
 
