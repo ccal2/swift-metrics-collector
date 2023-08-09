@@ -1,0 +1,410 @@
+:toc: macro
+:toc-title:
+:toclevels: 1
+
+= TC-LCOM-XXX
+
+Casos de teste relacionados ao cálculo da métrica LCOM (Lack of Cohesion in Methods).
+
+toc::[]
+
+== TC-LCOM-001
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method2() { }
+    func method3() { }
+
+    static func method4() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 3
+|===
+
+
+== TC-LCOM-002
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1: Double = 42.0
+
+    func method1() {
+        print(variable1)
+    }
+    func method2() -> Double {
+        variable1
+    }
+    func method3() { }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 2
+|===
+
+
+== TC-LCOM-003
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1: Double = 42.0
+
+    static var variable2 = true
+
+    func method1() {
+        print(variable1)
+        print(Self.variable2)
+    }
+    func method2() -> Double {
+        variable1
+    }
+    func method3() {
+        if Self.variable2 {
+            print("yes")
+        }
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 2
+|===
+
+
+== TC-LCOM-004
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1: Double = 42.0
+
+    static var variable2 = true
+
+    func method1() {
+        print(variable1)
+        print(Self.variable2)
+    }
+    func method2() -> Double {
+        variable1
+    }
+    func method3() {
+        if Self.variable2 {
+            print("yes")
+        }
+    }
+
+    static func method4() {
+        if Self.variable2 {
+            print("yes")
+        }
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 2
+|===
+
+
+== TC-LCOM-005
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1: Double = 42.0
+    var variable2 = true
+    var variable3 = "something"
+    var variable4 = [1, 2, 3]
+
+    func method1() {
+        print(variable1)
+    }
+    func method2() {
+        if variable2 {
+            print(variable3)
+        }
+    }
+    func method3() {
+        for _ in variable4 {
+            print(self.variable3)
+        }
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 2
+|===
+
+
+== TC-LCOM-006
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1: Double = 42.0
+    var variable2 = true
+    var variable3 = "something"
+    var variable4 = [1, 2, 3]
+
+    func method1() {
+        if variable2 {
+            print(variable1)
+        }
+    }
+    func method2() {
+        if variable2 {
+            print(variable3)
+        }
+    }
+    func method3() {
+        for _ in variable4 {
+            print(self.variable3)
+        }
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 1
+|===
+
+
+== TC-LCOM-007
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1: Double = 42.0
+    var variable2 = true
+    var variable3 = "something"
+    var variable4 = [1, 2, 3]
+}
+
+extension Class1 {
+    func method1() {
+        if variable2 {
+            print(variable1)
+        }
+    }
+    func method2() {
+        if variable2 {
+            print(variable3)
+        }
+    }
+    func method3() {
+        for _ in variable4 {
+            print(self.variable3)
+        }
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 1
+|===
+
+
+== TC-LCOM-008
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1: Double = 42.0
+    var variable2 = true
+    var variable3 = "something"
+    var variable4 = [1, 2, 3]
+
+    func method1() {
+        if variable2 {
+            print(variable1)
+        }
+    }
+
+    func method2() {
+        if variable2 {
+            print(variable3)
+        }
+    }
+}
+
+extension Class1 {
+    func method3() {
+        for _ in variable4 {
+            print(self.variable3)
+        }
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 1
+|===
+
+
+== TC-LCOM-009
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+Class1.swift:
+[, swift]
+----
+class Class1 {
+    var variable1: Double = 42.0
+    var variable2 = true
+    var variable3 = "something"
+    var variable4 = [1, 2, 3]
+
+    func method1() {
+        print(variable1)
+    }
+}
+----
+
+Class2.swift:
+[, swift]
+----
+class Class2: Class1 {
+    func method2() {
+        if variable2 {
+            print(variable3)
+        }
+    }
+    func method3() {
+        for _ in variable4 {
+            print(self.variable3)
+        }
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 1
+| 2 | Class2 | 1
+|===
+
+
+== TC-LCOM-010
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+class Class1 { }
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 0
+|===

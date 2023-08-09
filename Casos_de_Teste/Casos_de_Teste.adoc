@@ -5,3 +5,4 @@ link:TC-DIT.adoc[TC-DIT] +
 link:TC-WMC.adoc[TC-WMC] +
 link:TC-RFC.adoc[TC-RFC] +
 link:TC-CBO.adoc[TC-CBO] +
+link:TC-LCOM.adoc[TC-LCOM] +

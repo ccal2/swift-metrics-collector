@@ -39,6 +39,7 @@
 		77AB89A529C94DB00087DA08 /* ContextIteratorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AB89A429C94DB00087DA08 /* ContextIteratorsTests.swift */; };
 		77CDF34129F0B3FA00F9EF2F /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDF34029F0B3FA00F9EF2F /* Node.swift */; };
 		77CDF34329F0B40C00F9EF2F /* ContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CDF34229F0B40C00F9EF2F /* ContainerNode.swift */; };
+		77D925522A83173300D907F9 /* TC_LCOM_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D925512A83173300D907F9 /* TC_LCOM_Tests.swift */; };
 		77DC1D8D29F48BAF002A1ED3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC1D8C29F48BAF002A1ED3 /* Report.swift */; };
 		77DC1D9029F4D36E002A1ED3 /* ReportStructurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC1D8F29F4D36E002A1ED3 /* ReportStructurer.swift */; };
 		77DC1DF329F780D300989E0E /* FileContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC1DF229F780D300989E0E /* FileContext.swift */; };
@@ -143,6 +144,18 @@
 		77AB89A429C94DB00087DA08 /* ContextIteratorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextIteratorsTests.swift; sourceTree = "<group>"; };
 		77CDF34029F0B3FA00F9EF2F /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		77CDF34229F0B40C00F9EF2F /* ContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerNode.swift; sourceTree = "<group>"; };
+		77D925512A83173300D907F9 /* TC_LCOM_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TC_LCOM_Tests.swift; sourceTree = "<group>"; };
+		77D925542A83181500D907F9 /* TC-LCOM-001.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-001.swift"; sourceTree = "<group>"; };
+		77D925562A83183400D907F9 /* TC-LCOM-002.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-002.swift"; sourceTree = "<group>"; };
+		77D925572A83184D00D907F9 /* TC-LCOM-003.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-003.swift"; sourceTree = "<group>"; };
+		77D925582A83186700D907F9 /* TC-LCOM-004.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-004.swift"; sourceTree = "<group>"; };
+		77D925592A83189300D907F9 /* TC-LCOM-005.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-005.swift"; sourceTree = "<group>"; };
+		77D9255B2A8318CB00D907F9 /* TC-LCOM-006.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-006.swift"; sourceTree = "<group>"; };
+		77D9255D2A8318E900D907F9 /* TC-LCOM-007.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-007.swift"; sourceTree = "<group>"; };
+		77D9255E2A8318FD00D907F9 /* TC-LCOM-008.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-008.swift"; sourceTree = "<group>"; };
+		77D925602A83191A00D907F9 /* Class1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class1.swift; sourceTree = "<group>"; };
+		77D925622A83197100D907F9 /* Class2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class2.swift; sourceTree = "<group>"; };
+		77D925632A83198700D907F9 /* TC-LCOM-010.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-010.swift"; sourceTree = "<group>"; };
 		77DC1D8C29F48BAF002A1ED3 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		77DC1D8F29F4D36E002A1ED3 /* ReportStructurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStructurer.swift; sourceTree = "<group>"; };
 		77DC1DF229F780D300989E0E /* FileContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileContext.swift; sourceTree = "<group>"; };
@@ -218,6 +231,7 @@
 			children = (
 				77F9222C2A76DF86006DE57B /* TC_CBO_Tests.swift */,
 				772C64262A6F55970079680C /* TC_DIT_Tests.swift */,
+				77D925512A83173300D907F9 /* TC_LCOM_Tests.swift */,
 				772C640E2A68AFE10079680C /* TC_NOC_Tests.swift */,
 				772C64462A7343330079680C /* TC_RFC_Tests.swift */,
 				772C64322A71F70D0079680C /* TC_WMC_Tests.swift */,
@@ -232,6 +246,7 @@
 			children = (
 				77F9222E2A76E100006DE57B /* CBO */,
 				772C64602A7348070079680C /* DIT */,
+				77D925532A83175300D907F9 /* LCOM */,
 				772C64612A7348120079680C /* NOC */,
 				772C64622A73481F0079680C /* RFC */,
 				772C64632A73482C0079680C /* WMC */,
@@ -381,6 +396,32 @@
 				7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */,
 			);
 			path = Contexts;
+			sourceTree = "<group>";
+		};
+		77D925532A83175300D907F9 /* LCOM */ = {
+			isa = PBXGroup;
+			children = (
+				77D925542A83181500D907F9 /* TC-LCOM-001.swift */,
+				77D925562A83183400D907F9 /* TC-LCOM-002.swift */,
+				77D925572A83184D00D907F9 /* TC-LCOM-003.swift */,
+				77D925582A83186700D907F9 /* TC-LCOM-004.swift */,
+				77D925592A83189300D907F9 /* TC-LCOM-005.swift */,
+				77D9255B2A8318CB00D907F9 /* TC-LCOM-006.swift */,
+				77D9255D2A8318E900D907F9 /* TC-LCOM-007.swift */,
+				77D9255E2A8318FD00D907F9 /* TC-LCOM-008.swift */,
+				77D925612A83193300D907F9 /* TC-LCOM-009 */,
+				77D925632A83198700D907F9 /* TC-LCOM-010.swift */,
+			);
+			path = LCOM;
+			sourceTree = "<group>";
+		};
+		77D925612A83193300D907F9 /* TC-LCOM-009 */ = {
+			isa = PBXGroup;
+			children = (
+				77D925602A83191A00D907F9 /* Class1.swift */,
+				77D925622A83197100D907F9 /* Class2.swift */,
+			);
+			path = "TC-LCOM-009";
 			sourceTree = "<group>";
 		};
 		77DC1D8E29F4D35E002A1ED3 /* Report */ = {
@@ -620,6 +661,7 @@
 				772C64332A71F70D0079680C /* TC_WMC_Tests.swift in Sources */,
 				77AB89A529C94DB00087DA08 /* ContextIteratorsTests.swift in Sources */,
 				77F9222D2A76DF86006DE57B /* TC_CBO_Tests.swift in Sources */,
+				77D925522A83173300D907F9 /* TC_LCOM_Tests.swift in Sources */,
 				772C640F2A68AFE10079680C /* TC_NOC_Tests.swift in Sources */,
 				772C64112A68B0AE0079680C /* Utils.swift in Sources */,
 			);
