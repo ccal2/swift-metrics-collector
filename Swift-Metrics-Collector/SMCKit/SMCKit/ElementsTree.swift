@@ -99,6 +99,7 @@ class ElementsTree {
             }
 
             let subTypeNode = TypeNode(parent: typeNode, context: contextsWaitingForSuperType[index])
+            possibleCouplings[subTypeNode] = contextsWaitingForSuperType[index].possibleTypeCouplings
             allTypes.insert(subTypeNode)
 
             contextsWaitingForSuperType.remove(at: index)
@@ -207,6 +208,7 @@ class ElementsTree {
                 for otherType in allTypes where otherType != typeNode {
                     if otherType.allPossibleIdentifiers.contains(possibleCoupling) {
                         saveCouplingBetween(typeNode, and: otherType)
+                        break
                     }
                 }
             }
