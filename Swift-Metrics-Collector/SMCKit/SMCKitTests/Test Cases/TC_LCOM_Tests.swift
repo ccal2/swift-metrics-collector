@@ -116,4 +116,54 @@ final class TC_LCOM_Tests: XCTestCase {
         assertLCOM(for: class1, expectedValue: 0)
     }
 
+    func test_TC_LCOM_011() throws {
+        let report = try analyze(input: "\(input_folder)/TC-LCOM-011.swift")
+
+        XCTAssertEqual(report.classes.count, 1)
+
+        // Class1
+        let class1 = try getClass(from: report, withIdentifier: "Class1")
+        assertLCOM(for: class1, expectedValue: 1)
+    }
+
+    func test_TC_LCOM_012() throws {
+        let report = try analyze(input: "\(input_folder)/TC-LCOM-012.swift")
+
+        XCTAssertEqual(report.classes.count, 1)
+
+        // Class1
+        let class1 = try getClass(from: report, withIdentifier: "Class1")
+        assertLCOM(for: class1, expectedValue: 2)
+    }
+
+    func test_TC_LCOM_013() throws {
+        let report = try analyze(input: "\(input_folder)/TC-LCOM-013.swift")
+
+        XCTAssertEqual(report.classes.count, 1)
+
+        // Class1
+        let class1 = try getClass(from: report, withIdentifier: "Class1")
+        assertLCOM(for: class1, expectedValue: 1)
+    }
+
+    func test_TC_LCOM_014() throws {
+        let report = try analyze(input: "\(input_folder)/TC-LCOM-014.swift")
+
+        XCTAssertEqual(report.classes.count, 1)
+
+        // Class1
+        let class1 = try getClass(from: report, withIdentifier: "Class1")
+        assertLCOM(for: class1, expectedValue: 1)
+    }
+
+    func test_TC_LCOM_015() throws {
+        let report = try analyze(input: "\(input_folder)/TC-LCOM-015.swift")
+
+        XCTAssertEqual(report.classes.count, 1)
+
+        // Class1
+        let class1 = try getClass(from: report, withIdentifier: "Class1")
+        assertLCOM(for: class1, expectedValue: 2)
+    }
+
 }

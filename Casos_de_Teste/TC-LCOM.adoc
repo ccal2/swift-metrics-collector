@@ -408,3 +408,178 @@ class Class1 { }
 
 | 1 | Class1 | 0
 |===
+
+
+== TC-LCOM-011
+
+=== Cenário
+
+Um método de uma classe acessa uma variável de instância e, em linhas posteriores à esse acesso, declara uma variável local com o mesmo nome da variável de instância e acessa essa variável local. Um outro método da mesma classe também acessa a mesma variável de instância.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1 = false
+
+    func method1() {
+        print(variable1)
+        let variable1 = true
+        print(variable1)
+    }
+
+    func method2() {
+        print(self.variable1)
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 1
+|===
+
+
+== TC-LCOM-012
+
+=== Cenário
+
+Um método de uma classe declara uma variável local com o mesmo nome de uma variável de instância e acessa essa variável local. Um outro método da mesma classe também acessa a variável de instância de mesmo nome.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1 = false
+
+    func method1() {
+        let variable1 = true
+        print(variable1)
+    }
+
+    func method2() {
+        print(self.variable1)
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 2
+|===
+
+
+== TC-LCOM-013
+
+=== Cenário
+
+Um método de uma classe declara uma variável local com o mesmo nome de uma variável de instância e acessa essa variável local. Em uma linha posterior à declaração da variável local, o mesmo método acessa a variável de instância utilizando `self`. Um outro método da mesma classe também acessa a variável de instância.
+
+=== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1 = false
+
+    func method1() {
+        let variable1 = true
+        print(variable1)
+        print(self.variable1)
+    }
+
+    func method2() {
+        print(self.variable1)
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 1
+|===
+
+
+== TC-LCOM-014
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+var variable1 = true
+
+class Class1 {
+    var variable1 = false
+
+    func method1() {
+        print(variable1)
+    }
+
+    func method2() {
+        print(self.variable1)
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 1
+|===
+
+
+== TC-LCOM-015
+
+=== Cenário
+
+// TODO: Descrever cenário
+
+=== Entrada
+
+[, swift]
+----
+var variable1 = true
+
+class Class1 {
+    var variable1 = false
+
+    func method1() {
+        print(Module1.variable1)
+    }
+
+    func method2() {
+        print(self.variable1)
+    }
+}
+----
+
+=== Resultado
+
+[%autowidth]
+|===
+| # | Class  | LCOM
+
+| 1 | Class1 | 2
+|===
+

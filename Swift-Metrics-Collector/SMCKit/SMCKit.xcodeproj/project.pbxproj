@@ -156,6 +156,11 @@
 		77D925602A83191A00D907F9 /* Class1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class1.swift; sourceTree = "<group>"; };
 		77D925622A83197100D907F9 /* Class2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class2.swift; sourceTree = "<group>"; };
 		77D925632A83198700D907F9 /* TC-LCOM-010.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-010.swift"; sourceTree = "<group>"; };
+		77D925642A85D8FE00D907F9 /* TC-LCOM-011.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-011.swift"; sourceTree = "<group>"; };
+		77D925652A85D9F800D907F9 /* TC-LCOM-012.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-012.swift"; sourceTree = "<group>"; };
+		77D925662A85DAA500D907F9 /* TC-LCOM-013.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-013.swift"; sourceTree = "<group>"; };
+		77D925672A85DB9F00D907F9 /* TC-LCOM-014.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-014.swift"; sourceTree = "<group>"; };
+		77D925682A85DD3C00D907F9 /* TC-LCOM-015.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TC-LCOM-015.swift"; sourceTree = "<group>"; };
 		77DC1D8C29F48BAF002A1ED3 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		77DC1D8F29F4D36E002A1ED3 /* ReportStructurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStructurer.swift; sourceTree = "<group>"; };
 		77DC1DF229F780D300989E0E /* FileContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileContext.swift; sourceTree = "<group>"; };
@@ -411,6 +416,11 @@
 				77D9255E2A8318FD00D907F9 /* TC-LCOM-008.swift */,
 				77D925612A83193300D907F9 /* TC-LCOM-009 */,
 				77D925632A83198700D907F9 /* TC-LCOM-010.swift */,
+				77D925642A85D8FE00D907F9 /* TC-LCOM-011.swift */,
+				77D925652A85D9F800D907F9 /* TC-LCOM-012.swift */,
+				77D925662A85DAA500D907F9 /* TC-LCOM-013.swift */,
+				77D925672A85DB9F00D907F9 /* TC-LCOM-014.swift */,
+				77D925682A85DD3C00D907F9 /* TC-LCOM-015.swift */,
 			);
 			path = LCOM;
 			sourceTree = "<group>";
