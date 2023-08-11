@@ -11,12 +11,14 @@ class VariableNode: Node  {
 
     let identifier: String
     let isStatic: Bool
+    let position: Int
 
     // MARK: - Initializers
 
     init(parent: Node?, context: VariableDeclarationContext) {
         self.identifier = context.identifier
         self.isStatic = context.isStatic
+        self.position = context.position
 
         super.init(parent: parent)
     }
@@ -29,7 +31,8 @@ class VariableNode: Node  {
         return """
         \(prefix)Variable: {
         \(prefix)\tidentifier: \(identifier),
-        \(prefix)\tisStatic: \(isStatic)
+        \(prefix)\tisStatic: \(isStatic),
+        \(prefix)\tposition: \(position)
         \(prefix)}
         """
     }

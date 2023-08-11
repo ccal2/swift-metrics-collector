@@ -11,12 +11,14 @@ class VariableAccessNode: Node {
 
     let identifier: String
     let accessedUsingSelf: Bool
+    let position: Int
 
     // MARK: - Initializers
 
     init(parent: MethodNode?, context: VariableAccessContext) {
         self.identifier = context.identifier
         self.accessedUsingSelf = context.accessedUsingSelf
+        self.position = context.position
 
         super.init(parent: parent)
     }
@@ -29,17 +31,10 @@ class VariableAccessNode: Node {
         return """
         \(prefix)Variable access: {
         \(prefix)\tidentifier: \(identifier),
-        \(prefix)\taccessedUsingSelf: \(accessedUsingSelf)
+        \(prefix)\taccessedUsingSelf: \(accessedUsingSelf),
+        \(prefix)\tposition: \(position)
         \(prefix)}
         """
-    }
-
-    // MARK: - Hashable
-
-    // Declared here so it can be overridden
-    override func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-        hasher.combine(accessedUsingSelf)
     }
 
 }
@@ -50,16 +45,6 @@ extension VariableAccessNode: CustomStringConvertible {
 
     var description: String {
         printableDescription()
-    }
-
-}
-
-// MARK: - Hashable
-
-extension VariableAccessNode {
-
-    static func == (lhs: VariableAccessNode, rhs: VariableAccessNode) -> Bool {
-        lhs.identifier == rhs.identifier && lhs.accessedUsingSelf == rhs.accessedUsingSelf
     }
 
 }

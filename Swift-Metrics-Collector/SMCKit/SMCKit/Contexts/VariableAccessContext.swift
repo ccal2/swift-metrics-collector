@@ -11,31 +11,15 @@ class VariableAccessContext: Context {
 
     let identifier: String
     let accessedUsingSelf: Bool
+    let position: Int
 
     // MARK: - Initializers
 
-    init(parent: MethodContext, identifier: String, accessedUsingSelf: Bool) {
+    init(parent: MethodContext, identifier: String, accessedUsingSelf: Bool, position: Int) {
         self.identifier = identifier
         self.accessedUsingSelf = accessedUsingSelf
+        self.position = position
         super.init(parent: parent)
-    }
-
-    // MARK: - Hashable
-
-    // Declared here so it can be overridden
-    override func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-        hasher.combine(accessedUsingSelf)
-    }
-
-}
-
-// MARK: - Hashable
-
-extension VariableAccessContext {
-
-    static func == (lhs: VariableAccessContext, rhs: VariableAccessContext) -> Bool {
-        lhs.identifier == rhs.identifier && lhs.accessedUsingSelf == rhs.accessedUsingSelf
     }
 
 }

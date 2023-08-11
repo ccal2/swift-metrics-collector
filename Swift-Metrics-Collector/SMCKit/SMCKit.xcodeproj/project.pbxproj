@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7704C5592A5CC98B00E1AE1A /* Collection+first.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7704C5582A5CC98B00E1AE1A /* Collection+first.swift */; };
+		7704C5592A5CC98B00E1AE1A /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7704C5582A5CC98B00E1AE1A /* Collection+Extension.swift */; };
 		7704C55B2A5CDA0F00E1AE1A /* MetricsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7704C55A2A5CDA0F00E1AE1A /* MetricsCalculator.swift */; };
 		7706EE6129DBBBA900DB6BFE /* TypeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6029DBBBA900DB6BFE /* TypeNode.swift */; };
 		7706EE6329DBBC7300DB6BFE /* VariableDeclarationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */; };
@@ -62,7 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7704C5582A5CC98B00E1AE1A /* Collection+first.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+first.swift"; sourceTree = "<group>"; };
+		7704C5582A5CC98B00E1AE1A /* Collection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		7704C55A2A5CDA0F00E1AE1A /* MetricsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsCalculator.swift; sourceTree = "<group>"; };
 		7706EE6029DBBBA900DB6BFE /* TypeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeNode.swift; sourceTree = "<group>"; };
 		7706EE6229DBBC7300DB6BFE /* VariableDeclarationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableDeclarationContext.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 		7720DB3B29EF7A1400BC5F31 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7704C5582A5CC98B00E1AE1A /* Collection+first.swift */,
+				7704C5582A5CC98B00E1AE1A /* Collection+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -639,7 +639,7 @@
 				77DC1D9029F4D36E002A1ED3 /* ReportStructurer.swift in Sources */,
 				7706EE6629DBBDAA00DB6BFE /* VariableNode.swift in Sources */,
 				77E1043929C80DE8006BFB1A /* SMCKit.docc in Sources */,
-				7704C5592A5CC98B00E1AE1A /* Collection+first.swift in Sources */,
+				7704C5592A5CC98B00E1AE1A /* Collection+Extension.swift in Sources */,
 				7770943829F9F5B30052ED51 /* TypeExtensionContext.swift in Sources */,
 				77AB89A129C94B330087DA08 /* ContextIterators.swift in Sources */,
 				7720DB3829EF6D4600BC5F31 /* VariableAccessContext.swift in Sources */,

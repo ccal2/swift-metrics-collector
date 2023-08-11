@@ -92,7 +92,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
 
     override func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
         if let identifier = node.bindings.first?.pattern.as(IdentifierPatternSyntax.self)?.identifier.text {
-            _ = VariableDeclarationContext(parent: currentContext, identifier: identifier, isStatic: isStatic(modifiers: node.modifiers))
+            _ = VariableDeclarationContext(parent: currentContext, identifier: identifier, isStatic: isStatic(modifiers: node.modifiers), position: node.position.utf8Offset)
         }
 
         return .visitChildren
@@ -168,9 +168,9 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
                 return .visitChildren
             }
 
-            _ = VariableAccessContext(parent: methodContext, identifier: nameIdentifier, accessedUsingSelf: true)
+            _ = VariableAccessContext(parent: methodContext, identifier: nameIdentifier, accessedUsingSelf: true, position: node.position.utf8Offset)
         } else {
-            _ = VariableAccessContext(parent: methodContext, identifier: baseIdentifierExpr.identifier.text, accessedUsingSelf: false)
+            _ = VariableAccessContext(parent: methodContext, identifier: baseIdentifierExpr.identifier.text, accessedUsingSelf: false, position: node.position.utf8Offset)
         }
 
         return .visitChildren
@@ -191,8 +191,7 @@ class ContextTreeGeneratorVisitor: SyntaxVisitor {
             return .skipChildren
         }
 
-        _ = VariableAccessContext(parent: methodContext, identifier: node.identifier.text, accessedUsingSelf: false)
-
+        _ = VariableAccessContext(parent: methodContext, identifier: node.identifier.text, accessedUsingSelf: false, position: node.position.utf8Offset)
 
         return .skipChildren
     }

@@ -13,4 +13,10 @@ extension Collection where Element == VariableNode {
         }
     }
 
+    func filter(byIdentifier identifier: String) -> [VariableNode] {
+        filter { node in
+            node.identifier == identifier
+        }
+    }
+
 }
