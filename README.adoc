@@ -1,6 +1,10 @@
+:toc: macro
+:toc-title:
+:toclevels: 2
+
 = Swift Metrics Collector
 
-:toc: auto
+toc::[]
 
 == EN 🇬🇧
 
