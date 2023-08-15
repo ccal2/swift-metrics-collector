@@ -148,8 +148,9 @@ class Class4: Class3 { }
 
 === Cenário
 
-Uma classe definida dentro de outra classe herda de classe definida dentro de outra classe que foi definida dentro de outra classe.
-Onde está definida a superclasse também tem outras duas classes que herdam dela. Uma delas usa o identificador "simples" da superclasse, enquanto a outra usa o identificador "completo".
+Um classe define uma outra classe dentro do seu escopo que, por sua vez, define outras três classes. Duas dessas três classes herdam da terceira. Uma delas usa o identificador "simples" da superclasse, enquanto a outra usa o identificador "completo" para indicar a herança.
+
+Uma outra classe é definida no código, fora do escopo das classes descritas até então. Essa classe define uma outra dentro de seu escopo que herda da mesma classe que as duas outras classes comentadas anteriormente herdaram.
 
 === Entrada
 
