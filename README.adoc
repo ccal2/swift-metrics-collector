@@ -26,6 +26,9 @@ They are:
 
 I wrote a few test cases to validate the tool and implemented them as automated tests in Xcode. The test case descriptions are link:Casos_de_Teste[only available in portuguese] and their implementation is available on link:Swift-Metrics-Collector/SMCKit/SMCKitTests/Test%20Cases[Test Cases].
 
+=== Limitations
+
+There are some scenarios in which the tool doesn't calculate the metrics correctly. The known limitations are described with exemples in link:Limitacoes.adoc[Limitações] (descriptions only available in portuguese).
 
 == PT-BR 🇧🇷
 
@@ -50,3 +53,7 @@ Elas são (em tradução livre):
 === Validação da ferramenta
 
 Escrevi alguns casos de teste para validar a ferramenta e implementei eles como testes automatizados no Xcode. Eles estão descritos em link:Casos_de_Teste[Casos de Teste] e implementados em link:Swift-Metrics-Collector/SMCKit/SMCKitTests/Test%20Cases[Test Cases].
+
+=== Limitações
+
+Existem alguns cenários em que a ferramenta não consegue calcular as métricas de forma correta. As limitações conhecidas estão descritas, com exemplos, em link:Limitacoes.adoc[Limitações].

@@ -1,0 +1,384 @@
+:toc: macro
+:toc-title:
+:toclevels: 2
+
+= Limitações
+
+toc::[]
+
+== Legenda
+
+<métrica> (e) => valor esperado da métrica +
+<métrica> (c) => valor calculado pela ferramenta
+
+
+
+== Geral
+
+=== L-G-001
+
+==== Cenário
+
+Uma classe global e uma classe definida dentro de outra possuem o mesmo nome. Uma outra classe herda de uma dessas classes com nomes iguais.
+
+==== Entrada
+
+[, swift]
+----
+class Class1_1: Class1 {
+    func method1() { }
+    func method2() { }
+}
+
+class Class1 {
+    class Class1_1 {
+        var variable1 = true
+        var variable2 = Class1_2()
+
+        func method3() { }
+    }
+
+    class Class1_2: Class1_1 {
+        func method4() {
+            print(variable1)
+            method3()
+        }
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class             | NOC (e)   | NOC (c)   | DIT (e)   | DIT (c)   | WMC (e)   | WMC (c)   | LCOM (e)  | LCOM (c)  | RFC (e)   | RFC (c)   | CBO (e)   | CBO (c)
+
+| 1 | Class1            | 1         | 1         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 1         | 1
+| 2 | Class1.Class1_1   | 1         | 1/0 (X)   | 0         | 0         | 1         | 1         | 1         | 1         | 1         | 1         | 1         | 1
+| 3 | Class1.Class1_2   | 0         | 0         | 1         | 1/2 (X)   | 1         | 1         | 1         | 1         | 3         | 3/5 (X)   | 1         | 1/2 (X)   
+| 4 | Class1_1          | 0         | 0/1 (X)   | 1         | 1         | 2         | 2         | 2         | 2         | 2         | 2         | 1         | 1/2 (X)
+|===
+
+Esse cenário pode causar cálculos errados para as métricas NOC, DIT, RFC e CBO. Isso acontece porque tanto no momento de identificar as heranças entre as classe quanto no momento de identificar o acoplamento entre os tipos a ferramenta pode considerar a classe errada, já que as duas possuem o mesmo nome.
+
+As métrica WMC e LCOM não são afetadas por esse cenário porque não levam em consideração métodos de superclasses.
+
+
+
+== RFC
+
+=== L-RFC-001
+
+==== Cenário
+
+Uma classe define um método de instância e uma outra classe interna.
+
+O método cria quatro objetos da classe interna de formas diferentes: `<ClasseInterna>()`, `<ClasseExterna>.<ClasseInterna>()`, `<ClasseInterna>.init()` e `<ClasseExterna>.<ClasseInterna>.init()`.
+
+==== Entrada
+
+[, swift]
+----
+class Class1 {
+    class Class1_1 { }
+
+    func method1() {
+        let object1 = Class1_1()
+        let object2 = Class1.Class1_1()
+        let object3 = Class1_1.init()
+        let object4 = Class1.Class1_1.init()
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class             | RFC (e)   | RFC (c)
+
+| 1 | Class1            | 2         | 3 (X)
+| 2 | Class1.Class1_1   | 0         | 0
+|===
+
+
+=== L-RFC-002
+
+==== Cenário
+
+Três classes são definidas: duas delas não têm nenhum método e uma delas tem um método de instância.
+
+Uma das classes que não têm métodos tem uma variável do tipo da outra classe sem métodos e tem um inicializador que recebe um objeto dessa outra classe e atribui o valor à sua variável.
+
+O método da outra classe cria um objeto da classe com variável, explicitando seu tipo e chamando o inicializador da forma `.init(...)`. O parâmetro passado no inicializador também é inicializado com esse mesmo formato.
+
+==== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 {
+    var variable1: Class1
+
+    init(variable1: Class1) {
+        self.variable1 = variable1
+    }
+}
+class Class3 {
+    func method1() {
+        let object1: Class2 = .init(variable1: .init())
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class     | RFC (e)   | RFC (c)
+
+| 1 | Class1    | 0         | 0
+| 2 | Class2    | 0         | 0
+| 3 | Class3    | 3         | 2 (X)
+|===
+
+
+=== L-RFC-003
+
+==== Cenário
+
+Três classes são definidas: duas delas não têm nenhum método e uma delas tem um método de instância.
+
+Uma das classes que não têm métodos tem uma variável do tipo da outra classe sem métodos e tem um inicializador que recebe um objeto dessa outra classe e atribui o valor à sua variável.
+
+O método da outra classe cria um objeto da classe com variável, explicitando seu tipo e chamando o inicializador da forma `.init(...)`. O parâmetro passado no inicializador também é inicializado com esse mesmo formato.
+
+==== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+    func method1(param1: Bool) { }
+}
+class Class2 {
+    func method2() {
+        let object1 = Class1()
+
+        object1.method1()
+        object1.method1(param1: true)
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class     | RFC (e)   | RFC (c)
+
+| 1 | Class1    | 2         | 1 (X)
+| 2 | Class2    | 4         | 3 (X)
+|===
+
+
+
+== CBO
+
+=== L-CBO-001
+
+==== Cenário
+
+[Descrever cenário]
+
+==== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1 = true
+}
+class Class2 {
+    func method1() { }
+}
+class Class3 {
+    func method2() -> Class1 {
+        Class1()
+    }
+    func method3() -> Class2 {
+        Class2()
+    }
+}
+class Class4 {
+    func method4() {
+        let object1 = Class3()
+
+        if object1.method2().variable1 {
+            object1.method3().method1()
+        }
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class     | CBO (e)   | CBO (c)
+
+| 1 | Class1    | 2         | 1 (X)
+| 2 | Class2    | 2         | 1 (X)
+| 3 | Class3    | 3         | 3
+| 4 | Class3    | 3         | 1 (X)
+|===
+
+
+=== L-CBO-002
+
+==== Cenário
+
+[Descrever cenário]
+
+==== Entrada
+
+[, swift]
+----
+class Class1 {
+    func method1() { }
+}
+
+let object1 = Class1()
+
+class Class2 {
+    func method2() {
+        object1.method1()
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class     | CBO (e)   | CBO (c)
+
+| 1 | Class1    | 1         | 0 (X)
+| 2 | Class2    | 1         | 0 (X)
+|===
+
+
+=== L-CBO-003
+
+==== Cenário
+
+Três classes são definidas: duas delas não têm nenhum método e uma delas tem um método de instância.
+
+Uma das classes que não têm métodos tem uma variável do tipo da outra classe sem métodos e tem um inicializador que recebe um objeto dessa outra classe e atribui o valor à sua variável.
+
+O método da outra classe cria um objeto da classe com variável, passando como parâmetro no seu inicializador um novo objeto inicializado sem explicitar o seu tipo: `.init(...)`.
+
+==== Entrada
+
+[, swift]
+----
+class Class1 { }
+class Class2 {
+    var variable1: Class1
+
+    init(variable1: Class1) {
+        self.variable1 = variable1
+    }
+}
+class Class3 {
+    func method1() {
+        let object1 = Class2(variable1: .init())
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class     | CBO (e)   | CBO (c)
+
+| 1 | Class1    | 2         | 1 (X)
+| 2 | Class2    | 2         | 2
+| 3 | Class3    | 2         | 1 (X)
+|===
+
+
+
+== LCOM
+
+=== L-LCOM-001
+
+==== Cenário
+
+Um método de uma classe declara uma variável local, com o mesmo nome de uma variável de instância, dentro de um bloco `if`. Em uma linha de código posterior a esse bloco `if`, o método acessa a variável de instância de mesmo nome. Um outro método da mesma classe também acessa a mesma variável de instância.
+
+==== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1 = false
+
+    func method1() {
+        if true {
+            let variable1 = true
+            print(variable1)
+        }
+
+        print(variable1)
+    }
+
+    func method2() {
+        print(self.variable1)
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class     | LCOM (e)  | LCOM (c)
+
+| 1 | Class1    | 1         | 2 (X)
+|===
+
+
+=== L-LCOM-002
+
+==== Cenário
+
+// TODO: Descrever cenário
+
+==== Entrada
+
+[, swift]
+----
+class Class1 {
+    var variable1 = false
+
+    func method1() {
+        if let variable1 = true {
+            print(variable1)
+        }
+    }
+
+    func method2() {
+        print(self.variable1)
+    }
+}
+----
+
+==== Resultado
+
+[%autowidth]
+|===
+| # | Class     | LCOM (e)  | LCOM (c)
+
+| 1 | Class1    | 2         | 1 (X)
+|===
