@@ -147,11 +147,9 @@ class Class3 {
 
 ==== Cenário
 
-Três classes são definidas: duas delas não têm nenhum método e uma delas tem um método de instância.
+Uma classe define dois métodos de instância com o mesmo nome. Um desses métodos não possui nenhum parâmetro e o outro possui um parâmetro.
 
-Uma das classes que não têm métodos tem uma variável do tipo da outra classe sem métodos e tem um inicializador que recebe um objeto dessa outra classe e atribui o valor à sua variável.
-
-O método da outra classe cria um objeto da classe com variável, explicitando seu tipo e chamando o inicializador da forma `.init(...)`. O parâmetro passado no inicializador também é inicializado com esse mesmo formato.
+Uma outra classe define um método que instancia um objeto da classe descrita anteriormente e chama os dois métodos de nomes iguais.
 
 ==== Entrada
 
@@ -189,7 +187,7 @@ class Class2 {
 
 ==== Cenário
 
-[Descrever cenário]
+// TODO: Descrever cenário
 
 ==== Entrada
 
@@ -237,7 +235,7 @@ class Class4 {
 
 ==== Cenário
 
-[Descrever cenário]
+// TODO: Descrever cenário
 
 ==== Entrada
 
