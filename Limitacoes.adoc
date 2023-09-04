@@ -187,7 +187,11 @@ class Class2 {
 
 ==== Cenário
 
-// TODO: Descrever cenário
+Quatro classes são definidas.
+
+Umas das classes define dois métodos de instância. Cada um desses métodos retorna um objeto do tipo de uma das outras classes definidas.
+
+Uma outra classe possui um método que inicializa um objeto dessa classe com dois métodos descrita acima. Esse método usa o objeto para chamar os métodos da classe e acessar variáveis e métodos dos objetos retornados.  Essa classe não possui nenhuma referência explícita às classes dos objetos retornados pelos métodos chamados, mas o acoplamento existe ao acessar métodos e variáveis dessas classes.
 
 ==== Entrada
 
@@ -235,7 +239,9 @@ class Class4 {
 
 ==== Cenário
 
-// TODO: Descrever cenário
+Uma variável global é inicializada com um objeto de uma classe que possui um método de instância.
+
+Uma outra classe é definida com um método que utiliza a variável global para chamar o método de instância do objeto.
 
 ==== Entrada
 
@@ -351,7 +357,9 @@ class Class1 {
 
 ==== Cenário
 
-// TODO: Descrever cenário
+Um método de uma classe faz um 'optional binding' com o mesmo nome de uma variável de instância e acessa a variável desse binding dentro de um bloco `if`.
+
+Um outro método da mesma classe acessa a variável de instância.
 
 ==== Entrada
 
