@@ -26,7 +26,7 @@ struct SwiftMetricsCollector: ParsableCommand {
     var path: String
 
     @Flag(help: "Report file format")
-    var reportFormat: ReportFormat = .json
+    var reportFormat: ReportFormat = .csv
 
     @Option(help: "Path where to save the tool output (report file)")
     var outputDirectoryPath: String = Self.defaultOutputPath
