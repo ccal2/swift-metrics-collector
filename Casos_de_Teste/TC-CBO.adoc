@@ -12,7 +12,7 @@ toc::[]
 
 === Cenário
 
-// TODO: Descrever cenário
+Duas classes são definidas sem nenhuma proproedade ou método.
 
 === Entrada
 
@@ -37,7 +37,7 @@ class Class2 { }
 
 === Cenário
 
-// TODO: Descrever cenário
+Três classes são definidas sem nenhuma proproedade ou método. Uma das classes herda de uma das outras.
 
 === Entrada
 
@@ -64,7 +64,7 @@ class Class3 { }
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui declarações de variáveis do tipo de quatro das outras cinco classes definidas. Uma dessas variáveis é uma propriedade da classe; outra é declarada no inicializador; outra é definida em um método de instância; e a última é declarada em um método estático.
 
 === Entrada
 
@@ -111,7 +111,7 @@ class Class6 { }
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui declarações de variáveis do tipo de três das outras cinco classes definidas. Todas essas declarações são feitas em uma extensão da classe. Uma das variáveis é uma propriedade da classe; outra é definida em um método de instância; e a última é declarada em um método estático.
 
 === Entrada
 
@@ -156,7 +156,7 @@ extension Class4 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui declarações de variáveis do tipo de quatro das outras cinco classes definidas. Duas dessas variáveis são propriedades da classe, sendo uma definida na declaração original da classe e a outra em uma extensão; outra é declarada no inicializador; outras duas são definidas em um método de instância, sendo uma na declaração original da classe e a outra em uma extensão; e as duas últimas são declaradas em um método estático, sendo uma na declaração original da classe e a outra em uma extensão.
 
 === Entrada
 
@@ -215,7 +215,7 @@ extension Class4 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui parâmetros do tipo de quatro das outras cinco classes definidas. Um desses parâmetros é de um inicializador; outros dois são definidos em um método de instância; e o último é parte de um método estático.
 
 === Entrada
 
@@ -254,7 +254,7 @@ class Class6 { }
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui parâmetros do tipo de quatro das outras cinco classes definidas. Todos esses parâmetros são definidos em métodos de uma extensão da classe. Dois dos parâmetros são definidos em um método de instância; e o último é parte de um método estático.
 
 === Entrada
 
@@ -293,7 +293,7 @@ extension Class4 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui parâmetros do tipo de quatro das outras cinco classes definidas. Um desses parâmetros é de um inicializador; outros quatro são definidos em métodos de instância, sendo dois em um método declarado na definição original da classe e os outros dois em um método definido em uma extensão; e os dois últimos são parte de métodos estáticos, sendo um em um método declarado na definição original da classe e o outro em um método definido em uma extensão.
 
 === Entrada
 
@@ -338,7 +338,7 @@ extension Class4 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui declarações de variáveis do tipo de quatro das outras cinco classes definidas, chamando o inicializador do tipo. Uma dessas variáveis é uma propriedade da classe; outra é declarada no inicializador; outra é definida em um método de instância; e a última é declarada em um método estático.
 
 === Entrada
 
@@ -385,7 +385,7 @@ class Class6 { }
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui declarações de variáveis do tipo de duas das outras cinco classes definidas, chamando o inicializador do tipo. Todas essas declarações são feitas em uma extensão da classe. Uma das variáveis é definida em um método de instância; e a última é declarada em um método estático.
 
 === Entrada
 
@@ -428,7 +428,7 @@ extension Class4 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui declarações de variáveis do tipo de quatro das outras cinco classes definidas, chamando o inicializador do tipo. Uma dessas variáveis é uma propriedade da classe; outra é declarada no inicializador; outras duas são definidas em um método de instância, sendo uma na declaração original da classe e a outra em uma extensão; e as duas últimas são declaradas em métodos estáticos, sendo uma na declaração original da classe e a outra em uma extensão.
 
 === Entrada
 
@@ -485,7 +485,7 @@ extension Class4 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui declarações de variáveis do tipo de quatro das outras cinco classes definidas, explicitanto o tipo e chamando o seu inicializador apenas com `.init()`. Duas dessas variáveis são propriedades da classe, sendo uma definida na declaração original da classe e a outra em uma extensão; outra é declarada no inicializador; outras duas são definidas em um método de instância, sendo uma na declaração original da classe e a outra em uma extensão; e as duas últimas são declaradas em métodos estáticos, sendo uma na declaração original da classe e a outra em uma extensão.
 
 === Entrada
 
@@ -544,7 +544,7 @@ extension Class4 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Seis classes são definidas. Cinco delas não possui nenhuma proproedade ou método. Uma delas possui declarações de variáveis do tipo de quatro das outras cinco classes definidas e parâmetros do tipo de duas das outras cinco classes definidas. Algumas das declarações explicitam o tipo da variável, outras não. Algumas delas inicializam o valor chamando um inicializador. Algumas estão na definição original da classe e outras em uma extensão.
 
 === Entrada
 

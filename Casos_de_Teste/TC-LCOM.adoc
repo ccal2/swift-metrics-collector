@@ -12,7 +12,7 @@ toc::[]
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe não possui nenhuma variável e define três métodos de instância e um método estático.
 
 === Entrada
 
@@ -41,7 +41,7 @@ class Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui uma variável de instância e define três métodos de instância. Dois dos métodos acessam a variável.
 
 === Entrada
 
@@ -74,7 +74,7 @@ class Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui uma variável de instância, uma variável estática e define três métodos de instância. Dois dos métodos acessam a variável de instância. Um desses dois e mais o método restante acessam a variável estática.
 
 === Entrada
 
@@ -114,7 +114,7 @@ class Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui uma variável de instância, uma variável estática, três métodos de instância e um método estático. Dois dos métodos de instância acessam a variável de instância. Um desses dois, o método de instância restante e o método estático acessam a variável estática.
 
 === Entrada
 
@@ -160,7 +160,7 @@ class Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui quatro variáveis de instância e três métodos de instância. Um dos métodos acessa uma variável que não é acessada por nenhum dos outros métodos. Um outro método acessa outra variável que também não é acessada por nenhum outro método e mais uma variável que é acessada pelo terceiro método. O terceiro método acessa duas variáveis.
 
 === Entrada
 
@@ -202,7 +202,7 @@ class Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui quatro variáveis de instância e três métodos de instância. O primeiro método acessa uma variável que não é acessada por nenhum dos outros métodos e mais uma que é acessada também pelo segundo método. O segundo método acessa essa variável acessada pelo primeiro método e mais uma que é acessada pelo terceiro método. O terceiro método acessa duas variáveis.
 
 === Entrada
 
@@ -246,7 +246,7 @@ class Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui quatro variáveis de instância e três métodos de instância. Um dos métodos acessa uma variável que não é acessada por nenhum dos outros métodos e mais uma variável que é acessada pelo segundo método. O segundo método acessa duas variáveis: uma acessada pelo primeiro método e outra que também é acessada pelo terceiro método. O terceiro método acessa duas variáveis.
 
 === Entrada
 
@@ -292,7 +292,7 @@ extension Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui quatro variáveis de instância e três métodos de instância. Um desses métodos é definido em uma extensão da classe. O primeiro método acessa uma variável que não é acessada por nenhum dos outros métodos e mais uma variável que é acessada pelo segundo método. O segundo método acessa duas variáveis: uma acessada pelo primeiro método e outra que também é acessada pelo terceiro método. O terceiro método acessa duas variáveis.
 
 === Entrada
 
@@ -340,7 +340,9 @@ extension Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui quatro variáveis de instância e um método de instância. Esse método acessa uma das variáveis.
+
+Uma outra classe herda da primeira e possui mais dois métodos de instância. Um desses métodos acessa uma variável que não é acessada por nenhum dos outros métodos e mais uma variável que é acessada pelo último método. O último método acessa essa variável acessada pelo outro método da classe filha e mais uma que não é acessada por nenhum dos outros métodos.
 
 === Entrada
 
@@ -391,7 +393,7 @@ class Class2: Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe é definida sem nenhuma variável ou método.
 
 === Entrada
 
@@ -518,7 +520,7 @@ class Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma classe possui uma variáveis de instância e dois métodos de instância. Um dos métodos acessa a variável sem usar `self.` e o outro método acessa a mesma variável utilizando `self.`.
 
 === Entrada
 
@@ -553,7 +555,9 @@ class Class1 {
 
 === Cenário
 
-// TODO: Descrever cenário
+Uma variavél global é definida.
+
+Uma classe possui uma variáveis de instância com o mesmo identificador da variável global e dois métodos de instância. Um dos métodos acessa a variável global usando `<nome-do-módulo>.` e o outro método acessa a variável de instância da classe utilizando `self.`.
 
 === Entrada
 
