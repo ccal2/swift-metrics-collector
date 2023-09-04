@@ -21,7 +21,7 @@ Uma classe é definida sem nenhum método.
 class Class1 { }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -46,7 +46,7 @@ class Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -73,7 +73,7 @@ class Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -102,7 +102,7 @@ class Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -130,7 +130,7 @@ class Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -160,7 +160,7 @@ class Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -184,7 +184,7 @@ class Class1 { }
 class Class2: Class1 { }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -216,7 +216,7 @@ class Class1 {
 class Class2: Class1 { }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -252,7 +252,7 @@ class Class2: Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -281,7 +281,7 @@ class Class2: Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -320,7 +320,7 @@ extension Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -360,7 +360,7 @@ extension Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -394,7 +394,7 @@ class Class1 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===

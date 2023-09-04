@@ -24,7 +24,7 @@ class Class3: Class2 { }
 class Class4: Class3 { }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -55,7 +55,7 @@ class Class3: Class2 { }
 class Class4: Class3 { }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -86,7 +86,7 @@ class Class3: Class2 { }
 class Class4: Class3 { }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -131,7 +131,7 @@ Class4.swift:
 class Class4: Class3 { }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
@@ -168,7 +168,7 @@ class Class2 {
 }
 ----
 
-=== Resultado
+=== Resultado esperado
 
 [%autowidth]
 |===
